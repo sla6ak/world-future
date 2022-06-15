@@ -3,9 +3,9 @@ import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
 function PublicRoute({ children }) {
-  // const curentAuth = useSelector(state => state.auth);
+  const curentAuth = useSelector(state => state.auth);
 
-  return true ? children : <Navigate to="/contacts" />;
+  return curentAuth.length < 2 ? children : <Navigate to="/play" />;
 }
 
 export default PublicRoute;

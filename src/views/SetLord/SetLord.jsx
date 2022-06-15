@@ -1,25 +1,12 @@
 import Title from 'components/Title/Title';
 import { Section } from './SetLord.style';
-import { Form } from 'components/Form/Form';
-import ContactList from 'components/ContactList/ContactList';
-import { useGetAllContactsQuery } from 'server/contacts';
-import NotContacts from 'components/NotContacts/NotContacts';
 
-function ContactsPage() {
-  const { data: contacts, isLoading } = useGetAllContactsQuery();
-
+const SetLord = () => {
   return (
     <Section>
-      <Title text={'Phonebook'} />
-      <Form />
-      <Title text={'Contacts:'} />
-      {!isLoading ? (
-        <ContactList contacts={contacts} />
-      ) : (
-        <NotContacts text={'LOADING'} />
-      )}
+      <Title>Lord</Title>
     </Section>
   );
-}
+};
 
-export default ContactsPage;
+export default SetLord;

@@ -24,7 +24,7 @@ const tokenPersistConfig = {
 const rootReduser = combineReducers({
   [authApi.reducerPath]: authApi.reducer,
   token: curentToken.reducer,
-  user: curentUser.reducer,
+  auth: curentUser.reducer,
 });
 const persistedReducer = persistReducer(tokenPersistConfig, rootReduser);
 
