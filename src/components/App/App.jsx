@@ -11,9 +11,7 @@ import { toast } from 'react-toastify';
 const SetLord = lazy(() => import('../../views/SetLord/SetLord'));
 const Home = lazy(() => import('../../views/Home/Home'));
 const LoginPage = lazy(() => import('../../views/LoginPage/LoginPage'));
-const RegisterPage = lazy(() =>
-  import('../../views/RegisterPage/RegisterPage')
-);
+const RegisterPage = lazy(() => import('../../views/RegisterPage/RegisterPage'));
 
 export const App = () => {
   const token = useSelector(state => state.token);
