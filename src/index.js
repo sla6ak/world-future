@@ -14,7 +14,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter basename="/world-future/">
+        <BrowserRouter basename={process.env.PUBLIC_URL + '/'}>
           <ToastContainer
             position="top-right"
             autoClose={3000}
