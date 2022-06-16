@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter basename="/world-future.vercel.app/">
+        <BrowserRouter basename="/world-future/">
           <ThemeProvider theme={theme}>
             <ToastContainer
               position="top-right"
