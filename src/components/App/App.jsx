@@ -21,11 +21,15 @@ export const App = () => {
   const { data: auth, error } = useGetIsActivUserQuery('', { skip: !token });
 
   useEffect(() => {
+    if (error) {
+      return console.log(error);
+    }
     if (auth === undefined) {
       return;
     }
     dispatch(isAuth(auth.name));
-  }, [auth, dispatch]);
+    toast.success(`Welcome ${auth.name}`);
+  }, [auth, dispatch, error]);
 
   return (
     <>

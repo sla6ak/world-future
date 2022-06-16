@@ -6,7 +6,7 @@ export const BoxHeader = styled.div`
   width: 100%;
 `;
 
-export const Main = styled.main`
+export const Main = styled.div`
   min-width: 100vw;
   min-height: 100vh;
   background-color: rgb(30, 30, 30);

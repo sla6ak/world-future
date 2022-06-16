@@ -1,5 +1,5 @@
 import { ListAuth } from 'components/ListAuth/ListAuth.styled';
-import Title from 'components/Title/Title';
+import { Title } from 'components/Title/Title.styled';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -7,12 +7,14 @@ import { useLoginUserMutation } from 'server/authFetch';
 import { toast } from 'react-toastify';
 import { newToken, isAuth } from 'redux/sliceAuth';
 import { validationLoginSchema } from 'utilits/validationForms';
+import { ButtonHome } from 'components/ButtonHome/ButtonHome.styled';
+import { TextField, Grid, Button } from '@mui/material';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
-  const [createUser, { isError }] = useLoginUserMutation();
+  const [createUser, { error }] = useLoginUserMutation();
 
   const handleEmail = event => {
     setEmail(event.target.value);
@@ -24,7 +26,7 @@ const LoginPage = () => {
   const onSubmitRegister = async event => {
     event.preventDefault();
     try {
-      const valid = await validationLoginSchema.validate({
+      await validationLoginSchema.validate({
         email,
         password,
       });
@@ -34,7 +36,9 @@ const LoginPage = () => {
     }
     const send = { email: email, password: password };
     const responsLogin = await createUser(send);
-    // console.log(responsLogin);
+    if (error) {
+      console.log(error);
+    }
     if (responsLogin.error?.status === 404) {
       toast.error('User not found');
       return;
@@ -48,29 +52,36 @@ const LoginPage = () => {
   return (
     <ListAuth>
       <Title>Login Please</Title>
-      <NavLink to="/">Home</NavLink>
+      <ButtonHome>
+        <NavLink to="/">Home</NavLink>
+      </ButtonHome>
       <form onSubmit={onSubmitRegister}>
-        <label>
-          Email:
-          <input
-            required
-            type="text"
-            name="email"
-            value={email}
-            onChange={handleEmail}
-          />
-        </label>
-        <label>
-          Password:
-          <input
-            required
-            type="text"
-            name="password"
-            value={password}
-            onChange={handlePassword}
-          />
-        </label>
-        <input type="submit" value="Submit" />
+        <Grid container spacing={2}>
+          <Grid item xs={12}></Grid>
+          <Grid item xs={12}>
+            <TextField
+              label="Email Address"
+              required
+              fullWidth
+              type="text"
+              name="email"
+              value={email}
+              onChange={handleEmail}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              label="Password"
+              required
+              fullWidth
+              type="text"
+              name="password"
+              value={password}
+              onChange={handlePassword}
+            />
+          </Grid>
+        </Grid>
+        <Button type="submit">Sabmit</Button>
       </form>
       <p>
         <span>You don&#39;t have a login?</span>

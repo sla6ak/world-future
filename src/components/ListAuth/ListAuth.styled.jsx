@@ -8,6 +8,7 @@ export const ListAuth = styled.div`
   min-height: 50vh;
   display: flex;
   flex-direction: column;
+  align-items: center;
   border-radius: 10px;
   position: relative;
   color: aliceblue;
@@ -16,6 +17,6 @@ export const ListAuth = styled.div`
     width: 900px;
   }
   @media (max-width: 500px) {
-    margin-right: 60px;
+    width: 350px;
   }
 `;
