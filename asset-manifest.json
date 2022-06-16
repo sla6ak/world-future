@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/world-future/static/css/main.039bf95e.css",
-    "main.js": "/world-future/static/js/main.aa2d2d4b.js",
+    "main.js": "/world-future/static/js/main.a26eba35.js",
     "static/js/521.cdbde136.chunk.js": "/world-future/static/js/521.cdbde136.chunk.js",
     "static/js/732.83205639.chunk.js": "/world-future/static/js/732.83205639.chunk.js",
     "static/js/350.90c19aea.chunk.js": "/world-future/static/js/350.90c19aea.chunk.js",
@@ -10,7 +10,7 @@
     "static/js/791.53de3d36.chunk.js": "/world-future/static/js/791.53de3d36.chunk.js",
     "index.html": "/world-future/index.html",
     "main.039bf95e.css.map": "/world-future/static/css/main.039bf95e.css.map",
-    "main.aa2d2d4b.js.map": "/world-future/static/js/main.aa2d2d4b.js.map",
+    "main.a26eba35.js.map": "/world-future/static/js/main.a26eba35.js.map",
     "521.cdbde136.chunk.js.map": "/world-future/static/js/521.cdbde136.chunk.js.map",
     "732.83205639.chunk.js.map": "/world-future/static/js/732.83205639.chunk.js.map",
     "350.90c19aea.chunk.js.map": "/world-future/static/js/350.90c19aea.chunk.js.map",
@@ -20,6 +20,6 @@
   },
   "entrypoints": [
     "static/css/main.039bf95e.css",
-    "static/js/main.aa2d2d4b.js"
+    "static/js/main.a26eba35.js"
   ]
 }
