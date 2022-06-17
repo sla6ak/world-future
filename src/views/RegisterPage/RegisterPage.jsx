@@ -6,7 +6,7 @@ import { Title } from 'components/Title/Title.styled';
 import { useDispatch } from 'react-redux';
 import { ListAuth } from 'components/ListAuth/ListAuth.styled';
 import { useRegistrationUserMutation } from 'server/authFetch';
-import { isAuth, newToken } from 'redux/sliceAuth';
+import { isAuth, newToken } from 'redux/AuthSlise';
 import { Typography } from '@mui/material';
 import { Grid } from '@mui/material';
 import {

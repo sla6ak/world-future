@@ -3,7 +3,7 @@ import { lazy, useEffect } from 'react';
 import { Layout } from 'Layout/Layout';
 import { useSelector, useDispatch } from 'react-redux';
 import { useGetIsActivUserQuery } from 'server/authFetch';
-import { isAuth } from 'redux/sliceAuth';
+import { isAuth } from 'redux/AuthSlise';
 import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
 import PublicRoute from 'components/PublicRoute/PublicRoute';
 import { toast } from 'react-toastify';
@@ -11,7 +11,9 @@ import { toast } from 'react-toastify';
 const SetLord = lazy(() => import('../../views/SetLord/SetLord'));
 const Home = lazy(() => import('../../views/Home/Home'));
 const LoginPage = lazy(() => import('../../views/LoginPage/LoginPage'));
-const RegisterPage = lazy(() => import('../../views/RegisterPage/RegisterPage'));
+const RegisterPage = lazy(() =>
+  import('../../views/RegisterPage/RegisterPage')
+);
 
 export const App = () => {
   const token = useSelector(state => state.token);
@@ -48,6 +50,14 @@ export const App = () => {
               <PublicRoute>
                 <RegisterPage />
               </PublicRoute>
+            }
+          />
+          <Route
+            path="/setlord"
+            element={
+              <PrivateRoute>
+                <SetLord />
+              </PrivateRoute>
             }
           />
         </Route>

@@ -21,7 +21,7 @@ export const ValidationTextField = styled(TextField)({
     borderWidth: 2,
   },
   '& label': {
-    color: '#ffffff7b',
+    color: '#ffffff25',
   },
   '& input': {
     color: '#fff',

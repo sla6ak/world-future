@@ -11,9 +11,10 @@ const Home = () => {
       <Title>Welcom to my game!</Title>
       <TextGame>
         <Typography>
-          You see this page because I didn&#39;t recognize you. If this is not
-          your first time here, you can save the page in the browser so that it
-          is easier for me to recognize you next time.
+          If you see this page, the connection to the server may have been lost
+          for some time or your internet is unstable. Perhaps this is your first
+          time here? In any case, the menu is intuitive and the game process is
+          exciting. this is an RPG where you will surely meet new comrades!
         </Typography>
       </TextGame>
       <ButtonNavLink>

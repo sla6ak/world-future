@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLoginUserMutation } from 'server/authFetch';
 import { toast } from 'react-toastify';
-import { newToken, isAuth } from 'redux/sliceAuth';
+import { newToken, isAuth } from 'redux/AuthSlise';
 import { validationLoginSchema } from 'utilits/validationForms';
 import { Grid } from '@mui/material';
 import {

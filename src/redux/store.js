@@ -1,5 +1,9 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { authApi } from '../server/authFetch';
+import { personApi } from 'server/personFetch';
+import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
+import { curentUser, curentToken } from './AuthSlise';
+import { nikName } from './NikSlise';
 import {
   persistStore,
   persistReducer,
@@ -10,8 +14,6 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
-import { curentUser, curentToken } from './sliceAuth';
 
 // ***********************local*************************
 const tokenPersistConfig = {
@@ -23,8 +25,10 @@ const tokenPersistConfig = {
 // *****************reduser*************************************
 const rootReduser = combineReducers({
   [authApi.reducerPath]: authApi.reducer,
+  [personApi.reducerPath]: personApi.reducer,
   token: curentToken.reducer,
   auth: curentUser.reducer,
+  nikName: nikName.reducer,
 });
 const persistedReducer = persistReducer(tokenPersistConfig, rootReduser);
 
