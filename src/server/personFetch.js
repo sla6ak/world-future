@@ -22,6 +22,7 @@ export const personApi = createApi({
         url: `/`,
         method: 'GET',
       }),
+      invalidatesTags: ['personApi'],
     }),
 
     registrationPerson: builder.mutation({
@@ -30,6 +31,7 @@ export const personApi = createApi({
         method: 'POST',
         body: newNik,
       }),
+      invalidatesTags: ['personApi'],
     }),
   }),
 });

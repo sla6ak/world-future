@@ -6,10 +6,10 @@ export const nikName = createSlice({
   name: 'person',
   initialState: initialNik,
   reducers: {
-    newNik(_state, action) {
+    myNik(_state, action) {
       return action.payload;
     },
   },
 });
 
-export const { newPerson } = nikName.actions;
+export const { myNik } = nikName.actions;

@@ -14,6 +14,10 @@ const LoginPage = lazy(() => import('../../views/LoginPage/LoginPage'));
 const RegisterPage = lazy(() =>
   import('../../views/RegisterPage/RegisterPage')
 );
+const LayoutGame = lazy(() => import('../../LayoutGame/LeyoutGame'));
+const BlueHome = lazy(() => import('../../views/BlueHome/BlueHome'));
+const YellowHome = lazy(() => import('../../views/YellowHome/YellowHome'));
+const LostWorld = lazy(() => import('../../views/LostWorld/LostWorld'));
 
 export const App = () => {
   const token = useSelector(state => state.token);
@@ -60,15 +64,57 @@ export const App = () => {
               </PrivateRoute>
             }
           />
+          <Route
+            path="/play"
+            element={
+              <PrivateRoute>
+                <LayoutGame />
+              </PrivateRoute>
+            }
+          >
+            <Route
+              path="/play/blueHome"
+              element={
+                <PrivateRoute>
+                  <BlueHome />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/play/yellowHome"
+              element={
+                <PrivateRoute>
+                  <YellowHome />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/play/lostWorld"
+              element={
+                <PrivateRoute>
+                  <LostWorld />
+                </PrivateRoute>
+              }
+            />
+            {/* <Route
+            path="/play/mainingWorld"
+            element={
+              <PrivateRoute>
+                <SetLord />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/play/portalWorld"
+            element={
+              <PrivateRoute>
+                <SetLord />
+              </PrivateRoute>
+            }
+          /> */}
+          </Route>
         </Route>
-        <Route
-          path="/play"
-          element={
-            <PrivateRoute>
-              <SetLord />
-            </PrivateRoute>
-          }
-        />
+
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </>
