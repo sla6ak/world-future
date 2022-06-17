@@ -6,8 +6,8 @@ export const GlobalStyle = () => {
       styles={css`
         body {
           margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu,
-            Cantarell, 'Helvetica Neue', sans-serif;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+            Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
           color: #212121;
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
@@ -29,10 +29,11 @@ export const GlobalStyle = () => {
           box-sizing: border-box;
         }
         code {
-          font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+          font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+            monospace;
         }
         a {
-          color: rgb(48, 121, 255);
+          color: rgb(159, 192, 255);
           text-decoration: none;
         }
         .date {

@@ -7,8 +7,15 @@ import { useLoginUserMutation } from 'server/authFetch';
 import { toast } from 'react-toastify';
 import { newToken, isAuth } from 'redux/sliceAuth';
 import { validationLoginSchema } from 'utilits/validationForms';
-import { ButtonHome } from 'components/ButtonHome/ButtonHome.styled';
-import { TextField, Grid, Button } from '@mui/material';
+import { Grid } from '@mui/material';
+import {
+  LinkToRegister,
+  AskToRegister,
+  ValidationTextField,
+  ButtonSubmit,
+  ButtonHome,
+  FormSubmit,
+} from './LoginPage.styled';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -55,11 +62,10 @@ const LoginPage = () => {
       <ButtonHome>
         <NavLink to="/">Home</NavLink>
       </ButtonHome>
-      <form onSubmit={onSubmitRegister}>
+      <FormSubmit onSubmit={onSubmitRegister}>
         <Grid container spacing={2}>
-          <Grid item xs={12}></Grid>
           <Grid item xs={12}>
-            <TextField
+            <ValidationTextField
               label="Email Address"
               required
               fullWidth
@@ -70,7 +76,7 @@ const LoginPage = () => {
             />
           </Grid>
           <Grid item xs={12}>
-            <TextField
+            <ValidationTextField
               label="Password"
               required
               fullWidth
@@ -81,12 +87,12 @@ const LoginPage = () => {
             />
           </Grid>
         </Grid>
-        <Button type="submit">Sabmit</Button>
-      </form>
-      <p>
-        <span>You don&#39;t have a login?</span>
+        <ButtonSubmit type="submit">Sabmit</ButtonSubmit>
+      </FormSubmit>
+      <LinkToRegister>
+        <AskToRegister>You don&#39;t have a login?</AskToRegister>
         <NavLink to="/auth/register">Registration</NavLink>
-      </p>
+      </LinkToRegister>
     </ListAuth>
   );
 };
