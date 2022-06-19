@@ -8,9 +8,10 @@ const Box = ({ position }) => {
   const refBox = useRef(); // в реф мы положим текущий куб это просто ссылка на меш
 
   useFrame(({ clock }) => {
-    const timer = clock.getElapsedTime();
+    // const timer = clock.getElapsedTime();
     // console.log(timer);
     refBox.current.rotation.x += 0.05;
+    refBox.current.rotation.y += 0.05;
   }, []);
 
   return (
