@@ -1,14 +1,15 @@
-import { useLoader, useFrame } from '@react-three/fiber'; // frame это хук для анимаций
-import { useRef } from 'react';
+import { useLoader } from '@react-three/fiber'; // frame это хук для анимаций
+// import { useRef } from 'react';
 import { TextureLoader } from 'three/src/loaders/TextureLoader';
 import boxJpg from './box.jpg';
 import { useBox } from '@react-three/cannon';
 
-const Box = ({ position }) => {
+const Box = props => {
   const textureBox = useLoader(TextureLoader, boxJpg);
   const [refBox] = useBox(() => ({
     position: [0, 5, 0],
     mass: 1,
+    ...props,
   }));
 
   // useFrame(({ clock }) => {
@@ -19,7 +20,7 @@ const Box = ({ position }) => {
   // }, []);
 
   return (
-    <mesh position={position} ref={refBox}>
+    <mesh ref={refBox}>
       <boxGeometry args={[1, 1, 1]} />
       <meshStandardMaterial map={textureBox} />
     </mesh>
