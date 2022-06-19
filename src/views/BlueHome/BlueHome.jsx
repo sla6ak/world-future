@@ -4,6 +4,7 @@ import { Suspense } from 'react';
 import Planet from 'componentsThree/Planet/Planet';
 import { Physics } from '@react-three/cannon';
 import LoaderSuspense from 'components/LoaderSuspense/LoaderSuspense';
+import Star from 'componentsThree/Star/Star';
 
 const BlueHome = () => {
   return (
@@ -12,10 +13,10 @@ const BlueHome = () => {
         <Suspense fallback={<LoaderSuspense />}>
           <Physics>
             <ambientLight intensity={0.1} />
-            <pointLight position={[10, 10, 10]} />
+            <pointLight position={[-4, 3, 0]} />
             <directionalLight color="#188acc" position={[0, 2, 0]} />
-            <Box position={[1, 1, 1]} />
-            <Box position={[-1, -1, 1]} />
+            <Star position={[-4, 3, 0]} />
+            <Box position={[0, 0, 0]} />
             <Planet />
           </Physics>
         </Suspense>
