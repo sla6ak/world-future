@@ -14,9 +14,11 @@ const BlueHome = () => {
           <Physics>
             <ambientLight intensity={0.1} />
             <pointLight position={[-4, 3, 0]} />
-            <directionalLight color="#188acc" position={[0, 2, 0]} />
+            <directionalLight color="#62a8d1" position={[0, 2, 0]} />
             <Star position={[-4, 3, 0]} />
-            <Box position={[0, 0, 0]} />
+            <Box position={[0, 0.5, 0.5]} />
+            <Box position={[1, 0, 0]} />
+            <Box position={[0, -1, 0]} />
             <Planet />
           </Physics>
         </Suspense>
