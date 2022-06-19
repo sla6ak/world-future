@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/188.27ba666f.chunk.js","mappings":"qIAGA,UAHmB,WACjB,OAAO","sources":["views/YellowHome/YellowHome.jsx"],"sourcesContent":["const YellowHome = () => {\n  return <div>BlueHome</div>;\n};\nexport default YellowHome;\n"],"names":[],"sourceRoot":""}

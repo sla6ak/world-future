@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkworld_future=self.webpackChunkworld_future||[]).push([[995],{5995:function(u,e,r){r.r(e);var n=r(184);e.default=function(){return(0,n.jsx)("div",{children:"BlueHome"})}}}]);
+//# sourceMappingURL=995.653a247d.chunk.js.map
