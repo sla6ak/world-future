@@ -39,6 +39,10 @@ export const GlobalStyle = () => {
         .date {
           font-weight: 600;
         }
+        canvas {
+          width: 100vw;
+          height: 100vh;
+        }
       `}
     />
   );
