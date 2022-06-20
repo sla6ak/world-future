@@ -87,7 +87,7 @@ const LoginPage = () => {
             />
           </Grid>
         </Grid>
-        <ButtonSubmit type="submit">Sabmit</ButtonSubmit>
+        <ButtonSubmit type="submit">Submit</ButtonSubmit>
       </FormSubmit>
       <LinkToRegister>
         <AskToRegister>You don&#39;t have a login?</AskToRegister>

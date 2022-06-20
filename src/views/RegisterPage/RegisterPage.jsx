@@ -110,7 +110,7 @@ const Registration = () => {
                 />
               </Grid>
             </Grid>
-            <ButtonSubmit type="submit">Sabmit</ButtonSubmit>
+            <ButtonSubmit type="submit">Submit</ButtonSubmit>
           </FormSubmit>
           <LinkToRegister>
             <AskToRegister>Do you have login?</AskToRegister>

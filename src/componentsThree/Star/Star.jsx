@@ -11,7 +11,7 @@ const Star = ({ position }) => {
     // const timer = clock.getElapsedTime();
     // console.log(timer);
     // refBox.current.rotation.x += 0.03;
-    refBox.current.rotation.y += 0.1;
+    refBox.current.rotation.y += 0.01;
   }, []);
 
   return (

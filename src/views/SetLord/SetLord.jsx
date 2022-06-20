@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { myNik } from 'redux/NikSlise';
 import { Navigate } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
+import { validationLordSchema } from 'utilits/validationForms';
 import {
   useGetMyPersonQuery,
   useRegistrationPersonMutation,
@@ -18,8 +18,7 @@ const SetLord = () => {
   const [nikName, setNikName] = useState('');
   const dispatch = useDispatch();
   const { data: personAPI, error } = useGetMyPersonQuery();
-  const [createPerson, { error: errorCreatePerson }] =
-    useRegistrationPersonMutation();
+  const [createPerson, { isSuccess }] = useRegistrationPersonMutation();
 
   const handleNik = event => {
     setNikName(event.target.value);
@@ -37,18 +36,28 @@ const SetLord = () => {
 
   // **************** создадим нового персонажа в базе*************************************
   const clikRassa = async nameRassa => {
-    const responsPerson = await createPerson({
+    const lordCandidat = {
       nikName: nikName,
       rassa: nameRassa,
-    });
-    if (errorCreatePerson) {
-      return toast.error(`Can not created beacose${errorCreatePerson}`);
-    }
-    if (!responsPerson.data) {
+    };
+    try {
+      await validationLordSchema.validate(lordCandidat);
+    } catch (error) {
+      toast.warn(`${error}`);
       return;
     }
-    dispatch(myNik(responsPerson.data.nikName));
-    toast.success('Create new lord!');
+    try {
+      const responsPerson = await createPerson(lordCandidat);
+      dispatch(myNik(responsPerson.data.newLord.nikName));
+      toast.success(`Create new lord ${responsPerson.data.newLord.nikName}!`);
+    } catch (error) {
+      if (error) {
+        console.log(error);
+        // return toast.error(
+        //   `Can not created beacose${error}. Try anaser nikName maybe`
+        // );
+      }
+    }
   };
 
   return (
@@ -66,11 +75,8 @@ const SetLord = () => {
           дисбаланс во вселенной!
         </Typography>
       </TextGame>
-      {personAPI ? (
-        <TextGame>
-          Your nikName:Vova, welcome to back lord!
-          <Navigate to="/play/blueHome" />
-        </TextGame>
+      {personAPI?.data.nikName || isSuccess ? (
+        <Navigate to="/play/blueHome" />
       ) : (
         <>
           <NikName
@@ -83,21 +89,20 @@ const SetLord = () => {
           />
           <Grid container spacing={2} sx={{ mb: '30px' }}>
             <Grid item xs={6}>
-              <ButtonSelectLeft onClick={() => clikRassa('left')}>
-                Left
+              <ButtonSelectLeft onClick={() => clikRassa('Blue')}>
+                Winter
               </ButtonSelectLeft>
             </Grid>
             <Grid item xs={6}>
               <ButtonSelectRight
                 onClick={() => {
-                  clikRassa('right');
+                  clikRassa('Yellow');
                 }}
               >
-                Right
+                Desert
               </ButtonSelectRight>
             </Grid>
           </Grid>
-          <NavLink to="/play/blueHome">try game</NavLink>
         </>
       )}
     </ListAuth>

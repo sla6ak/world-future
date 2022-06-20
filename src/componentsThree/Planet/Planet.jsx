@@ -9,7 +9,8 @@ const Planet = () => {
 
   const [ref] = usePlane(() => ({
     rotation: [-Math.PI / 2, 0, 0],
-    position: [1, -2, -1],
+    position: [1, -9, -1],
+    // radius: 8,
   }));
 
   return (

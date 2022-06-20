@@ -14,7 +14,7 @@ const LoginPage = lazy(() => import('../../views/LoginPage/LoginPage'));
 const RegisterPage = lazy(() =>
   import('../../views/RegisterPage/RegisterPage')
 );
-const LayoutGame = lazy(() => import('../../LayoutGame/LeyoutGame'));
+const LayoutGame = lazy(() => import('../../LayoutGame/LayoutGame'));
 const BlueHome = lazy(() => import('../../views/BlueHome/BlueHome'));
 const YellowHome = lazy(() => import('../../views/YellowHome/YellowHome'));
 const LostWorld = lazy(() => import('../../views/LostWorld/LostWorld'));
