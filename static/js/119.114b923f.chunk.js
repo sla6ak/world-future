@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkworld_future=self.webpackChunkworld_future||[]).push([[119],{1119:function(e,u,n){n.r(u);var r=n(2791),s=n(6871),l=n(184);u.default=function(){return(0,l.jsx)("div",{children:(0,l.jsx)(r.Suspense,{fallback:(0,l.jsx)("div",{children:"Loading..."}),children:(0,l.jsx)(s.j3,{})})})}}}]);
-//# sourceMappingURL=119.114b923f.chunk.js.map
