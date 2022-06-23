@@ -62,7 +62,7 @@ const SetLord = () => {
         console.log(error);
       }
     }
-    return;
+    return console.log(isSuccess);
   };
 
   return (

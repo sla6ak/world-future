@@ -1,6 +1,5 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Canvas } from '@react-three/fiber';
 import {
   Holst,
   HeaderHelmet,
