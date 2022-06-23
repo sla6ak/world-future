@@ -19,11 +19,10 @@ const MyLordModel = props => {
   const [ref, api] = useSphere(() => ({
     type: 'Dynamic',
     mass: 1,
-    position: [1, 1, 1],
+    position: [0, 0, 0],
     matrixAutoUpdate: true,
     ...props,
   }));
-  const refSpfera = useRef();
   const velocity = useRef([0, 0, 0]); //скорость с сілкой на вектор центра карті
 
   useEffect(() => {
@@ -71,11 +70,7 @@ const MyLordModel = props => {
     <>
       <Suspense fallback={null}>
         <PointerCameraController />
-        <mesh ref={ref}>
-          {/* <primitive object={result.scene} /> */}
-          <sphereGeometry ref={refSpfera} />
-          <meshStandardMaterial color={'red'} />
-        </mesh>
+        <mesh ref={ref}>{/* <primitive object={result.scene} /> */}</mesh>
       </Suspense>
     </>
   );

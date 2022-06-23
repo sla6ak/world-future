@@ -14,7 +14,7 @@ const Star = ({ position }) => {
 
   return (
     <mesh position={position} ref={refBox}>
-      <sphereGeometry args={[10]} />
+      <sphereGeometry args={[30]} />
       <meshStandardMaterial map={textureStar} />
     </mesh>
   );
