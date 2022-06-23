@@ -17,7 +17,7 @@ export const personApi = createApi({
   }),
 
   endpoints: builder => ({
-    tagTypes: ['person'],
+    tagTypes: ['personApi'],
     getMyPerson: builder.query({
       query: () => ({
         url: `/`,

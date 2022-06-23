@@ -23,7 +23,7 @@ export const validationLoginSchema = yup.object({
 export const validationLordSchema = yup.object({
   nikName: yup
     .string('Enter your nikName')
-    .required('Email is required')
+    .required('nikName is required')
     .min(3, 'nikName should be of minimum 3 characters length')
     .max(9, 'nikName should be of minimum 9 characters length'),
   rassa: yup.string('click to rassa').required('Rassa is required'),

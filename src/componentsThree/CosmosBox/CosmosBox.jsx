@@ -1,23 +1,19 @@
-import { useLoader } from '@react-three/fiber';
-import { TextureLoader } from 'three/src/loaders/TextureLoader';
-import boxJpg from './tim-barton-5.jpg';
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { DoubleSide } from 'three';
+import { BackSide } from 'three';
 
-const CosmosBox = props => {
-  const textureBox = useLoader(TextureLoader, boxJpg);
+const CosmosBox = ({ textureCosmos }) => {
   const ref = useRef();
 
   useFrame(() => {
-    ref.current.rotation.x += 0.001;
-    ref.current.rotation.y += 0.0008;
+    ref.current.rotation.x += 0.00106;
+    ref.current.rotation.y += 0.0004;
   }, []);
 
   return (
     <mesh ref={ref}>
-      <sphereGeometry args={[500, 500, 500]} />
-      <meshStandardMaterial map={textureBox} side={DoubleSide} />
+      <sphereBufferGeometry args={[500, 500, 500]} />
+      <meshStandardMaterial map={textureCosmos} side={BackSide} fog={true} />
     </mesh>
   );
 };

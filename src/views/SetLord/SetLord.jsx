@@ -9,17 +9,19 @@ import { toast } from 'react-toastify';
 import { myNik } from 'redux/NikSlise';
 import { Navigate } from 'react-router-dom';
 import { validationLordSchema } from 'utilits/validationForms';
+import { useNavigate } from 'react-router-dom';
 import {
   useGetMyPersonQuery,
   useRegistrationPersonMutation,
 } from 'server/personFetch';
 
 const SetLord = () => {
+  let navigate = useNavigate();
   const [nikName, setNikName] = useState('');
   const dispatch = useDispatch();
   const { data: personAPI, error } = useGetMyPersonQuery();
   const [createPerson, { isSuccess }] = useRegistrationPersonMutation();
-
+  let responsPerson = null;
   const handleNik = event => {
     setNikName(event.target.value);
   };
@@ -47,17 +49,20 @@ const SetLord = () => {
       return;
     }
     try {
-      const responsPerson = await createPerson(lordCandidat);
+      responsPerson = await createPerson(lordCandidat);
       dispatch(myNik(responsPerson.data.newLord.nikName));
       toast.success(`Create new lord ${responsPerson.data.newLord.nikName}!`);
+      if (responsPerson.data.newLord.planet === 'BlueHome') {
+        navigate('/play/blueHome', { replace: true });
+      } else if (responsPerson.data.newLord.planet === 'YellowHome') {
+        navigate('/play/yellowHome', { replace: true });
+      }
     } catch (error) {
       if (error) {
         console.log(error);
-        // return toast.error(
-        //   `Can not created beacose${error}. Try anaser nikName maybe`
-        // );
       }
     }
+    return;
   };
 
   return (
@@ -75,9 +80,7 @@ const SetLord = () => {
           дисбаланс во вселенной!
         </Typography>
       </TextGame>
-      {personAPI?.data.nikName || isSuccess ? (
-        <Navigate to="/play/blueHome" />
-      ) : (
+      {!personAPI ? (
         <>
           <NikName
             label="nik Name"
@@ -104,9 +107,19 @@ const SetLord = () => {
             </Grid>
           </Grid>
         </>
+      ) : (
+        <>{to(personAPI)}</>
       )}
     </ListAuth>
   );
 };
 
 export default SetLord;
+
+function to(personAPI) {
+  if (personAPI?.data.planet === 'BlueHome') {
+    return <Navigate to="/play/blueHome" />;
+  } else if (personAPI?.data.planet === 'YellowHome') {
+    return <Navigate to="/play/yellowHome" />;
+  }
+}
