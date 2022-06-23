@@ -12,9 +12,7 @@ const Box = props => {
     ...props,
   }));
 
-  // useFrame(({ clock }) => {
-  //   // const timer = clock.getElapsedTime();
-  //   // console.log(timer);
+  // useFrame(() => {
   //   refBox.current.rotation.x += 0.05;
   //   refBox.current.rotation.y += 0.05;
   // }, []);
