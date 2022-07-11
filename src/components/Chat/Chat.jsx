@@ -9,16 +9,14 @@ import {
 import { useGetAllChatQuery } from 'server/chatFetch';
 import { toast } from 'react-toastify';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { useCreateMassageMutation } from 'server/chatFetch';
 import { validationLetterSchema } from 'utilits/validationForms';
 
 const Chat = ({ lordInfo }) => {
   const [buttonDis, setButtonDis] = useState(false);
-  const { data: allChat, error } = useGetAllChatQuery();
+  const { data: allChat } = useGetAllChatQuery();
   const [letter, setLetter] = useState('');
-  const dispatch = useDispatch();
-  const [createNewMassage, { error: err }] = useCreateMassageMutation();
+  const [createNewMassage] = useCreateMassageMutation();
   const handleLetter = event => {
     setLetter(event.target.value);
   };

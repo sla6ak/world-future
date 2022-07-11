@@ -26,7 +26,7 @@ const LeyoutGame = () => {
     missions: false,
     squad: true,
   });
-  const { data: lordInfo, error } = useGetMyPersonQuery();
+  const { data: lordInfo } = useGetMyPersonQuery();
   const navigate = useNavigate();
 
   useEffect(() => {
