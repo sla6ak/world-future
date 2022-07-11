@@ -73,7 +73,7 @@ export const App = () => {
             }
           >
             <Route
-              path="/play/blueHome"
+              path="/play/BlueHome"
               element={
                 <PrivateRoute>
                   <BlueHome />
@@ -81,7 +81,7 @@ export const App = () => {
               }
             />
             <Route
-              path="/play/yellowHome"
+              path="/play/YellowHome"
               element={
                 <PrivateRoute>
                   <YellowHome />
@@ -89,7 +89,7 @@ export const App = () => {
               }
             />
             <Route
-              path="/play/lostWorld"
+              path="/play/Lost"
               element={
                 <PrivateRoute>
                   <LostWorld />

@@ -1,16 +1,26 @@
+// ***************** react  компоненты ***********************************
 import { Canvas } from '@react-three/fiber';
-import Box from 'componentsThree/Box/Box';
 import { Suspense } from 'react';
-import Planet from 'componentsThree/Planet/Planet';
 import { Physics } from '@react-three/cannon';
 import LoaderSuspense from 'components/LoaderSuspense/LoaderSuspense';
-import Star from 'componentsThree/Star/Star';
-import MyLordModel from 'componentsThree/MyLordModel/MyLordModel';
-import CosmosBox from 'componentsThree/CosmosBox/CosmosBox';
 import { useLoader } from '@react-three/fiber';
 import { TextureLoader } from 'three/src/loaders/TextureLoader';
-import CosmosSpace from './tim-barton-5.jpg';
 // import { useState } from 'react';
+
+// ************* Модели на планету ************************************
+import MyLordModel from 'componentsThree/MyLordModel/MyLordModel';
+import CosmosBox from 'componentsThree/CosmosBox/CosmosBox';
+import Star from 'componentsThree/Star/Star';
+import Box from 'componentsThree/Box/Box';
+import Planet from 'componentsThree/Planet/Planet';
+import Spaceport from 'componentsThree/Spaceport/Spaceport';
+import AnotherLordModel from 'componentsThree/AnotherLordModel/AnotherLordModel';
+import AutoFuture from 'componentsThree/AutoFuture/AutoFuture';
+import Portal from 'componentsThree/Portal/Portal';
+
+// ************** Конфигурации для пропсов ****************************
+import CosmosSpace from './tim-barton-5.jpg';
+// *****************************************************************************************
 
 const BlueHome = () => {
   const textureBlueCosmos = useLoader(TextureLoader, CosmosSpace);
@@ -28,14 +38,17 @@ const BlueHome = () => {
               position={[-54, 200, 0]}
             />
             {/* <directionalLight color="#9dc3da" position={[100, 100, 100]} /> */}
-            <Star position={[-54, 200, 0]} />
             <Box position={[6, 7.5, 0.5]} />
             <Box position={[1, 13, 4]} />
             <Box position={[1, 4.5, 4.7]} />
             <Box position={[2, 16, 0]} />
             <CosmosBox textureCosmos={textureBlueCosmos} />
+            <AutoFuture position={[10, -5, 0]} />
             <MyLordModel />
             <Planet />
+            {/* <AnotherLordModel position={[2, -2, 5]} /> */}
+            <Spaceport position={[9, -15, 0]} />
+            <Portal position={[35, -2, 20]} />
           </Physics>
         </Suspense>
       </Canvas>
@@ -44,9 +57,3 @@ const BlueHome = () => {
 };
 
 export default BlueHome;
-
-// внимание базовые материалы не дают теней
-// ambientLight окружающий свет
-// pointLight точечный свет
-// directionalLight прожектор который очень далеко направлен всегда ровно
-// spotLight прожектор хорош для создания теней

@@ -24,10 +24,18 @@ export const useKeyboardControls = () => {
     const handleKeyDown = e => {
       // Movement key
       if (actionByKey(e.code)) {
-        setMovement(state => ({
-          ...state,
-          [actionByKey(e.code)]: true,
-        }));
+        setMovement(state => {
+          if (e.code === 'Space' && state.jump === true) {
+            return {
+              ...state,
+              [actionByKey(e.code)]: false,
+            };
+          }
+          return {
+            ...state,
+            [actionByKey(e.code)]: true,
+          };
+        });
       }
     };
     const handleKeyUp = e => {

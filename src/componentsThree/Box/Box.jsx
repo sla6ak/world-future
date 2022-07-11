@@ -21,8 +21,8 @@ const Box = props => {
   return (
     <mesh
       ref={refBox}
-      scale={hovered ? 1.5 : 1}
-      onClick={e => setActive(!active)}
+      scale={hovered ? 0.7 : 0.5}
+      onPointerDown={e => setActive(!active)}
       onPointerEnter={e => setHover(true)}
       onPointerOut={e => setHover(false)}
     >

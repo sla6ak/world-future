@@ -1,5 +1,6 @@
+// import { useLoader } from '@react-three/fiber';
 // import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-// import LordGLB from './LordModel.glb';
+// import LordGLB from '../../models/LordModel.glb';
 import { useThree, useFrame } from '@react-three/fiber';
 import { useRef } from 'react';
 import { Vector3 } from 'three';
@@ -21,6 +22,7 @@ const MyLordModel = props => {
     mass: 1,
     position: [0, 0, 0],
     matrixAutoUpdate: true,
+    scale: [2, 2, 2],
     ...props,
   }));
   const velocity = useRef([0, 0, 0]); //скорость с сілкой на вектор центра карті
@@ -70,7 +72,9 @@ const MyLordModel = props => {
     <>
       <Suspense fallback={null}>
         <PointerCameraController />
-        <mesh ref={ref}>{/* <primitive object={result.scene} /> */}</mesh>
+        <mesh scale={5} ref={ref}>
+          {/* <primitive object={result.scene} /> */}
+        </mesh>
       </Suspense>
     </>
   );

@@ -13,13 +13,13 @@ import { useNavigate } from 'react-router-dom';
 import {
   useGetMyPersonQuery,
   useRegistrationPersonMutation,
-} from 'server/personFetch';
+} from 'server/lordFetch';
 
 const SetLord = () => {
   let navigate = useNavigate();
   const [nikName, setNikName] = useState('');
   const dispatch = useDispatch();
-  const { data: personAPI, error } = useGetMyPersonQuery();
+  const { data: lordInfo, error } = useGetMyPersonQuery();
   const [createPerson, { isSuccess }] = useRegistrationPersonMutation();
   let responsPerson = null;
   const handleNik = event => {
@@ -29,12 +29,12 @@ const SetLord = () => {
   //*******************проверим есть ли персонаж у игрока*********************************
   useEffect(() => {
     if (error) return;
-    if (personAPI === undefined) {
+    if (lordInfo === undefined) {
       return;
     }
-    dispatch(myNik(personAPI.data.nikName));
-    toast.success(`Welcome ${personAPI.data.nikName}`);
-  }, [personAPI, dispatch, error]);
+    dispatch(myNik(lordInfo.data.nikName));
+    toast.success(`Your lord: ${lordInfo.data.nikName}`);
+  }, [lordInfo, dispatch, error]);
 
   // **************** создадим нового персонажа в базе*************************************
   const clikRassa = async nameRassa => {
@@ -80,7 +80,7 @@ const SetLord = () => {
           дисбаланс во вселенной!
         </Typography>
       </TextGame>
-      {!personAPI ? (
+      {!lordInfo ? (
         <>
           <NikName
             label="nik Name"
@@ -108,7 +108,7 @@ const SetLord = () => {
           </Grid>
         </>
       ) : (
-        <>{to(personAPI)}</>
+        <>{to(lordInfo)}</>
       )}
     </ListAuth>
   );
@@ -116,10 +116,10 @@ const SetLord = () => {
 
 export default SetLord;
 
-function to(personAPI) {
-  if (personAPI?.data.planet === 'BlueHome') {
-    return <Navigate to="/play/blueHome" />;
-  } else if (personAPI?.data.planet === 'YellowHome') {
-    return <Navigate to="/play/yellowHome" />;
+function to(lordAPI) {
+  if (lordAPI?.data.planet === 'BlueHome') {
+    return <Navigate to="/play/BlueHome" />;
+  } else if (lordAPI?.data.planet === 'YellowHome') {
+    return <Navigate to="/play/YellowHome" />;
   }
 }

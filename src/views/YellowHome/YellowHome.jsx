@@ -28,7 +28,6 @@ const YellowHome = () => {
               position={[-14, 9, 0]}
             />
             {/* <directionalLight color="#dad69d" position={[100, 100, 100]} /> */}
-            <Star position={[-54, 200, 0]} />
             <Box position={[6, 7.5, 0.5]} />
             <Box position={[1, 13, 4]} />
             <Box position={[1, 4.5, 4.7]} />
