@@ -2,10 +2,10 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { PORT } from './PORT';
 
 // Define a service using a base URL and expected endpoints
-export const chatApi = createApi({
-  reducerPath: 'chatApi',
+export const missionApi = createApi({
+  reducerPath: 'missionApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: `${PORT}/chat`,
+    baseUrl: `${PORT}/mission`,
     prepareHeaders: (headers, { getState }) => {
       const token = getState().token;
       if (token) {
@@ -16,39 +16,27 @@ export const chatApi = createApi({
   }),
 
   endpoints: builder => ({
-    tagTypes: ['chatApi'],
-    getAllChat: builder.query({
+    tagTypes: ['missionApi'],
+
+    getPandingMissions: builder.query({
       query: () => ({
         url: `/`,
         method: 'GET',
       }),
-      providesTags: ['chatApi'],
+      providesTags: ['missionApi'],
       keepUnusedDataFor: 3,
     }),
 
-    getClanChat: builder.query({
-      query: id => ({
-        url: `/clan/:${id}`,
-        method: 'GET',
-      }),
-      invalidatesTags: ['chatApi'],
-      keepUnusedDataFor: 3,
-    }),
-
-    createMassage: builder.mutation({
+    addMission: builder.mutation({
       query: newMassage => ({
         url: '/',
         method: 'POST',
         body: newMassage,
       }),
-      invalidatesTags: ['chatApi'],
+      invalidatesTags: ['missionApi'],
       keepUnusedDataFor: 3,
     }),
   }),
 });
 
-export const {
-  useGetAllChatQuery,
-  useGetClanChatQuery,
-  useCreateMassageMutation,
-} = chatApi;
+export const { useGetPandingMissionsQuery, useAddMissionMutation } = missionApi;

@@ -24,6 +24,8 @@ export const ArmBox = styled.div`
   margin-right: 5vw;
   width: 100%;
   font-weight: bold;
+  padding-top: 15px;
+  padding-bottom: 15px;
   cursor: pointer;
 `;
 export const HeaderHelmet = styled.div`
@@ -54,18 +56,6 @@ export const FooterHelmet = styled.div`
   z-index: 3;
 `;
 
-export const RiteHelmet = styled.div`
-  position: fixed;
-  top: 7vh;
-  right: 1vw;
-  width: 20vw;
-  min-height: 90vh;
-  background-color: #1a1a1a11;
-  color: #118f00;
-  display: flex;
-  justify-content: end;
-  z-index: 3;
-`;
 export const Lord = styled.div`
   display: flex;
   position: fixed;
@@ -101,17 +91,34 @@ export const ChatBox = styled.div`
   flex-wrap: wrap;
   margin-left: 5vw;
   width: 100%;
+  padding-top: 15px;
+  padding-bottom: 15px;
   font-weight: bold;
   cursor: pointer;
 `;
 export const MissionBox = styled.div`
   display: flex;
   flex-wrap: wrap;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   margin-right: 5vw;
   width: 100%;
   font-weight: bold;
   justify-content: end;
   cursor: pointer;
+`;
+export const SignalArm = styled.div`
+  display: flex;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  margin-left: 5px;
+  margin-right: 3px;
+`;
+export const SignalBox = styled.div`
+  display: flex;
+  font-weight: 400;
+  font-size: 14px;
+  align-items: center;
+  margin-left: 5px;
 `;

@@ -1,56 +1,34 @@
-import {
-  LeftHelmet,
-  FormSubmit,
-  Title,
-  FormTextField,
-  ButtonLetter,
-} from './Chat.styled';
-import { useGetAllChatQuery } from 'server/chatFetch';
-import { TextField, Button } from '@mui/material';
+import { RiteHelmet, FormSubmit, Title, ButtonLetter } from './Missions.styled';
 import { useState } from 'react';
+import { useGetPandingMissionsQuery } from 'server/missionFeth';
 
-const Chat = () => {
+const Missions = ({ lordInfo }) => {
   const [buttonDis, setButtonDis] = useState(false);
-  const { data: allChat, error } = useGetAllChatQuery();
-  console.log(allChat);
+  const { data: myMissions } = useGetPandingMissionsQuery();
+
   return (
-    <LeftHelmet>
-      <Title>Chat Game:</Title>
-      {/* <ul>
-        {allChat?.map(el => {
+    <RiteHelmet
+      onClick={e => {
+        e.stopPropagation();
+      }}
+    >
+      <Title>My Missions:</Title>
+      <div>
+        {myMissions?.missions.map(el => {
           return (
-            <li>
-              <div
-                style={{
-                  color: el.rassa === 'Yellow' ? '#bfcf2e' : '#0b5dbb',
-                  fontSize: '20px',
-                  fontWeight: '800',
-                }}
-              >
-                {el.autor}
-              </div>
-              <div>{el.massage}</div><div>{el.date}</div>
-            </li>
+            <div key={el._id}>
+              <div>Quest:{el.bodyMission}</div>
+              <div>Prize:{el.prize}</div>
+              <div>{el.date}</div>
+            </div>
           );
         })}
-      </ul> */}
+      </div>
       <FormSubmit>
-        <FormTextField></FormTextField>
-        <div>You can send one letter of min</div>
-        <ButtonLetter
-          disabled={buttonDis}
-          onClick={() => {
-            setButtonDis(true);
-            setTimeout(() => {
-              setButtonDis(false);
-            }, 60 * 1000);
-          }}
-        >
-          Send
-        </ButtonLetter>
+        <ButtonLetter disabled={buttonDis}>Get new mission</ButtonLetter>
       </FormSubmit>
-    </LeftHelmet>
+    </RiteHelmet>
   );
 };
 
-export default Chat;
+export default Missions;

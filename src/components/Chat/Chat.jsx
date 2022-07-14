@@ -5,6 +5,7 @@ import {
   FormTextField,
   ButtonLetter,
   BodyLetter,
+  LetterBox,
 } from './Chat.styled';
 import { useGetAllChatQuery } from 'server/chatFetch';
 import { toast } from 'react-toastify';
@@ -14,7 +15,9 @@ import { validationLetterSchema } from 'utilits/validationForms';
 
 const Chat = ({ lordInfo }) => {
   const [buttonDis, setButtonDis] = useState(false);
-  const { data: allChat } = useGetAllChatQuery();
+  const { data: allChat } = useGetAllChatQuery(true, {
+    pollingInterval: 3000,
+  });
   const [letter, setLetter] = useState('');
   const [createNewMassage] = useCreateMassageMutation();
   const handleLetter = event => {
@@ -33,7 +36,7 @@ const Chat = ({ lordInfo }) => {
       setButtonDis(true);
       setTimeout(() => {
         setButtonDis(false);
-      }, 10 * 1000);
+      }, 30 * 1000);
       setLetter('');
       await createNewMassage(send);
     } catch (error) {
@@ -51,10 +54,10 @@ const Chat = ({ lordInfo }) => {
       <Title>Chat Game:</Title>
       <div>
         {allChat?.letters.map((el, index, arr) => {
-          if (index <= arr.length - 11) return null;
+          if (index <= arr.length - 15) return null;
           return (
-            <div key={el._id}>
-              <div
+            <LetterBox key={el._id}>
+              <span
                 style={{
                   color: el.rassa === 'Yellow' ? '#bfcf2e' : '#0b5dbb',
                   fontSize: '14px',
@@ -62,10 +65,10 @@ const Chat = ({ lordInfo }) => {
                 }}
               >
                 {el.autor}:
-              </div>
+              </span>
               <BodyLetter>{el.massage}</BodyLetter>
               {/* <div>{el.date}</div> */}
-            </div>
+            </LetterBox>
           );
         })}
       </div>
@@ -79,7 +82,7 @@ const Chat = ({ lordInfo }) => {
           value={letter}
           onChange={handleLetter}
         />
-        <div>You can send one letter of min</div>
+        <div>You can send one letter of 30 sec</div>
         <ButtonLetter type="submit" disabled={buttonDis}>
           Send
         </ButtonLetter>

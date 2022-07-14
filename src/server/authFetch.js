@@ -1,7 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-const PORT = 'https://world-future.herokuapp.com';
-// const PORT = 'http://localhost:5000';
-// переключатель тестового проєкта
+import {PORT} from './PORT'
 
 // Define a service using a base URL and expected endpoints
 export const authApi = createApi({

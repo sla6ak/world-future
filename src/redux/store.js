@@ -2,6 +2,7 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { authApi } from '../server/authFetch';
 import { personApi } from 'server/lordFetch';
 import { chatApi } from 'server/chatFetch';
+import { missionApi } from 'server/missionFeth';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 import { curentUser, curentToken } from './AuthSlise';
 import { nikName } from './NikSlise';
@@ -29,6 +30,7 @@ const rootReduser = combineReducers({
   [authApi.reducerPath]: authApi.reducer,
   [personApi.reducerPath]: personApi.reducer,
   [chatApi.reducerPath]: chatApi.reducer,
+  [missionApi.reducerPath]: missionApi.reducer,
   token: curentToken.reducer,
   auth: curentUser.reducer,
   nikName: nikName.reducer,
@@ -46,6 +48,7 @@ export const store = configureStore({
       },
     })
       .concat(authApi.middleware)
+      .concat(missionApi.middleware)
       .concat(personApi.middleware)
       .concat(chatApi.middleware),
 });

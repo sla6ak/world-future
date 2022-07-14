@@ -1,17 +1,18 @@
 import styled from '@emotion/styled';
-import { TextField, Button } from '@mui/material';
+import { Button } from '@mui/material';
 
-export const LeftHelmet = styled.div`
+export const RiteHelmet = styled.div`
   position: fixed;
   top: 7vh;
-  left: 1vw;
+  right: 1vw;
   width: 20vw;
-  min-height: 90vh;
-  background-color: #1a1a1a11;
-  color: #119600;
+  min-height: 85vh;
+  background-color: transparent;
+  color: #118f00;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
+  justify-content: end;
+  align-items: end;
   z-index: 3;
 `;
 export const FormSubmit = styled.form`
@@ -19,9 +20,11 @@ export const FormSubmit = styled.form`
   margin-bottom: 5vh;
   width: 100%;
 `;
-export const Title = styled.form`
+export const Title = styled.div`
   width: 100%;
   font-weight: bold;
+  justify-content: end;
+  display: flex;
 `;
 
 export const ButtonLetter = styled(Button)({

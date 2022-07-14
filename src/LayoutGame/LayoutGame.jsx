@@ -3,11 +3,12 @@ import { Outlet } from 'react-router-dom';
 import { useGetMyPersonQuery } from 'server/lordFetch';
 import { useNavigate } from 'react-router-dom';
 import Chat from 'components/Chat/Chat';
+import Squad from 'components/Squad/Squad';
+import Missions from 'components/Missions/Missions';
 import {
   Holst,
   HeaderHelmet,
   FooterHelmet,
-  RiteHelmet,
   KristalsBlue,
   KristalsYellow,
   KristalBox,
@@ -17,16 +18,20 @@ import {
   ArmBox,
   MissionBox,
   ChatBox,
+  SignalArm,
+  SignalBox,
 } from './LayoutGame.styled';
 import { useEffect } from 'react';
 
 const LeyoutGame = () => {
   const [visability, setChatVisability] = useState({
     chat: true,
-    missions: false,
-    squad: true,
+    missions: true,
+    squad: false,
   });
-  const { data: lordInfo } = useGetMyPersonQuery();
+  const { data: lordInfo } = useGetMyPersonQuery(true, {
+    pollingInterval: 3000,
+  });
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -35,7 +40,15 @@ const LeyoutGame = () => {
     }
     navigate(`/play/${lordInfo?.data.planet}`);
   }, [lordInfo, navigate]);
-
+  const quickArmInfo = unit => {
+    const atac = lordInfo?.data.squad[unit].power.attack.shell.percent;
+    const def = lordInfo?.data.squad[unit].power.defend.shell.percent;
+    const life = lordInfo?.data.squad[unit].power.life.shell.percent;
+    if (atac + def + life < 300) {
+      return false;
+    }
+    return true;
+  };
   return (
     <Holst>
       <HeaderHelmet
@@ -54,8 +67,37 @@ const LeyoutGame = () => {
         <Lord>
           Lord: <NikLord>{lordInfo?.data.nikName}</NikLord>
         </Lord>
-        <ArmBox>
-          Squad(P):{lordInfo?.data.squad.robot.power.attack.percent}
+        <ArmBox
+          onClick={e => {
+            e.stopPropagation();
+            setChatVisability(pevState => ({
+              ...pevState,
+              missions: false,
+              squad: !pevState.squad,
+            }));
+          }}
+        >
+          Squad(P):
+          <SignalBox>
+            Rob
+            <SignalArm
+              style={{
+                backgroundColor: quickArmInfo('robot') ? '#00c421' : '#b10000',
+              }}
+            />
+            Shm
+            <SignalArm
+              style={{
+                backgroundColor: quickArmInfo('robot') ? '#00c421' : '#b10000',
+              }}
+            />
+            Snr
+            <SignalArm
+              style={{
+                backgroundColor: quickArmInfo('robot') ? '#00c421' : '#b10000',
+              }}
+            />
+          </SignalBox>
         </ArmBox>
       </HeaderHelmet>
       <FooterHelmet
@@ -66,8 +108,9 @@ const LeyoutGame = () => {
         <ChatBox
           onClick={e => {
             e.stopPropagation();
-            setChatVisability(state => ({
-              chat: !state.chat,
+            setChatVisability(pevState => ({
+              ...pevState,
+              chat: !pevState.chat,
             }));
           }}
         >
@@ -76,10 +119,21 @@ const LeyoutGame = () => {
         <div>
           Planet:<NamePlanet>{lordInfo?.data.planet}</NamePlanet>
         </div>
-        <MissionBox>Missions(M)</MissionBox>
+        <MissionBox
+          onClick={() => {
+            setChatVisability(pevState => ({
+              ...pevState,
+              squad: false,
+              missions: !pevState.missions,
+            }));
+          }}
+        >
+          Missions(M)
+        </MissionBox>
       </FooterHelmet>
       {visability.chat && <Chat lordInfo={lordInfo} />}
-      <RiteHelmet>My squad:</RiteHelmet>
+      {visability.missions && <Missions lordInfo={lordInfo} />}
+      {visability.squad && <Squad lordInfo={lordInfo} />}
       <Suspense fallback={<div>Loading...</div>}>
         <Outlet />
       </Suspense>

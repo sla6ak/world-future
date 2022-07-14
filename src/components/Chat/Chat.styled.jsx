@@ -61,11 +61,15 @@ export const ButtonLetter = styled(Button)({
   },
 });
 
-export const BodyLetter = styled.div`
+export const BodyLetter = styled.span`
+  font-weight: 600;
+  margin-left: 5px;
+`;
+export const LetterBox = styled.div`
   max-width: 20vw;
   max-height: 70vh;
   font-weight: 600;
-  display: flex;
-  flex-wrap: wrap;
+  /* display: flex;
+  flex-wrap: wrap; */
   position: relative;
 `;
