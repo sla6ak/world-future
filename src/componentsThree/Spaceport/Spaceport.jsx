@@ -1,7 +1,6 @@
 import { useRef } from 'react';
 import { useState } from 'react';
 import { useGLTF } from '@react-three/drei';
-import { proxy, useSnapshot } from 'valtio';
 import { useFrame } from '@react-three/fiber';
 
 const Spaceport = ({ props }) => {

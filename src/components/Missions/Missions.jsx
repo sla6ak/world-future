@@ -1,11 +1,15 @@
 import { RiteHelmet, FormSubmit, Title, ButtonLetter } from './Missions.styled';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useGetPandingMissionsQuery } from 'server/missionFeth';
 
 const Missions = ({ lordInfo }) => {
   const [buttonDis, setButtonDis] = useState(false);
   const { data: myMissions } = useGetPandingMissionsQuery();
-
+  useEffect(() => {
+    if (1 === 3) {
+      setButtonDis();
+    }
+  }, []);
   return (
     <RiteHelmet
       onClick={e => {

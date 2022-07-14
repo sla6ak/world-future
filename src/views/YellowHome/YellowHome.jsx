@@ -4,7 +4,6 @@ import { Suspense } from 'react';
 import Planet from 'componentsThree/Planet/Planet';
 import { Physics } from '@react-three/cannon';
 import LoaderSuspense from 'components/LoaderSuspense/LoaderSuspense';
-import Star from 'componentsThree/Star/Star';
 import MyLordModel from 'componentsThree/MyLordModel/MyLordModel';
 import CosmosBox from 'componentsThree/CosmosBox/CosmosBox';
 import { useLoader } from '@react-three/fiber';

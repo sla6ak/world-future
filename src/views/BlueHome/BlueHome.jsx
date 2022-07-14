@@ -10,11 +10,10 @@ import { TextureLoader } from 'three/src/loaders/TextureLoader';
 // ************* Модели на планету ************************************
 import MyLordModel from 'componentsThree/MyLordModel/MyLordModel';
 import CosmosBox from 'componentsThree/CosmosBox/CosmosBox';
-import Star from 'componentsThree/Star/Star';
 import Box from 'componentsThree/Box/Box';
 import Planet from 'componentsThree/Planet/Planet';
 import Spaceport from 'componentsThree/Spaceport/Spaceport';
-import AnotherLordModel from 'componentsThree/AnotherLordModel/AnotherLordModel';
+// import AnotherLordModel from 'componentsThree/AnotherLordModel/AnotherLordModel';
 import AutoFuture from 'componentsThree/AutoFuture/AutoFuture';
 import Portal from 'componentsThree/Portal/Portal';
 

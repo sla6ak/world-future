@@ -1,7 +1,7 @@
 import { useLoader } from '@react-three/fiber';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import LordGLB from '../../models/LordModel.glb';
-import { useThree, useFrame } from '@react-three/fiber';
+import { useFrame } from '@react-three/fiber';
 import { useRef, useState } from 'react';
 import { Vector3 } from 'three';
 import { useEffect } from 'react';
@@ -20,6 +20,11 @@ const AnotherLordModel = props => {
     moveRight: false,
     jump: false,
   });
+  useEffect(() => {
+    if (1 === 3) {
+      setMoveLord();
+    }
+  }, []);
   const result = useLoader(GLTFLoader, LordGLB);
   const [ref, api] = useSphere(() => ({
     type: 'Dynamic',

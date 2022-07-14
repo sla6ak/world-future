@@ -1,11 +1,10 @@
 import { useRef } from 'react';
-import { useState } from 'react';
+// import { useState } from 'react';
 import { useGLTF } from '@react-three/drei';
-import { proxy, useSnapshot } from 'valtio';
 
 const Portal = ({ ...props }) => {
-  const [hovered, setHover] = useState(false);
-  const [active, setActive] = useState(false);
+  // const [hovered, setHover] = useState(false);
+  // const [active, setActive] = useState(false);
 
   const group = useRef();
   const { nodes, materials } = useGLTF('/models/time_machine/scene.gltf');
