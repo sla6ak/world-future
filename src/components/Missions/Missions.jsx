@@ -5,14 +5,17 @@ import { useGetPandingMissionsQuery } from 'server/missionFeth';
 const Missions = ({ lordInfo }) => {
   const [buttonDis, setButtonDis] = useState(false);
   const { data: myMissions } = useGetPandingMissionsQuery();
+
   useEffect(() => {
     if (1 === 3) {
       setButtonDis();
     }
   }, []);
+
   return (
     <RiteHelmet
       onClick={e => {
+        e.preventDefault();
         e.stopPropagation();
       }}
     >

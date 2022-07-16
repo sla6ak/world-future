@@ -48,6 +48,7 @@ const Chat = ({ lordInfo }) => {
   return (
     <LeftHelmet
       onClick={e => {
+        e.preventDefault();
         e.stopPropagation();
       }}
     >

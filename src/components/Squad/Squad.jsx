@@ -29,6 +29,7 @@ const Squad = ({ lordInfo }) => {
   return (
     <RiteHelmet
       onClick={e => {
+        e.preventDefault();
         e.stopPropagation();
       }}
     >
