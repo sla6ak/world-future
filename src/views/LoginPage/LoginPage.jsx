@@ -21,7 +21,7 @@ const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
-  const [createUser, { error }] = useLoginUserMutation();
+  const [createUser] = useLoginUserMutation();
 
   const handleEmail = event => {
     setEmail(event.target.value);
@@ -43,9 +43,6 @@ const LoginPage = () => {
     }
     const send = { email: email, password: password };
     const responsLogin = await createUser(send);
-    if (error) {
-      console.log(error);
-    }
     if (responsLogin.error?.status === 404) {
       toast.error('User not found');
       return;

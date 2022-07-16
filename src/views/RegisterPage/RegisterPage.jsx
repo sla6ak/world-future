@@ -26,7 +26,7 @@ const Registration = () => {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const dispatch = useDispatch();
-  const [createUser, { error }] = useRegistrationUserMutation();
+  const [createUser] = useRegistrationUserMutation();
 
   const agryClick = () => {
     setLicensia(true);
@@ -55,7 +55,6 @@ const Registration = () => {
       password: password,
     };
     const responsRegister = await createUser(send);
-    console.log(error);
     if (responsRegister.error?.status === 400) {
       toast.error('User dublicate');
       return;
