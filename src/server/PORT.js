@@ -1,3 +1,5 @@
-export const PORT = 'https://world-future.herokuapp.com';
+const PORT = { port: 'https://world-future.herokuapp.com/' };
 
-// export const PORT = 'http://localhost:5000';
+// const PORT = {port:'http://localhost:5000/'};
+
+export default PORT;

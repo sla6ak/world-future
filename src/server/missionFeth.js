@@ -1,11 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { PORT } from './PORT';
+import PORT from './PORT';
 
 // Define a service using a base URL and expected endpoints
 export const missionApi = createApi({
   reducerPath: 'missionApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: `${PORT}/mission`,
+    baseUrl: `${PORT.port}mission`,
     prepareHeaders: (headers, { getState }) => {
       const token = getState().token;
       if (token) {
