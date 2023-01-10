@@ -3,15 +3,11 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialLanguage = {
   myLanguage: 'en',
   transleter: {
-    listLanguage: [
-      { shortName: 'en', text: 'ENGLISH' },
-      { shortName: 'ua', text: 'UKRAINIAN' },
-      { shortName: 'ru', text: 'RUSSIAN' },
-    ],
-    StartPage: {},
-    LoginPage: {},
-    RegisterPage: {},
-    SettingLord: {},
+    listLanguage: [{ shortName: 'en', text: 'ENGLISH' }],
+    StartPage: null,
+    LoginPage: null,
+    RegisterPage: null,
+    SettingLord: null,
   },
 }; // ru
 
