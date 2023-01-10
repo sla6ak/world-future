@@ -2,18 +2,22 @@ import React, { useEffect } from 'react';
 import { ListAuth } from 'Components/ListAuth/ListAuth.styled';
 import { Title } from 'Components/Title/Title.styled';
 import { useNavigate } from 'react-router-dom';
-import { TextGame, LabelCastom, MenuSettings } from './StartPage.styled';
+import { TextGame, MenuSettings } from './StartPage.styled';
 import { useSelector, useDispatch } from 'react-redux';
-import { myLanguage } from 'Redux/LanguageSlise';
+import { switchLanguage } from 'Redux/LanguageSlise';
 import { GeneralButton } from 'Components/GeneralButton/GeneralButton.styled';
-import { Typography, FormControl, MenuItem, Select } from '@mui/material';
+import {
+  Typography,
+  InputLabel,
+  FormControl,
+  MenuItem,
+  Select,
+} from '@mui/material';
 
 const StartPage = () => {
-  const { listLanguage, StartPage } = useSelector(
-    state => state.language.transleter
-  );
-  const { language } = useSelector(state => state);
-  const [langs, setLangs] = React.useState(language.myLanguage);
+  const { myLanguage, transleter } = useSelector(state => state.language);
+  const { listLanguage, startPage } = transleter;
+  const [langs, setLangs] = React.useState(myLanguage);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -21,32 +25,33 @@ const StartPage = () => {
     setLangs(event.target.value);
   };
   useEffect(() => {
-    dispatch(myLanguage(langs));
+    dispatch(switchLanguage(langs));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [langs]);
 
   return (
     <ListAuth>
-      <Title>{!!StartPage ? StartPage.h1 : 'Welcome to my game!'}</Title>
+      <Title>{!!startPage ? startPage.h1 : 'Welcome to my game!'}</Title>
       <TextGame>
         <Typography>
-          {!!StartPage
-            ? StartPage.aboutGame
+          {!!startPage
+            ? startPage.aboutGame
             : 'If you see this page, the connection to the server may have been lost for some time or your internet is unstable. Perhaps this is your first time here? In any case, the menu is intuitive and the game process is exciting. This is an RPG where you will surely meet new comrades!'}
         </Typography>
       </TextGame>
       <MenuSettings>
-        <LabelCastom>
-          {!!StartPage ? StartPage.buttons.language : 'LANGUAGE'}
-        </LabelCastom>
+        {/* <LabelCastom>
+          {!!startPage ? startPage.buttons?.language : 'LANGUAGE'}
+        </LabelCastom> */}
         <FormControl fullWidth>
-          {/* <InputLabel id="demo-simple-select-label" variant="standard">
-            {!!StartPage ? StartPage.buttons.language : 'LANGUAGE'}
-          </InputLabel> */}
+          <InputLabel id="select-label" variant="standard">
+            {!!startPage ? startPage.buttons.language : 'LANGUAGE'}
+          </InputLabel>
           <Select
+            labelId="select-label"
             value={langs}
             variant="standard"
-            label={!!StartPage ? StartPage.buttons.language : 'LANGUAGE'}
+            label={!!startPage ? startPage.buttons.language : 'LANGUAGE'}
             onChange={handleChange}
           >
             {!!listLanguage &&
@@ -65,7 +70,7 @@ const StartPage = () => {
           navigate('/auth/login');
         }}
       >
-        {!!StartPage ? StartPage.buttons.start : 'START GAME'}
+        {!!startPage ? startPage.buttons.start : 'START GAME'}
       </GeneralButton>
     </ListAuth>
   );

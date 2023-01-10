@@ -18,7 +18,7 @@ export const MenuSettings = styled.div`
     flex-direction: column;
   }
 `;
-export const LabelCastom = styled.h4`
-  margin-bottom: 10px;
-  color: '#0067bb';
-`;
+// export const LabelCastom = styled.h4`
+//   margin-bottom: 10px;
+//   color: '#0067bb';
+// `;

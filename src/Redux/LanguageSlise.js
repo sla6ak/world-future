@@ -4,10 +4,10 @@ const initialLanguage = {
   myLanguage: 'en',
   transleter: {
     listLanguage: [{ shortName: 'en', text: 'ENGLISH' }],
-    StartPage: null,
-    LoginPage: null,
-    RegisterPage: null,
-    SettingLord: null,
+    startPage: null,
+    loginPage: null,
+    registerPage: null,
+    settingLord: null,
   },
 }; // ru
 
@@ -15,7 +15,7 @@ export const language = createSlice({
   name: 'language',
   initialState: initialLanguage,
   reducers: {
-    myLanguage(state, action) {
+    switchLanguage(state, action) {
       state.myLanguage = action.payload;
     },
     transleter(state, action) {
@@ -24,4 +24,4 @@ export const language = createSlice({
   },
 });
 
-export const { myLanguage, transleter } = language.actions;
+export const { switchLanguage, transleter } = language.actions;
