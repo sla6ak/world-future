@@ -1,10 +1,10 @@
 import { Suspense, useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { useGetMyPersonQuery } from 'server/lordFetch';
+import { useGetMyPersonQuery } from 'Redux/Server/lordFetch';
 import { useNavigate } from 'react-router-dom';
-import Chat from 'components/Chat/Chat';
-import Squad from 'components/Squad/Squad';
-import Missions from 'components/Missions/Missions';
+import Chat from 'Components/Chat/Chat';
+import Squad from 'Components/Squad/Squad';
+import Missions from 'Components/Missions/Missions';
 import {
   Holst,
   HeaderHelmet,
