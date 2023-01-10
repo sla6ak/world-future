@@ -6,13 +6,7 @@ import { TextGame } from './StartPage.styled';
 import { useSelector, useDispatch } from 'react-redux';
 import { myLanguage } from 'Redux/LanguageSlise';
 import { GeneralButton } from 'Components/GeneralButton/GeneralButton.styled';
-import {
-  Typography,
-  FormControl,
-  MenuItem,
-  Select,
-  InputLabel,
-} from '@mui/material';
+import { Typography, FormControl, MenuItem, Select } from '@mui/material';
 import { MenuSettings } from './StartPage.styled';
 
 const StartPage = () => {
@@ -43,16 +37,17 @@ const StartPage = () => {
         </Typography>
       </TextGame>
       <MenuSettings>
+        <Typography style={{ marginBottom: '10px', color: '#0067bb' }}>
+          {!!StartPage ? StartPage.buttons.language : 'LANGUAGE'}
+        </Typography>
         <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label" variant="standard">
+          {/* <InputLabel id="demo-simple-select-label" variant="standard">
             {!!StartPage ? StartPage.buttons.language : 'LANGUAGE'}
-          </InputLabel>
+          </InputLabel> */}
           <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
             value={langs}
             variant="standard"
-            label="Age"
+            label={!!StartPage ? StartPage.buttons.language : 'LANGUAGE'}
             onChange={handleChange}
           >
             {!!listLanguage &&
