@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import { ListAuth } from 'Components/ListAuth/ListAuth.styled';
 import { Title } from 'Components/Title/Title.styled';
 import { useNavigate } from 'react-router-dom';
@@ -7,53 +7,20 @@ import { useSelector, useDispatch } from 'react-redux';
 import { myLanguage } from 'Redux/LanguageSlise';
 import { GeneralButton } from 'Components/GeneralButton/GeneralButton.styled';
 import {
-  Popper,
   Typography,
-  MenuItem,
-  ClickAwayListener,
-  Button,
-  Grow,
-  Paper,
-  MenuList,
+  FormControl,
+  NativeSelect,
+  Box,
+  InputLabel,
 } from '@mui/material/';
 import { MenuSettings } from './StartPage.styled';
 
 const StartPage = () => {
-  const [openLeng, setOpenLeng] = useState(false);
   const { listLanguage, StartPage } = useSelector(
     state => state.language.transleter
   );
-  const lengButtRef = useRef(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const handleToggle = () => {
-    setOpenLeng(prevOpen => !prevOpen);
-  };
-
-  const handleClose = event => {
-    if (lengButtRef.current && lengButtRef.current.contains(event.target)) {
-      return;
-    }
-
-    setOpenLeng(false);
-  };
-  function handleListKeyDown(event) {
-    if (event.key === 'Tab') {
-      event.preventDefault();
-      setOpenLeng(false);
-    }
-  }
-
-  // return focus to the button when we transitioned from !open -> open
-  const prevOpen = React.useRef(openLeng);
-  React.useEffect(() => {
-    if (prevOpen.current === true && openLeng === false) {
-      lengButtRef.current.focus();
-    }
-
-    prevOpen.current = openLeng;
-  }, [openLeng]);
 
   return (
     <ListAuth>
@@ -70,57 +37,35 @@ const StartPage = () => {
         </Typography> */}
       </TextGame>
       <MenuSettings>
-        <Button
-          ref={lengButtRef}
-          aria-controls={openLeng ? 'menu-list-grow' : undefined}
-          aria-haspopup="true"
-          onClick={handleToggle}
-          style={{ marginBottom: '25px' }}
-        >
-          {StartPage ? StartPage.buttons.language : 'LANGUAGE'}
-        </Button>
-        <Popper
-          open={openLeng}
-          anchorEl={lengButtRef.current}
-          role={undefined}
-          transition
-          disablePortal
-          style={{ zIndex: 2 }}
-        >
-          {({ TransitionProps, placement }) => (
-            <Grow
-              {...TransitionProps}
-              style={{
-                transformOrigin:
-                  placement === 'bottom' ? 'center top' : 'center bottom',
+        <Box sx={{ minWidth: 120 }}>
+          <FormControl
+            fullWidth
+            style={{ marginBottom: '30px', width: '200px' }}
+          >
+            <InputLabel variant="standard" htmlFor="uncontrolled-native">
+              {StartPage ? StartPage.buttons.language : 'LANGUAGE'}
+            </InputLabel>
+            <NativeSelect
+              defaultValue={'ENGLISH'}
+              inputProps={{
+                name: 'age',
+                id: 'uncontrolled-native',
               }}
             >
-              <Paper>
-                <ClickAwayListener onClickAway={handleClose}>
-                  <MenuList
-                    autoFocusItem={openLeng}
-                    id="menu-list-grow"
-                    onKeyDown={handleListKeyDown}
+              {listLanguage.map(el => {
+                return (
+                  <option
+                    onClick={() => dispatch(myLanguage(el.shortName))}
+                    key={el.shortName}
+                    value={10}
                   >
-                    {listLanguage.map(el => {
-                      return (
-                        <MenuItem
-                          key={el.shortName}
-                          onClick={event => {
-                            dispatch(myLanguage(el.shortName));
-                            handleClose(event);
-                          }}
-                        >
-                          {el.text}
-                        </MenuItem>
-                      );
-                    })}
-                  </MenuList>
-                </ClickAwayListener>
-              </Paper>
-            </Grow>
-          )}
-        </Popper>
+                    {el.text}
+                  </option>
+                );
+              })}
+            </NativeSelect>
+          </FormControl>
+        </Box>
         {/* <div>AUDIO</div>
         <div>VIDEO</div> */}
       </MenuSettings>
