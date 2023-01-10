@@ -15,35 +15,37 @@ import {
 import { MenuSettings } from './StartPage.styled';
 
 const StartPage = () => {
-  const { listLanguage, StartPage } = useSelector(
-    state => state.language.transleter
-  );
+  const { transleter } = useSelector(state => state.language);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   return (
     <ListAuth>
-      <Title>{StartPage ? StartPage.h1 : 'Welcome to my game!'}</Title>
+      <Title>
+        {transleter.StartPage ? transleter.StartPage.h1 : 'Welcome to my game!'}
+      </Title>
       <TextGame>
         <Typography>
-          {StartPage
-            ? StartPage.aboutGame
+          {transleter.StartPage
+            ? transleter.StartPage.aboutGame
             : 'If you see this page, the connection to the server may have been lost for some time or your internet is unstable. Perhaps this is your first time here? In any case, the menu is intuitive and the game process is exciting. This is an RPG where you will surely meet new comrades!'}
         </Typography>
       </TextGame>
       <MenuSettings>
         <FormControl fullWidth>
-          <InputLabel variant="standard" htmlFor="uncontrolled-native">
-            {StartPage ? StartPage.buttons.language : 'LANGUAGE'}
+          <InputLabel variant="standard" htmlFor="uncontrolled">
+            {transleter.StartPage
+              ? transleter.StartPage.buttons.language
+              : 'LANGUAGE'}
           </InputLabel>
           <NativeSelect
             defaultValue="ENGLISH"
             inputProps={{
               name: 'age',
-              id: 'uncontrolled-native',
+              id: 'uncontrolled',
             }}
           >
-            {listLanguage.map(el => {
+            {transleter.listLanguage.map(el => {
               return (
                 <option
                   onClick={() => dispatch(myLanguage(el.shortName))}
@@ -62,7 +64,9 @@ const StartPage = () => {
           navigate('/auth/login');
         }}
       >
-        {StartPage ? StartPage.buttons.start : 'START GAME'}
+        {transleter.StartPage
+          ? transleter.StartPage.buttons.start
+          : 'START GAME'}
       </GeneralButton>
     </ListAuth>
   );
