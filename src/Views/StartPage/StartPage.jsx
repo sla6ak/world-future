@@ -33,7 +33,7 @@ const StartPage = () => {
       </TextGame>
       <MenuSettings>
         <FormControl fullWidth>
-          <InputLabel variant="standard" htmlFor="uncontrolled">
+          <InputLabel htmlFor="uncontrolled">
             {transleter.StartPage
               ? transleter.StartPage.buttons.language
               : 'LANGUAGE'}
