@@ -32,7 +32,7 @@ const Registration = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [createUser] = useRegistrationUserMutation();
-  const { RegisterPage } = useSelector(state => state.language.transleter);
+  const { registerPage } = useSelector(state => state.language.transleter);
 
   const agryClick = () => {
     setLicensia(true);
@@ -73,7 +73,7 @@ const Registration = () => {
   };
   return (
     <ListAuth>
-      <Title>{RegisterPage ? RegisterPage.h1 : 'Register please'}</Title>{' '}
+      <Title>{!!registerPage ? registerPage.h1 : 'Register please'}</Title>{' '}
       <ButtonHome onClick={() => navigate('/')}>
         <CloseIcon />
       </ButtonHome>
@@ -120,28 +120,28 @@ const Registration = () => {
             </Grid>
             <ButtonWrapper>
               <GeneralButton type="submit">
-                {RegisterPage ? RegisterPage.buttons.submit : 'Submit'}
+                {!!registerPage ? registerPage.buttons.submit : 'Submit'}
               </GeneralButton>
             </ButtonWrapper>
           </FormSubmit>
           <LinkToRegister>
             <AskToRegister>
-              {RegisterPage ? RegisterPage.ask : 'Do you have login?'}
+              {!!registerPage ? registerPage.ask : 'Do you have login?'}
             </AskToRegister>
             <NavLink style={{ color: '#2663e7' }} to="/auth/login">
-              {RegisterPage ? RegisterPage.buttons.registration : 'Login'}
+              {!!registerPage ? registerPage.buttons.registration : 'Login'}
             </NavLink>
           </LinkToRegister>
         </>
       ) : (
         <>
           <h2>
-            {RegisterPage ? RegisterPage.h2 : 'This is licensia for players'}
+            {!!registerPage ? registerPage.h2 : 'This is licensia for players'}
           </h2>
           <TextGame>
             <Typography>
-              {RegisterPage
-                ? RegisterPage.textLicensia
+              {!!registerPage
+                ? registerPage.textLicensia
                 : 'I can full controls this game and apgreding anything. You should not expect that the game will always meet your desires. By signing this agreement, you have the right to immerse yourself in the game world within the framework of the developer&#39;s intention and without infringing on the same rights of other users of the game. For violation of the rules of the game established by the developer, any player may be held liable both in-game and legally. The player can be either temporarily blocked or removed from the server without the possibility of recovery. All in-game purchases refunded. Have a nice game!'}
             </Typography>
           </TextGame>
@@ -149,7 +149,7 @@ const Registration = () => {
             <LinkToRegister>
               <ButtonLicensia onClick={agryClick}></ButtonLicensia>
               <AskToRegister>
-                {RegisterPage ? RegisterPage.agree : 'I have read and agree'}
+                {!!registerPage ? registerPage.agree : 'I have read and agree'}
               </AskToRegister>
             </LinkToRegister>
           </div>

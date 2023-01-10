@@ -23,7 +23,7 @@ const SetLordPage = () => {
   let navigate = useNavigate();
   const [nikName, setNikName] = useState('');
   const dispatch = useDispatch();
-  const { SetLordPage } = useSelector(state => state.language.transleter);
+  const { setLordPage } = useSelector(state => state.language.transleter);
   const { data: lordInfo, error } = useGetMyPersonQuery();
   const [createPerson, { isSuccess }] = useRegistrationPersonMutation();
   let responsPerson = null;
@@ -72,18 +72,20 @@ const SetLordPage = () => {
 
   return (
     <ListAuth>
-      <Title>{SetLordPage ? SetLordPage.h1 : 'Setting your personage'}</Title>
+      <Title>{!!setLordPage ? setLordPage.h1 : 'Setting your personage'}</Title>
       <TextGame>
         <Typography>
-          {SetLordPage
-            ? SetLordPage.history
+          {!!setLordPage
+            ? setLordPage.history
             : 'К 4800-му году человечество научилось использовать кротовые норы для перемещений по галактике, но как далеко бы не шел прогресс внутриние межусобицы и борьба за власть и ресурсы только усиливались, что в конце концов привело к полному расколу правления на две крупнейшие фракции, которые заняли критически важные для технологий источники ресурсов. Какую бы рассу ты не выбрал ты защищаешь мирных граждан от дисбаланс во вселенной!'}
         </Typography>
       </TextGame>
       {!lordInfo ? (
         <>
           <h3>
-            {SetLordPage ? SetLordPage.ask : 'Придумайте имя своему персонажу'}
+            {!!setLordPage
+              ? setLordPage.ask
+              : 'Придумайте имя своему персонажу'}
           </h3>
           <NikName
             label="nik Name"
@@ -97,7 +99,7 @@ const SetLordPage = () => {
           <Grid container spacing={2} sx={{ mb: '30px' }}>
             <Grid item xs={6}>
               <ButtonSelectLeft onClick={() => clikRassa('Blue')}>
-                {SetLordPage ? SetLordPage.buttons.winter : 'Winter'}
+                {!!setLordPage ? setLordPage.buttons.winter : 'Winter'}
               </ButtonSelectLeft>
             </Grid>
             <Grid item xs={6}>
@@ -106,7 +108,7 @@ const SetLordPage = () => {
                   clikRassa('Yellow');
                 }}
               >
-                {SetLordPage ? SetLordPage.buttons.desert : 'Desert'}
+                {!!setLordPage ? setLordPage.buttons.desert : 'Desert'}
               </ButtonSelectRight>
             </Grid>
           </Grid>

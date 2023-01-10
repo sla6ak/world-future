@@ -26,7 +26,7 @@ const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [createUser] = useLoginUserMutation();
-  const { LoginPage } = useSelector(state => state.language.transleter);
+  const { loginPage } = useSelector(state => state.language.transleter);
 
   const handleEmail = event => {
     setEmail(event.target.value);
@@ -60,7 +60,7 @@ const LoginPage = () => {
   };
   return (
     <ListAuth>
-      <Title>{LoginPage ? LoginPage.h1 : 'Login Please'}</Title>
+      <Title>{!!loginPage ? loginPage.h1 : 'Login Please'}</Title>
       <ButtonHome onClick={() => navigate('/')}>
         <CloseIcon />
       </ButtonHome>
@@ -93,16 +93,16 @@ const LoginPage = () => {
         </Grid>
         <ButtonWrapper>
           <GeneralButton type="submit">
-            {LoginPage ? LoginPage.buttons.submit : 'Submit'}
+            {!!loginPage ? loginPage.buttons.submit : 'Submit'}
           </GeneralButton>
         </ButtonWrapper>
       </FormSubmit>
       <LinkToRegister>
         <AskToRegister>
-          {LoginPage ? LoginPage.ask : 'You don&#39;t have a login?'}
+          {!!loginPage ? loginPage.ask : 'You don&#39;t have a login?'}
         </AskToRegister>
         <NavLink style={{ color: '#2663e7' }} to="/auth/register">
-          {LoginPage ? LoginPage.buttons.registration : 'Registration'}
+          {!!loginPage ? loginPage.buttons.registration : 'Registration'}
         </NavLink>
       </LinkToRegister>
     </ListAuth>
