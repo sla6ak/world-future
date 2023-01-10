@@ -23,7 +23,7 @@ const StartPage = () => {
   const { listLanguage, StartPage } = useSelector(
     state => state.language.transleter
   );
-  const anchorRef = useRef(null);
+  const lengButtRef = useRef(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -32,7 +32,7 @@ const StartPage = () => {
   };
 
   const handleClose = event => {
-    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+    if (lengButtRef.current && lengButtRef.current.contains(event.target)) {
       return;
     }
 
@@ -49,7 +49,7 @@ const StartPage = () => {
   const prevOpen = React.useRef(openLeng);
   React.useEffect(() => {
     if (prevOpen.current === true && openLeng === false) {
-      anchorRef.current.focus();
+      lengButtRef.current.focus();
     }
 
     prevOpen.current = openLeng;
@@ -71,7 +71,7 @@ const StartPage = () => {
       </TextGame>
       <MenuSettings>
         <Button
-          ref={anchorRef}
+          ref={lengButtRef}
           aria-controls={openLeng ? 'menu-list-grow' : undefined}
           aria-haspopup="true"
           onClick={handleToggle}
@@ -81,7 +81,7 @@ const StartPage = () => {
         </Button>
         <Popper
           open={openLeng}
-          anchorEl={anchorRef.current}
+          anchorEl={lengButtRef.current}
           role={undefined}
           transition
           disablePortal
