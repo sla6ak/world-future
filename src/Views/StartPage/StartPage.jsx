@@ -18,6 +18,7 @@ const StartPage = () => {
   const { transleter } = useSelector(state => state.language);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  // const refInput = useRef(null);
 
   return (
     <ListAuth>
@@ -34,7 +35,7 @@ const StartPage = () => {
       <MenuSettings>
         {transleter && (
           <FormControl fullWidth>
-            <InputLabel htmlFor="uncontrolled">
+            <InputLabel variant="standard">
               {transleter.StartPage
                 ? transleter.StartPage.buttons.language
                 : 'LANGUAGE'}
@@ -43,8 +44,8 @@ const StartPage = () => {
               defaultValue="ENGLISH"
               inputProps={{
                 name: 'age',
-                id: 'uncontrolled',
               }}
+              // ref={refInput}
             >
               {transleter.listLanguage.map(el => {
                 return (
