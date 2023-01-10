@@ -1,5 +1,5 @@
 import { GeneralButton } from 'Components/GeneralButton/GeneralButton.styled';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { createPortal } from 'react-dom';
 import { Overlay, ModalWindow } from './ModalSettings.styled';
 import { WrapperButtons } from './ModalSettings.styled';
@@ -15,7 +15,7 @@ export const ModalSettings = ({ onModalClose }) => {
     <Overlay>
       <ModalWindow>
         <WrapperButtons>
-          <GeneralButton bts="" onClick={onModalClose}>
+          <GeneralButton bts="" onClick={mouseDownClouse}>
             ПРОДОЛЖИТЬ
           </GeneralButton>
           <GeneralButton>ЯЗЫКИ</GeneralButton>
