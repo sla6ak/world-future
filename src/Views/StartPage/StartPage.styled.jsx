@@ -17,6 +17,8 @@ export const MenuSettings = styled.div`
   display: flex;
   flex-direction: row;
   margin-top: auto;
+  margin-bottom: 30px;
+  min-width: 170px;
   @media (max-width: 700px) {
     flex-direction: column;
   }
