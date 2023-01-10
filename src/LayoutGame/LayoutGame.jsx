@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Chat from 'Components/Chat/Chat';
 import Squad from 'Components/Squad/Squad';
 import Missions from 'Components/Missions/Missions';
+import { LoaderCastomGate } from 'Components/LoaderCastomGate/LoaderCastomGate';
 import {
   Holst,
   HeaderHelmet,
@@ -134,7 +135,7 @@ const LeyoutGame = () => {
       {visability.chat && <Chat lordInfo={lordInfo} />}
       {visability.missions && <Missions lordInfo={lordInfo} />}
       {visability.squad && <Squad lordInfo={lordInfo} />}
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<LoaderCastomGate>loading...</LoaderCastomGate>}>
         <Outlet />
       </Suspense>
     </Holst>
