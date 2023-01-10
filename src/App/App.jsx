@@ -29,7 +29,7 @@ const PlanetaLostWorld = lazy(() =>
 
 export const App = () => {
   const token = useSelector(state => state.token);
-  const myLanguage = useSelector(state => state.language.myLanguage); // должно вернуть сохраненный в локалке язык либо англ
+  const { myLanguage } = useSelector(state => state.language); // должно вернуть сохраненный в локалке язык либо англ
   const { data: auth, error: errorAuth } = useGetIsActivUserQuery('', {
     skip: !token,
   });
