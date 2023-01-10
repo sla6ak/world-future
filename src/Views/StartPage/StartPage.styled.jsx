@@ -15,7 +15,7 @@ export const TextSuper = styled.span`
 `;
 export const MenuSettings = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   margin-top: auto;
   margin-bottom: 30px;
   min-width: 170px;
