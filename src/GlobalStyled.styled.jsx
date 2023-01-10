@@ -48,8 +48,10 @@ export const GlobalStyle = () => {
           justify-content: center;
           align-items: center;
           flex-wrap: wrap;
-          width: 300px;
-          height: 300px;
+          width: 75%;
+          height: 75%;
+          font-weight: 700;
+          color: #003b05;
           border-radius: 50%;
           padding: 20px;
           /* background-color: rgb(240, 30, 50, 0.7); */
@@ -62,7 +64,7 @@ export const GlobalStyle = () => {
           border-right-width: 24px;
           border-bottom-width: 14px;
           border-left-width: 6px;
-          border-color: #00385e;
+          border-color: #0062a3;
           animation-name: startspinner;
           animation-duration: 5000ms;
           animation-iteration-count: infinite;
@@ -74,8 +76,8 @@ export const GlobalStyle = () => {
             border-bottom-width: 14px;
             border-left-width: 6px;
             background-image: linear-gradient(
-              rgba(0, 127, 245, 0.445),
-              rgba(149, 0, 248, 0.432)
+              rgba(104, 255, 247, 0.445),
+              rgba(91, 38, 236, 0.432)
             );
           }
           25% {
@@ -84,8 +86,8 @@ export const GlobalStyle = () => {
             border-bottom-width: 24px;
             border-left-width: 14px;
             background-image: linear-gradient(
-              rgba(0, 216, 245, 0.445),
-              rgba(157, 0, 248, 0.432)
+              rgba(68, 207, 250, 0.445),
+              rgba(30, 80, 219, 0.432)
             );
           }
 
@@ -95,8 +97,8 @@ export const GlobalStyle = () => {
             border-bottom-width: 14px;
             border-left-width: 24px;
             background-image: linear-gradient(
-              rgba(0, 245, 151, 0.445),
-              rgba(74, 0, 248, 0.432)
+              rgba(0, 147, 245, 0.445),
+              rgba(0, 128, 248, 0.432)
             );
           }
           75% {
@@ -105,8 +107,8 @@ export const GlobalStyle = () => {
             border-bottom-width: 14px;
             border-left-width: 24px;
             background-image: linear-gradient(
-              rgba(0, 229, 245, 0.445),
-              rgba(128, 0, 248, 0.432)
+              rgba(35, 74, 245, 0.445),
+              rgba(51, 148, 228, 0.432)
             );
           }
           100% {
@@ -115,8 +117,8 @@ export const GlobalStyle = () => {
             border-bottom-width: 6px;
             border-left-width: 14px;
             background-image: linear-gradient(
-              rgba(0, 176, 245, 0.445),
-              rgba(198, 0, 248, 0.432)
+              rgba(41, 178, 241, 0.445),
+              rgba(25, 29, 253, 0.432)
             );
           }
         }

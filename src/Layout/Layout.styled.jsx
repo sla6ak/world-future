@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
-import cosmo from './cosmo.jpg';
-// console.log(cosmo);
+import cosmo from '../Impegs/cosmo.jpg';
 
 export const BoxHeader = styled.div`
   display: flex;
@@ -8,7 +7,7 @@ export const BoxHeader = styled.div`
   width: 100%;
 `;
 
-export const Main = styled.div`
+export const MainFone = styled.div`
   min-width: 100vw;
   min-height: 100vh;
   background-color: rgb(17, 17, 17);
