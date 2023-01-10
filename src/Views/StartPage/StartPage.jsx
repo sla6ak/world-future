@@ -32,32 +32,34 @@ const StartPage = () => {
         </Typography>
       </TextGame>
       <MenuSettings>
-        <FormControl fullWidth>
-          <InputLabel variant="standard" htmlFor="uncontrolled">
-            {transleter.StartPage
-              ? transleter.StartPage.buttons.language
-              : 'LANGUAGE'}
-          </InputLabel>
-          <NativeSelect
-            defaultValue="ENGLISH"
-            inputProps={{
-              name: 'age',
-              id: 'uncontrolled',
-            }}
-          >
-            {transleter.listLanguage.map(el => {
-              return (
-                <option
-                  onClick={() => dispatch(myLanguage(el.shortName))}
-                  key={el.shortName}
-                  value={10}
-                >
-                  {el.text}
-                </option>
-              );
-            })}
-          </NativeSelect>
-        </FormControl>
+        {transleter && (
+          <FormControl fullWidth>
+            <InputLabel htmlFor="uncontrolled">
+              {transleter.StartPage
+                ? transleter.StartPage.buttons.language
+                : 'LANGUAGE'}
+            </InputLabel>
+            <NativeSelect
+              defaultValue="ENGLISH"
+              inputProps={{
+                name: 'age',
+                id: 'uncontrolled',
+              }}
+            >
+              {transleter.listLanguage.map(el => {
+                return (
+                  <option
+                    onClick={() => dispatch(myLanguage(el.shortName))}
+                    key={el.shortName}
+                    value={10}
+                  >
+                    {el.text}
+                  </option>
+                );
+              })}
+            </NativeSelect>
+          </FormControl>
+        )}
       </MenuSettings>
       <GeneralButton
         onClick={() => {
