@@ -11,7 +11,7 @@ import {
   FormControl,
   NativeSelect,
   InputLabel,
-} from '@mui/material/';
+} from '@mui/material';
 import { MenuSettings } from './StartPage.styled';
 
 const StartPage = () => {
