@@ -8,11 +8,6 @@ export const TextGame = styled.div`
   align-items: center;
   justify-content: center;
 `;
-export const TextSuper = styled.span`
-  color: #a108c7;
-  font-weight: 800;
-  margin: 0rem 0.5rem;
-`;
 export const MenuSettings = styled.div`
   display: flex;
   flex-direction: column;
@@ -22,4 +17,8 @@ export const MenuSettings = styled.div`
   @media (max-width: 700px) {
     flex-direction: column;
   }
+`;
+export const LabelCastom = styled.h4`
+  margin-bottom: 10px;
+  color: '#0067bb';
 `;

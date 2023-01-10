@@ -2,12 +2,11 @@ import React, { useEffect } from 'react';
 import { ListAuth } from 'Components/ListAuth/ListAuth.styled';
 import { Title } from 'Components/Title/Title.styled';
 import { useNavigate } from 'react-router-dom';
-import { TextGame } from './StartPage.styled';
+import { TextGame, LabelCastom, MenuSettings } from './StartPage.styled';
 import { useSelector, useDispatch } from 'react-redux';
 import { myLanguage } from 'Redux/LanguageSlise';
 import { GeneralButton } from 'Components/GeneralButton/GeneralButton.styled';
 import { Typography, FormControl, MenuItem, Select } from '@mui/material';
-import { MenuSettings } from './StartPage.styled';
 
 const StartPage = () => {
   const { listLanguage, StartPage } = useSelector(
@@ -37,9 +36,9 @@ const StartPage = () => {
         </Typography>
       </TextGame>
       <MenuSettings>
-        <Typography style={{ marginBottom: '10px', color: '#0067bb' }}>
+        <LabelCastom>
           {!!StartPage ? StartPage.buttons.language : 'LANGUAGE'}
-        </Typography>
+        </LabelCastom>
         <FormControl fullWidth>
           {/* <InputLabel id="demo-simple-select-label" variant="standard">
             {!!StartPage ? StartPage.buttons.language : 'LANGUAGE'}
