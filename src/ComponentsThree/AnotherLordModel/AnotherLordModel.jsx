@@ -11,7 +11,7 @@ import { Suspense } from 'react';
 const SPEED = 3;
 
 const AnotherLordModel = props => {
-  console.log(props);
+  // console.log(props);
   // setMoveLord должен прилетать с сервера
   const [moveLord, setMoveLord] = useState({
     moveForward: false,

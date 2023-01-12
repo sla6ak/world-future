@@ -2,6 +2,7 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { authApi } from './Server/authFetch';
 import { personApi } from 'Redux/Server/lordFetch';
 import { chatApi } from 'Redux/Server/chatFetch';
+import { testWsApi } from './WebSockets/WStest';
 import { missionApi } from 'Redux/Server/missionFeth';
 import { languageAPI } from './Server/languageFetch';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
@@ -33,6 +34,7 @@ const rootReduser = combineReducers({
   [chatApi.reducerPath]: chatApi.reducer,
   [languageAPI.reducerPath]: languageAPI.reducer,
   [missionApi.reducerPath]: missionApi.reducer,
+  [testWsApi.reducerPath]: testWsApi.reducer,
   token: curentToken.reducer,
   auth: curentUser.reducer,
   nikName: nikName.reducer,
@@ -53,6 +55,7 @@ export const store = configureStore({
       .concat(missionApi.middleware)
       .concat(personApi.middleware)
       .concat(chatApi.middleware)
+      .concat(testWsApi.middleware)
       .concat(languageAPI.middleware),
 });
 
