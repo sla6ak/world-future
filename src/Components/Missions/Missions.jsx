@@ -1,10 +1,10 @@
 import { RiteHelmet, FormSubmit, Title, ButtonLetter } from './Missions.styled';
 import { useState, useEffect } from 'react';
-import { useGetPandingMissionsQuery } from 'Redux/Server/missionFeth';
 
 const Missions = ({ lordInfo }) => {
   const [buttonDis, setButtonDis] = useState(false);
-  const { data: myMissions } = useGetPandingMissionsQuery();
+  // заглушка
+  const myMissions = null;
 
   useEffect(() => {
     if (1 === 3) {

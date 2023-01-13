@@ -4,7 +4,7 @@ import { Title } from 'Components/Title/Title.styled';
 import { useNavigate } from 'react-router-dom';
 import { TextGame, MenuSettings } from './StartPage.styled';
 import { useSelector, useDispatch } from 'react-redux';
-import { switchLanguage } from 'Redux/LanguageSlise';
+import { switchLanguage } from 'Redux/Slises/LanguageSlise';
 import { GeneralButton } from 'Components/GeneralButton/GeneralButton.styled';
 import {
   Typography,

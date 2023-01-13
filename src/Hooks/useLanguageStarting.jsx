@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import { transleter } from 'Redux/LanguageSlise';
+import { transleter } from 'Redux/Slises/LanguageSlise';
 import { useSelector, useDispatch } from 'react-redux';
-import { useGetLanguageQuery } from 'Redux/Server/languageFetch';
+import { useGetLanguageQuery } from 'Redux/ServerAPI/API_BASE_SERVER';
 
 export const useLanguageStarting = () => {
   const { myLanguage } = useSelector(state => state.language); // должно вернуть сохраненный в локалке язык либо англ

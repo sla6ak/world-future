@@ -12,6 +12,7 @@ import CosmosSpace from './red.jpg';
 // import { useState } from 'react';
 
 const PlanetaYellowHome = () => {
+  // тут должен стартовать запрос на сокет подключение и вытягивать состояние объектов на планете
   const textureYellowCosmos = useLoader(TextureLoader, CosmosSpace);
   // const [allLords, setAllLords] = useState([0, 0, 0]);
 
