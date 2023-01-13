@@ -22,6 +22,7 @@ import CosmosSpace from './tim-barton-5.jpg';
 // *****************************************************************************************
 
 const PlanetaBlueHome = () => {
+  // тут должен стартовать запрос на сокет подключение и вытягивать состояние объектов на планете
   const textureBlueCosmos = useLoader(TextureLoader, CosmosSpace);
   // const [allLords, setAllLords] = useState([0, 0, 0]);
 
