@@ -6,7 +6,8 @@ import { useOpenModalGeneralSettings } from 'Hooks/useOpenModalGeneralSettings';
 import { useTestWSconnecting } from 'Hooks/useTestWSconnecting';
 
 export const App = () => {
-  useTestWSconnecting();
+  // тест вебсокетов с редаксом
+  const { sendMessage } = useTestWSconnecting();
   useLanguageStarting();
   useAuthStartApp();
   const { statusSettingsModal, setStatusSettingsModal } =
@@ -15,7 +16,10 @@ export const App = () => {
   return (
     <>
       {statusSettingsModal && (
-        <ModalSettings onModalClose={setStatusSettingsModal} />
+        <ModalSettings
+          sendMessage={sendMessage} // тест вебсокетов внутри кнопки
+          onModalClose={setStatusSettingsModal}
+        />
       )}
       <Routers />
     </>

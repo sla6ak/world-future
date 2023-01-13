@@ -1,9 +1,21 @@
 import { useEffect } from 'react';
-import { useGetTestQuery } from 'Redux/WebSockets/WStest';
+import {
+  useGetMessagesQuery,
+  useSendMessageMutation,
+} from 'Redux/WebSockets/WStest';
 
 export const useTestWSconnecting = () => {
-  useGetTestQuery();
-  useEffect(() => {}, []);
+  const { getCacheEntry, data, error } = useGetMessagesQuery();
+  const [sendMessage] = useSendMessageMutation();
 
-  return {};
+  useEffect(() => {
+    if (error) return console.log('useTestWSconnecting error ws', error);
+    console.log('hoock data', data);
+  }, [data, error]);
+
+  useEffect(() => {
+    console.log('getCacheEntry', getCacheEntry);
+  }, [getCacheEntry]);
+
+  return { sendMessage };
 };
