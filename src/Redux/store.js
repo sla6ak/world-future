@@ -1,14 +1,10 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import { authApi } from './Server/authFetch';
-import { personApi } from 'Redux/Server/lordFetch';
-import { chatApi } from 'Redux/Server/chatFetch';
-import { testWsApi } from './WebSockets/WStest';
-import { missionApi } from 'Redux/Server/missionFeth';
-import { languageAPI } from './Server/languageFetch';
+import { API_BASE_SERVER } from './ServerAPI/API_BASE_SERVER';
+import { WS_BASE_API } from './WebSocketsAPI/WS_BASE_API';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
-import { curentUser, curentToken } from './AuthSlise';
-import { nikName } from './NikSlise';
-import { language } from './LanguageSlise';
+import { curentUser, curentToken } from './Slises/AuthSlise';
+import { nikName } from './Slises/NikSlise';
+import { language } from './Slises/LanguageSlise';
 import {
   persistStore,
   persistReducer,
@@ -29,12 +25,8 @@ const tokenPersistConfig = {
 
 // *****************reduser*************************************
 const rootReduser = combineReducers({
-  [authApi.reducerPath]: authApi.reducer,
-  [personApi.reducerPath]: personApi.reducer,
-  [chatApi.reducerPath]: chatApi.reducer,
-  [languageAPI.reducerPath]: languageAPI.reducer,
-  [missionApi.reducerPath]: missionApi.reducer,
-  [testWsApi.reducerPath]: testWsApi.reducer,
+  [API_BASE_SERVER.reducerPath]: API_BASE_SERVER.reducer,
+  [WS_BASE_API.reducerPath]: WS_BASE_API.reducer,
   token: curentToken.reducer,
   auth: curentUser.reducer,
   nikName: nikName.reducer,
@@ -51,12 +43,8 @@ export const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     })
-      .concat(authApi.middleware)
-      .concat(missionApi.middleware)
-      .concat(personApi.middleware)
-      .concat(chatApi.middleware)
-      .concat(testWsApi.middleware)
-      .concat(languageAPI.middleware),
+      .concat(API_BASE_SERVER.middleware)
+      .concat(WS_BASE_API.middleware),
 });
 
 export const persistor = persistStore(store);

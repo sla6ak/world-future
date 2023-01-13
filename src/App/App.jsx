@@ -3,11 +3,11 @@ import { Routers } from 'Routers/Routers';
 import { useLanguageStarting } from 'Hooks/useLanguageStarting';
 import { useAuthStartApp } from 'Hooks/useAuthStartApp';
 import { useOpenModalGeneralSettings } from 'Hooks/useOpenModalGeneralSettings';
-import { useTestWSconnecting } from 'Hooks/useTestWSconnecting';
+import { useWsConnecting } from 'Hooks/useWsConnecting';
 
 export const App = () => {
   // тест вебсокетов с редаксом
-  const { sendMessage } = useTestWSconnecting();
+  const { sendMessage } = useWsConnecting();
   useLanguageStarting();
   useAuthStartApp();
   const { statusSettingsModal, setStatusSettingsModal } =

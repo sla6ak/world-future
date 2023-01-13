@@ -21,7 +21,7 @@ export const ModalSettings = ({ sendMessage, onModalClose }) => {
           <GeneralButton>ЯЗЫКИ</GeneralButton>
           <GeneralButton
             onClick={() => {
-              sendMessage({ message: 'соообщение отправлено' });
+              sendMessage('соообщение отправлено');
             }}
           >
             ЗВУК -тест вебсокетов

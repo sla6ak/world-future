@@ -7,19 +7,19 @@ import {
   BodyLetter,
   LetterBox,
 } from './Chat.styled';
-import { useGetAllChatQuery } from 'Redux/Server/chatFetch';
 import { toast } from 'react-toastify';
 import { useState } from 'react';
-import { useCreateMassageMutation } from 'Redux/Server/chatFetch';
 import { validationLetterSchema } from 'Helpers/validationForms';
 
 const Chat = ({ lordInfo }) => {
   const [buttonDis, setButtonDis] = useState(false);
-  const { data: allChat } = useGetAllChatQuery(true, {
-    pollingInterval: 3000,
-  });
+  // заглушка
+  const allChat = null;
+  const createNewMassage = () => {
+    return;
+  };
   const [letter, setLetter] = useState('');
-  const [createNewMassage] = useCreateMassageMutation();
+
   const handleLetter = event => {
     setLetter(event.target.value);
   };

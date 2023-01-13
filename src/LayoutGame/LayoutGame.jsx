@@ -1,6 +1,6 @@
 import { Suspense, useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { useGetMyPersonQuery } from 'Redux/Server/lordFetch';
+import { useGetMyPersonQuery } from 'Redux/ServerAPI/API_BASE_SERVER';
 import { useNavigate } from 'react-router-dom';
 import Chat from 'Components/Chat/Chat';
 import Squad from 'Components/Squad/Squad';

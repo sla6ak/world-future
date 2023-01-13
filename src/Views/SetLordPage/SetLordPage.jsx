@@ -10,14 +10,14 @@ import {
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { myNik } from 'Redux/NikSlise';
+import { myNik } from 'Redux/Slises/NikSlise';
 import { Navigate } from 'react-router-dom';
 import { validationLordSchema } from 'Helpers/validationForms';
 import { useNavigate } from 'react-router-dom';
 import {
   useGetMyPersonQuery,
   useRegistrationPersonMutation,
-} from 'Redux/Server/lordFetch';
+} from 'Redux/ServerAPI/API_BASE_SERVER';
 
 const SetLordPage = () => {
   let navigate = useNavigate();
