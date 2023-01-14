@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { WS_PORT } from 'Redux/PORT';
 
-const chanals = [
+const channels = [
   'chat',
   'planetaBlueHome',
   'planetaYellowHome',
@@ -11,6 +11,7 @@ const chanals = [
 ];
 
 let ws = null;
+
 function getSocket() {
   if (!ws) {
     ws = new WebSocket(WS_PORT);
@@ -27,10 +28,10 @@ export const WS_BASE_API = createApi({
     tagTypes: ['wsApi'],
 
     sendMessage: builder.mutation({
-      queryFn: ({ canel = 'chat', data = {} }) => {
+      queryFn: ({ channel = 'chat', data = {} }) => {
         const ws = getSocket();
         new Promise(resolve => {
-          resolve(ws.send(JSON.stringify({ canel, data })));
+          resolve(ws.send(JSON.stringify({ channel, data })));
         });
         return '1';
       },
@@ -68,7 +69,7 @@ export const WS_BASE_API = createApi({
           });
           ws.addEventListener('message', message => {
             const res = JSON.parse(message.data);
-            if (!chanals.includes(res.chanal)) return;
+            if (!channels.includes(res.channel)) return;
             // console.log(res);
             updateCachedData(draft => {
               draft.push(res);
