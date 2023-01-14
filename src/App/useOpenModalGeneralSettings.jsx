@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 export const useOpenModalGeneralSettings = () => {
   const [statusSettingsModal, setStatusSettingsModal] = useState(false);
+
   const onModalClose = () => {
     setStatusSettingsModal(prev => !prev);
   };
@@ -13,11 +14,8 @@ export const useOpenModalGeneralSettings = () => {
         onModalClose();
       }
     };
-
     window.addEventListener('keydown', keyDownClose);
-    return () => {
-      window.removeEventListener('keydown', keyDownClose);
-    };
+    return () => window.removeEventListener('keydown', keyDownClose);
   }, []);
 
   return { statusSettingsModal, setStatusSettingsModal };
