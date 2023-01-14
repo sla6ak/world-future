@@ -6,6 +6,7 @@ import Chat from 'Components/Chat/Chat';
 import Squad from 'Components/Squad/Squad';
 import Missions from 'Components/Missions/Missions';
 import { LoaderCastomGate } from 'Components/LoaderCastomGate/LoaderCastomGate';
+import { useWsConnecting } from 'Hooks/useWsConnecting';
 import {
   Holst,
   HeaderHelmet,
@@ -25,16 +26,16 @@ import {
 import { useEffect } from 'react';
 
 const LeyoutGame = () => {
-  const [visability, setChatVisability] = useState({
-    chat: true,
-    missions: true,
+  useWsConnecting();
+  const [visability, setVisability] = useState({
+    chat: false,
+    missions: false,
     squad: false,
   });
-  const { data: lordInfo } = useGetMyPersonQuery(true, {
-    pollingInterval: 3000,
-  });
+  // изначально переполучал весь объект но должен быть переработан и перезаписывать только измененные данные
+  const { data: lordInfo } = useGetMyPersonQuery();
   const navigate = useNavigate();
-
+  useEffect(() => {}, []);
   useEffect(() => {
     if (!lordInfo) {
       return;
@@ -71,7 +72,7 @@ const LeyoutGame = () => {
         <ArmBox
           onClick={e => {
             e.stopPropagation();
-            setChatVisability(pevState => ({
+            setVisability(pevState => ({
               ...pevState,
               missions: false,
               squad: !pevState.squad,
@@ -109,7 +110,7 @@ const LeyoutGame = () => {
         <ChatBox
           onClick={e => {
             e.stopPropagation();
-            setChatVisability(pevState => ({
+            setVisability(pevState => ({
               ...pevState,
               chat: !pevState.chat,
             }));
@@ -122,7 +123,7 @@ const LeyoutGame = () => {
         </div>
         <MissionBox
           onClick={() => {
-            setChatVisability(pevState => ({
+            setVisability(pevState => ({
               ...pevState,
               squad: false,
               missions: !pevState.missions,

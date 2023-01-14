@@ -5,7 +5,7 @@ import { isAuth } from 'Redux/Slises/AuthSlise';
 import { toast } from 'react-toastify';
 
 export const useAuthStartApp = () => {
-  const token = useSelector(state => state.token);
+  const { token } = useSelector(state => state.auth);
   const { data: auth, error: errorAuth } = useGetIsActivUserQuery('', {
     skip: !token,
   });
@@ -14,15 +14,14 @@ export const useAuthStartApp = () => {
 
   // сохраняет авторизованого юзера
   useEffect(() => {
+    if (!token) return;
     if (errorAuth) {
       return console.log(errorAuth);
     }
-    if (auth === undefined) {
-      return;
-    }
-    dispatch(isAuth(auth.name));
-    toast.success(`Welcome ${auth.name}`);
-  }, [auth, dispatch, errorAuth]);
+    if (!auth) return;
+    dispatch(isAuth(auth));
+    toast.success(`Welcome ${auth.user.name}`);
+  }, [auth, dispatch, token, errorAuth]);
 
   return { auth };
 };
