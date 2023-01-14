@@ -54,7 +54,7 @@ const LoginPage = () => {
     }
     if (responsLogin.data) {
       dispatch(newToken(responsLogin.data.token));
-      dispatch(isAuth(responsLogin.data.user.name));
+      dispatch(isAuth(responsLogin.data.user));
       toast.success('Succesful login user!');
     }
   };

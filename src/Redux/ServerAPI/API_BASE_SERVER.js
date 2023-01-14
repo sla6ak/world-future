@@ -6,7 +6,7 @@ export const API_BASE_SERVER = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `${PORT}`,
     prepareHeaders: (headers, { getState }) => {
-      const token = getState().token;
+      const token = getState().auth.token;
       if (token) {
         headers.set('authorization', `Bearer ${token}`);
       }
