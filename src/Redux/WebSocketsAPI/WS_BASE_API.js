@@ -59,14 +59,14 @@ export const WS_BASE_API = createApi({
           ws.addEventListener('open', () => {
             ws.send(
               JSON.stringify({
-                chanal: 'connect',
+                channel: 'connect',
                 data: { id: getState().auth.user.id },
               })
             );
           });
           ws.addEventListener('message', message => {
             const res = JSON.parse(message.data);
-            if (!chanals.includes(res.chanal)) return;
+            if (!channels.includes(res.channel)) return;
             // console.log(res);
             updateCachedData(draft => {
               draft.push(res);
