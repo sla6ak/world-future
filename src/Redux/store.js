@@ -1,10 +1,5 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import { API_BASE_SERVER } from './ServerAPI/API_BASE_SERVER';
-import { WS_BASE_API } from './WebSocketsAPI/WS_BASE_API';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
-import { curentUser, curentToken } from './Slises/AuthSlise';
-import { nikName } from './Slises/NikSlise';
-import { language } from './Slises/LanguageSlise';
 import {
   persistStore,
   persistReducer,
@@ -15,21 +10,28 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
+// апи и слайсы
+import { WS_BASE_API } from './WebSocketsAPI/WS_BASE_API';
+import { API_BASE_SERVER } from './ServerAPI/API_BASE_SERVER';
+import { auth } from './Slises/AuthSlise';
+import { lordInfo } from './Slises/myLordInfo';
+import { language } from './Slises/LanguageSlise';
+import { chatGame } from './Slises/chatGame';
 
 // ***********************local*************************
 const tokenPersistConfig = {
-  key: 'worldFuture-token', //это ключь под которым мы сохраняем сторе
+  key: 'worldFuture', //это ключь под которым мы сохраняем сторе
   storage,
-  whitelist: ['token', 'language'], // этот ключь вытягивает уже из slice
+  whitelist: ['auth', 'language'], // этот ключь вытягивает уже из slice
 };
 
 // *****************reduser*************************************
 const rootReduser = combineReducers({
   [API_BASE_SERVER.reducerPath]: API_BASE_SERVER.reducer,
   [WS_BASE_API.reducerPath]: WS_BASE_API.reducer,
-  token: curentToken.reducer,
-  auth: curentUser.reducer,
-  nikName: nikName.reducer,
+  auth: auth.reducer,
+  lordInfo: lordInfo.reducer,
+  chatGame: chatGame.reducer,
   language: language.reducer,
 });
 const persistedReducer = persistReducer(tokenPersistConfig, rootReduser);

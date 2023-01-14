@@ -1,13 +1,10 @@
 import { ModalSettings } from 'Components/ModalSettings/ModalSettings';
 import { Routers } from 'Routers/Routers';
-import { useLanguageStarting } from 'Hooks/useLanguageStarting';
-import { useAuthStartApp } from 'Hooks/useAuthStartApp';
-import { useOpenModalGeneralSettings } from 'Hooks/useOpenModalGeneralSettings';
-import { useWsConnecting } from 'Hooks/useWsConnecting';
+import { useLanguageStarting } from './useLanguageStarting';
+import { useAuthStartApp } from './useAuthStartApp';
+import { useOpenModalGeneralSettings } from './useOpenModalGeneralSettings';
 
 export const App = () => {
-  // тест вебсокетов с редаксом
-  const { sendMessage } = useWsConnecting();
   useLanguageStarting();
   useAuthStartApp();
   const { statusSettingsModal, setStatusSettingsModal } =
@@ -16,10 +13,7 @@ export const App = () => {
   return (
     <>
       {statusSettingsModal && (
-        <ModalSettings
-          sendMessage={sendMessage} // тест вебсокетов внутри кнопки
-          onModalClose={setStatusSettingsModal}
-        />
+        <ModalSettings onModalClose={setStatusSettingsModal} />
       )}
       <Routers />
     </>

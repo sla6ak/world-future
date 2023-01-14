@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom';
 import { Overlay, ModalWindow } from './ModalSettings.styled';
 import { WrapperButtons } from './ModalSettings.styled';
 
-export const ModalSettings = ({ sendMessage, onModalClose }) => {
+export const ModalSettings = ({ onModalClose }) => {
   const mouseDownClouse = e => {
     if (e.target === e.currentTarget) {
       onModalClose();
@@ -18,16 +18,10 @@ export const ModalSettings = ({ sendMessage, onModalClose }) => {
           <GeneralButton bts="" onClick={mouseDownClouse}>
             ПРОДОЛЖИТЬ
           </GeneralButton>
-          <GeneralButton>ЯЗЫКИ</GeneralButton>
-          <GeneralButton
-            onClick={() => {
-              sendMessage('соообщение отправлено');
-            }}
-          >
-            ЗВУК -тест вебсокетов
-          </GeneralButton>
-          <GeneralButton>ВИДЕО</GeneralButton>
-          <GeneralButton>ПОКИНУТЬ ИГРУ</GeneralButton>
+          <GeneralButton onClick={() => {}}>ЯЗЫКИ</GeneralButton>
+          <GeneralButton onClick={() => {}}>ЗВУК</GeneralButton>
+          <GeneralButton onClick={() => {}}>ВИДЕО</GeneralButton>
+          <GeneralButton onClick={() => {}}>ПОКИНУТЬ ИГРУ</GeneralButton>
         </WrapperButtons>
       </ModalWindow>
     </Overlay>,

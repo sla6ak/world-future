@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { WS_PORT } from 'Redux/PORT';
+import { BASE_WORLD } from 'BASE_WORLD';
 
 const channels = [
   'chat',
@@ -38,24 +39,15 @@ export const WS_BASE_API = createApi({
     }),
 
     getMessages: builder.query({
-      queryFn: () => ({
-        data: [
-          { chanal: 'chat', data: {} },
-          { chanal: 'planetaBlueHome', data: {} },
-          { chanal: 'planetaYellowHome', data: {} },
-          { chanal: 'planetaLostWorld', data: {} },
-          { chanal: 'missions', data: {} },
-          { chanal: 'myLord', data: {} },
-        ],
-      }),
+      queryFn: () => BASE_WORLD,
       async onCacheEntryAdded(
         channel,
         {
           dispatch, // Способ отправки в магазин
-          getState, // получения текущего состояния магазина
           extra,
           requestId, // идентификатор, сгенерированный для записи кэша
           getCacheEntry, // текущее значение записи кэша
+          getState, // получения текущего состояния магазина
           updateCachedData,
           cacheDataLoaded, // Это позволяет вам awaitпока фактическое значение не окажется в кеше
           cacheEntryRemoved, // позволяет дождаться, когда запись в кеше будет удалена
@@ -64,12 +56,17 @@ export const WS_BASE_API = createApi({
         try {
           await cacheDataLoaded;
           const ws = getSocket();
-          ws.addEventListener('connect', () => {
-            ws.send(JSON.stringify({ message: 'connect' }));
+          ws.addEventListener('open', () => {
+            ws.send(
+              JSON.stringify({
+                chanal: 'connect',
+                data: { id: getState().auth.user.id },
+              })
+            );
           });
           ws.addEventListener('message', message => {
             const res = JSON.parse(message.data);
-            if (!channels.includes(res.channel)) return;
+            if (!chanals.includes(res.chanal)) return;
             // console.log(res);
             updateCachedData(draft => {
               draft.push(res);

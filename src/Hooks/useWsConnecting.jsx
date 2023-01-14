@@ -11,7 +11,7 @@ export const useWsConnecting = () => {
   useEffect(() => {
     if (!data) return;
     if (!!isLoading) return;
-    return console.log('hoock data', data);
+    // return console.log('hoock data', data);
   }, [data, isLoading]);
 
   useEffect(() => {
