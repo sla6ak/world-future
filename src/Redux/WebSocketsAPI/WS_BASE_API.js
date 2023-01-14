@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { WS_PORT } from 'Redux/PORT';
 import { BASE_WORLD } from 'BASE_WORLD';
 
-const chanals = [
+const channals = [
   'chat',
   'planetaBlueHome',
   'planetaYellowHome',
@@ -65,7 +65,7 @@ export const WS_BASE_API = createApi({
           });
           ws.addEventListener('message', message => {
             const res = JSON.parse(message.data);
-            if (!chanals.includes(res.chanal)) return;
+            if (!channals.includes(res.chanal)) return;
             // console.log(res);
             updateCachedData(draft => {
               draft.push(res);
