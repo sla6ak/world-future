@@ -22,7 +22,7 @@ function getSocket() {
 
 export const WS_BASE_API = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: '/',
+    baseUrl: '/'
   }),
 
   endpoints: builder => ({
@@ -60,10 +60,11 @@ export const WS_BASE_API = createApi({
             ws.send(
               JSON.stringify({
                 channel: 'connect',
-                data: { id: getState().auth.user.id },
+                id: getState().auth.user.id,
               })
             );
           });
+
           ws.addEventListener('message', message => {
             const res = JSON.parse(message.data);
             if (!channels.includes(res.channel)) return;
