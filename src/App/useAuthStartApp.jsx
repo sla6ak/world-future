@@ -16,7 +16,8 @@ export const useAuthStartApp = () => {
   useEffect(() => {
     if (!token) return;
     if (errorAuth) {
-      return console.log(errorAuth);
+      // console.log(errorAuth);
+      return;
     }
     if (!auth) return;
     dispatch(isAuth(auth));

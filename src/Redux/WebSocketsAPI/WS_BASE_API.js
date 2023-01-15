@@ -1,7 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { WS_PORT } from 'Redux/PORT';
-import { BASE_WORLD } from 'BASE_WORLD';
-
+const BASE_DRAFT = { data: {} };
 const channels = [
   'chat',
   'planetaBlueHome',
@@ -9,6 +8,7 @@ const channels = [
   'planetaLostWorld',
   'missions',
   'myLord',
+  'connect',
 ];
 
 let ws = null;
@@ -22,7 +22,7 @@ function getSocket() {
 
 export const WS_BASE_API = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: '/'
+    baseUrl: '/',
   }),
 
   endpoints: builder => ({
@@ -39,11 +39,10 @@ export const WS_BASE_API = createApi({
     }),
 
     getMessages: builder.query({
-      queryFn: () => BASE_WORLD,
+      queryFn: () => BASE_DRAFT,
       async onCacheEntryAdded(
         channel,
         {
-          dispatch, // Способ отправки в магазин
           extra,
           requestId, // идентификатор, сгенерированный для записи кэша
           getCacheEntry, // текущее значение записи кэша
@@ -60,7 +59,7 @@ export const WS_BASE_API = createApi({
             ws.send(
               JSON.stringify({
                 channel: 'connect',
-                id: getState().auth.user.id,
+                data: { token: getState().auth.token },
               })
             );
           });
@@ -68,9 +67,9 @@ export const WS_BASE_API = createApi({
           ws.addEventListener('message', message => {
             const res = JSON.parse(message.data);
             if (!channels.includes(res.channel)) return;
-            // console.log(res);
+
             updateCachedData(draft => {
-              draft.push(res);
+              draft.data = res;
             });
           });
           await cacheEntryRemoved;

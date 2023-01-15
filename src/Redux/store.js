@@ -17,6 +17,7 @@ import { auth } from './Slises/AuthSlise';
 import { lordInfo } from './Slises/myLordInfo';
 import { language } from './Slises/LanguageSlise';
 import { chatGame } from './Slises/chatGame';
+import { mult } from './Slises/mult';
 
 // ***********************local*************************
 const tokenPersistConfig = {
@@ -33,6 +34,7 @@ const rootReduser = combineReducers({
   lordInfo: lordInfo.reducer,
   chatGame: chatGame.reducer,
   language: language.reducer,
+  mult: mult.reducer,
 });
 const persistedReducer = persistReducer(tokenPersistConfig, rootReduser);
 
