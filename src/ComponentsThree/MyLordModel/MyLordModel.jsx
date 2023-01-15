@@ -38,7 +38,6 @@ const MyLordModel = props => {
       return unsubscribeCamera;
     });
   }, [api.position, camera.position]);
-
   useFrame(() => {
     // создадим векторы управляющие камерой и героем
     const direction = new Vector3();

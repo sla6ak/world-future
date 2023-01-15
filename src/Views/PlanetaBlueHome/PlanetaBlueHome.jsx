@@ -19,6 +19,8 @@ import Portal from 'ComponentsThree/Portal/Portal';
 
 // ************** Конфигурации для пропсов ****************************
 import CosmosSpace from './tim-barton-5.jpg';
+import { ModelTest } from 'ComponentsThree/Human/Scene';
+import { SoldierModel } from 'ComponentsThree/Human/Soldier';
 // *****************************************************************************************
 
 const PlanetaBlueHome = () => {
@@ -38,6 +40,8 @@ const PlanetaBlueHome = () => {
               position={[-54, 200, 0]}
             />
             {/* <directionalLight color="#9dc3da" position={[100, 100, 100]} /> */}
+            <ModelTest position={[5, 0, 1]} />
+            <SoldierModel position={[1, 3, 1]} />
             <Box position={[6, 7.5, 0.5]} />
             <Box position={[1, 13, 4]} />
             <Box position={[1, 4.5, 4.7]} />
