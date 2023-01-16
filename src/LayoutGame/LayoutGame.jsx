@@ -1,7 +1,5 @@
 import { Suspense, useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { useGetMyPersonQuery } from 'Redux/ServerAPI/API_BASE_SERVER';
-import { useNavigate } from 'react-router-dom';
 import Chat from 'Components/Chat/Chat';
 import Squad from 'Components/Squad/Squad';
 import Missions from 'Components/Missions/Missions';
@@ -23,35 +21,40 @@ import {
   SignalArm,
   SignalBox,
 } from './LayoutGame.styled';
-import { useEffect } from 'react';
 import CenterArrow from 'Components/CenterArrow/CenterArrow';
+// import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useMyLordInfoHook } from 'Hooks/useMyLordInfoHook';
 
+// нужно переписать код чтоб инфа про лорда была локальным стейтом а не удаленным так как получать мы ее будем и через сокеты тоже.
 const LeyoutGame = () => {
+  const navigate = useNavigate();
+  const { lordInfo } = useMyLordInfoHook(); // хук возвращает именно стор состояние а не запрос
   useWsConnecting();
   const [visability, setVisability] = useState({
     chat: false,
     missions: false,
     squad: false,
   });
-  // изначально переполучал весь объект но должен быть переработан и перезаписывать только измененные данные
-  const { data: lordInfo } = useGetMyPersonQuery();
-  const navigate = useNavigate();
-  useEffect(() => {}, []);
+
   useEffect(() => {
     if (!lordInfo) {
       return;
     }
-    navigate(`/play/${lordInfo?.data.planet}`);
+    navigate(`/play/${lordInfo?.planet}`);
   }, [lordInfo, navigate]);
+
   const quickArmInfo = unit => {
-    const atac = lordInfo?.data.squad[unit].power.attack.shell.percent;
-    const def = lordInfo?.data.squad[unit].power.defend.shell.percent;
-    const life = lordInfo?.data.squad[unit].power.life.shell.percent;
+    const atac = lordInfo?.squad[unit].power.attack.shell.percent;
+    const def = lordInfo?.squad[unit].power.defend.shell.percent;
+    const life = lordInfo?.squad[unit].power.life.shell.percent;
     if (atac + def + life < 300) {
       return false;
     }
     return true;
   };
+
   return (
     <Holst>
       <HeaderHelmet
@@ -60,15 +63,13 @@ const LeyoutGame = () => {
         }}
       >
         <KristalBox>
-          <KristalsBlue>
-            Blue kristals:{lordInfo?.data.kristalsBlue}
-          </KristalsBlue>
+          <KristalsBlue>Blue kristals:{lordInfo?.kristalsBlue}</KristalsBlue>
           <KristalsYellow>
-            Yellow kristals:{lordInfo?.data.kristalsYellow}
+            Yellow kristals:{lordInfo?.kristalsYellow}
           </KristalsYellow>
         </KristalBox>
         <Lord>
-          Lord: <NikLord>{lordInfo?.data.nikName}</NikLord>
+          Lord: <NikLord>{lordInfo?.nikName}</NikLord>
         </Lord>
         <ArmBox
           onClick={e => {
@@ -123,7 +124,7 @@ const LeyoutGame = () => {
           Chat(C)
         </ChatBox>
         <div>
-          Planet:<NamePlanet>{lordInfo?.data.planet}</NamePlanet>
+          Planet:<NamePlanet>{lordInfo?.planet}</NamePlanet>
         </div>
         <MissionBox
           onClick={() => {

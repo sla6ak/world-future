@@ -59,7 +59,9 @@ export const WS_BASE_API = createApi({
             ws.send(
               JSON.stringify({
                 channel: 'connect',
-                data: { token: getState().auth.token },
+                data: {
+                  token: getState().auth.token,
+                },
               })
             );
           });

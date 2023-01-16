@@ -16,7 +16,7 @@ const SPEED = 3;
 const MyLordModel = props => {
   const { moveForward, moveBackward, moveLeft, moveRight, jump } =
     useLordKeyboardControls();
-  const [sendMessage, { isLoading }] = useSendMessageMutation();
+  const [sendMessage] = useSendMessageMutation();
   const { camera } = useThree();
   // const result = useLoader(GLTFLoader, LordGLB);
   const [ref, api] = useSphere(() => ({

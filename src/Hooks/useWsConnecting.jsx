@@ -3,7 +3,7 @@ import {
   useGetMessagesQuery,
   useSendMessageMutation,
 } from 'Redux/WebSocketsAPI/WS_BASE_API';
-import { isMult } from 'Redux/Slises/mult';
+import { isErrorUser } from 'Redux/Slises/errorUser';
 import { useDispatch } from 'react-redux';
 
 export const useWsConnecting = () => {
@@ -16,7 +16,7 @@ export const useWsConnecting = () => {
     if (!!isLoading) return;
     const { data } = dataWS;
     if (data.channel === 'connect') {
-      if (data.isMult) {
+      if (data.isErrorUser) {
         return;
       }
       console.log(data);
@@ -57,8 +57,8 @@ export const useWsConnecting = () => {
       }
       console.log(data);
     }
-    if (data.isMult) {
-      dispath(isMult(data.isMult));
+    if (data.isErrorUser) {
+      dispath(isErrorUser(data.isErrorUser));
       return;
     }
     if (data.allState) {

@@ -1,15 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialLordInfo = { nikName: 'test' };
+const initialLordInfo = null;
 
 export const lordInfo = createSlice({
   name: 'person',
   initialState: initialLordInfo,
   reducers: {
+    allLordInfoAction(state, action) {
+      // console.log(action.payload);
+      return action.payload;
+    },
     myNikAction(state, action) {
       state.nikName = action.payload;
     },
   },
 });
 
-export const { myNikAction } = lordInfo.actions;
+export const { myNikAction, allLordInfoAction } = lordInfo.actions;

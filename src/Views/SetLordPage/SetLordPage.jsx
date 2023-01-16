@@ -2,6 +2,8 @@ import { Title } from 'Components/Title/Title.styled';
 import { ListAuth } from 'Components/ListAuth/ListAuth.styled';
 import { TextGame } from 'Views/StartPage/StartPage.styled';
 import { Typography, Grid } from '@mui/material/';
+import { useMyLordInfoHook } from 'Hooks/useMyLordInfoHook';
+import { allLordInfoAction } from 'Redux/Slises/myLordInfo';
 import {
   ButtonSelectLeft,
   NikName,
@@ -10,21 +12,17 @@ import {
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { myNik } from 'Redux/Slises/NikSlise';
 import { Navigate } from 'react-router-dom';
 import { validationLordSchema } from 'Helpers/validationForms';
 import { useNavigate } from 'react-router-dom';
-import {
-  useGetMyPersonQuery,
-  useRegistrationPersonMutation,
-} from 'Redux/ServerAPI/API_BASE_SERVER';
+import { useRegistrationPersonMutation } from 'Redux/ServerAPI/API_BASE_SERVER';
 
 const SetLordPage = () => {
   let navigate = useNavigate();
   const [nikName, setNikName] = useState('');
   const dispatch = useDispatch();
   const { setLordPage } = useSelector(state => state.language.transleter);
-  const { data: lordInfo, error } = useGetMyPersonQuery();
+  const { lordInfo } = useMyLordInfoHook();
   const [createPerson, { isSuccess }] = useRegistrationPersonMutation();
   let responsPerson = null;
   const handleNik = event => {
@@ -33,13 +31,11 @@ const SetLordPage = () => {
 
   //*******************проверим есть ли персонаж у игрока*********************************
   useEffect(() => {
-    if (error) return;
-    if (lordInfo === undefined) {
+    if (!lordInfo) {
       return;
     }
-    dispatch(myNik(lordInfo.data.nikName));
-    toast.success(`Your lord: ${lordInfo.data.nikName}`);
-  }, [lordInfo, dispatch, error]);
+    toast.success(`Your lord: ${lordInfo.nikName}`);
+  }, [lordInfo]);
 
   // **************** создадим нового персонажа в базе*************************************
   const clikRassa = async nameRassa => {
@@ -55,7 +51,7 @@ const SetLordPage = () => {
     }
     try {
       responsPerson = await createPerson(lordCandidat);
-      dispatch(myNik(responsPerson.data.newLord.nikName));
+      dispatch(allLordInfoAction(responsPerson.data));
       toast.success(`Create new lord ${responsPerson.data.newLord.nikName}!`);
       if (responsPerson.data.newLord.planet === 'BlueHome') {
         navigate('/play/blueHome', { replace: true });
@@ -123,9 +119,9 @@ const SetLordPage = () => {
 export default SetLordPage;
 
 function to(lordAPI) {
-  if (lordAPI?.data.planet === 'BlueHome') {
+  if (lordAPI?.planet === 'BlueHome') {
     return <Navigate to="/play/BlueHome" />;
-  } else if (lordAPI?.data.planet === 'YellowHome') {
+  } else if (lordAPI?.planet === 'YellowHome') {
     return <Navigate to="/play/YellowHome" />;
   }
 }
