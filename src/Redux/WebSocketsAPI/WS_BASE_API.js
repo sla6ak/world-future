@@ -28,10 +28,10 @@ export const WS_BASE_API = createApi({
     tagTypes: ['wsApi'],
 
     sendMessage: builder.mutation({
-      queryFn: ({ canel = 'chat', data = {} }) => {
+      queryFn: objRes => {
         const ws = getSocket();
         new Promise(resolve => {
-          resolve(ws.send(JSON.stringify({ canel, data })));
+          resolve(ws.send(JSON.stringify(objRes)));
         });
         return '1';
       },
