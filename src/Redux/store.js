@@ -20,7 +20,7 @@ import { chatGame } from './Slises/chatGame';
 import { planetaBlueHomeInfo } from './Slises/planetaBlueHomeInfo';
 import { planetaYellowHomeInfo } from './Slises/planetaYellowHomeInfo';
 import { planetaLostWorldInfo } from './Slises/planetaLostWorldInfo';
-import { mult } from './Slises/mult';
+import { errorUser } from './Slises/errorUser';
 
 // ***********************local*************************
 const tokenPersistConfig = {
@@ -40,7 +40,7 @@ const rootReduser = combineReducers({
   planetaYellowHomeInfo: planetaYellowHomeInfo.reducer,
   planetaLostWorldInfo: planetaLostWorldInfo.reducer,
   planetaBlueHomeInfo: planetaBlueHomeInfo.reducer,
-  mult: mult.reducer,
+  errorUser: errorUser.reducer,
 });
 const persistedReducer = persistReducer(tokenPersistConfig, rootReduser);
 

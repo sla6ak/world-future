@@ -28,12 +28,12 @@ export function SoldierModel({ playerInfo }) {
     position: playerInfo.position,
   }));
 
-  const { actions, names, clips, mixer } = useAnimations(animations, group);
+  const { actions, names } = useAnimations(animations, group);
   const velocity = useRef([0, 0, 0]);
 
   useEffect(() => {
     actions[names[3]].reset().fadeIn().play();
-  }, []);
+  }, [actions, names]);
 
   useEffect(() => {
     const unsubscribeHero = apiSphera.velocity.subscribe(
