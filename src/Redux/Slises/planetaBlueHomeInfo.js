@@ -1,15 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialPlanetaBlueHomeInfo = {
-  players: [{ nikName: '', position: [10, -2, 8] }],
+  players: [{ nikName: '', position: { x: 10, y: -2, z: 8 } }],
 };
 
 export const planetaBlueHomeInfo = createSlice({
   name: 'planetaBlueHome',
   initialState: initialPlanetaBlueHomeInfo,
   reducers: {
-    statePlayersAction(_state, _action) {
-      return;
+    statePlayersAction(_state, action) {
+      return action.payload;
     },
     stateCristalsAction(_state, _action) {
       return;

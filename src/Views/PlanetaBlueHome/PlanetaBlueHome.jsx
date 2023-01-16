@@ -1,10 +1,10 @@
 // ***************** react  компоненты ***********************************
 import { Canvas } from '@react-three/fiber';
 import { Suspense } from 'react';
-import { useSelector } from 'react-redux';
 import { Physics } from '@react-three/cannon';
 import LoaderSuspense from 'Components/LoaderSuspense/LoaderSuspense';
 import { useLoader } from '@react-three/fiber';
+import { useSelector } from 'react-redux';
 import { TextureLoader } from 'three/src/loaders/TextureLoader';
 // import { useState } from 'react';
 
@@ -22,12 +22,14 @@ import { SoldierModel } from 'ComponentsThree/Soldier/Soldier';
 // ************** Конфигурации для пропсов ****************************
 import CosmosSpace from './tim-barton-5.jpg';
 // *****************************************************************************************
+import { useGetPlayersHook } from './useGetPlayersHook';
 
 const PlanetaBlueHome = () => {
-  // тут должен стартовать запрос на сокет подключение и вытягивать состояние объектов на планете
-  const { players } = useSelector(state => state.planetaBlueHomeInfo);
   const textureBlueCosmos = useLoader(TextureLoader, CosmosSpace);
   // const [allLords, setAllLords] = useState([0, 0, 0]);
+  useGetPlayersHook();
+  const players = useSelector(state => state.planetaBlueHomeInfo);
+  const { nikName } = useSelector(state => state.lordInfo);
 
   return (
     <div id="canvas-container">
@@ -41,9 +43,13 @@ const PlanetaBlueHome = () => {
               position={[-54, 200, 0]}
             />
             {/* <directionalLight color="#9dc3da" position={[100, 100, 100]} /> */}
-            {players.map(el => {
-              return <SoldierModel key={el.nikName} playerInfo={el} />;
-            })}
+            {players?.length > 0 &&
+              players.map(el => {
+                if (el.nikName === nikName) {
+                  return null;
+                }
+                return <SoldierModel key={el.nikName} playerInfo={el} />;
+              })}
 
             <Box position={[6, 7.5, 0.5]} />
             <Box position={[1, 13, 4]} />

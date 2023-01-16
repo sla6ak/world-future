@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { allLordInfoAction } from 'Redux/Slises/myLordInfo';
+import { allLordInfoAction } from 'Redux/Slises/lordInfo';
 import { useDispatch } from 'react-redux';
 import { useGetMyPersonQuery } from 'Redux/ServerAPI/API_BASE_SERVER';
 import { useSelector } from 'react-redux';
