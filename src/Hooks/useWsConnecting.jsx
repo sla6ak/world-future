@@ -5,6 +5,7 @@ import {
 } from 'Redux/WebSocketsAPI/WS_BASE_API';
 import { isErrorUser } from 'Redux/Slises/errorUser';
 import { useDispatch } from 'react-redux';
+import { statePlayersAction } from 'Redux/Slises/planetaBlueHomeInfo';
 
 export const useWsConnecting = () => {
   const { data: dataWS, error } = useGetMessagesQuery();
@@ -19,43 +20,45 @@ export const useWsConnecting = () => {
       if (data.isErrorUser) {
         return;
       }
-      console.log(data);
+      // console.log(data);
     }
     if (data.channel === 'chat') {
       if (!data.data) {
         return;
       }
-      console.log(data);
+      // console.log(data);
     }
     if (data.channel === 'planetaBlueHome') {
-      if (!data.data) {
+      if (!!data.data) {
+        // console.log('+++', data.data);
+        dispath(statePlayersAction(data.data));
         return;
       }
-      console.log(data);
+      // console.log(data);
     }
     if (data.channel === 'planetaYellowHome') {
       if (!data.data) {
         return;
       }
-      console.log(data);
+      // console.log(data);
     }
     if (data.channel === 'planetaLostWorld') {
       if (!data.data) {
         return;
       }
-      console.log(data);
+      // console.log(data);
     }
     if (data.channel === 'missions') {
       if (!data.data) {
         return;
       }
-      console.log(data);
+      // console.log(data);
     }
     if (data.channel === 'myLord') {
       if (!data.data) {
         return;
       }
-      console.log(data);
+      // console.log(data);
     }
     if (data.isErrorUser) {
       dispath(isErrorUser(data.isErrorUser));

@@ -38,11 +38,23 @@ const MyLordModel = props => {
 
   useEffect(() => {
     const unsubscribeCamera = api.position.subscribe(v => {
-      camera.position.copy({ x: v[0], y: v[1], z: v[2] });
-      sendMessage({
-        channel: 'planetaBlueHome',
-        data: { myPosition: { x: v[0], y: v[1], z: v[2] } },
-      });
+      if (
+        camera.position.x.toFixed(2) !== v[0].toFixed(2) ||
+        camera.position.y.toFixed(2) !== v[1].toFixed(2) ||
+        camera.position.z.toFixed(2) !== v[2].toFixed(2)
+      ) {
+        camera.position.copy({ x: v[0], y: v[1], z: v[2] });
+        sendMessage({
+          channel: 'planetaBlueHome',
+          data: {
+            position: {
+              x: v[0].toFixed(4),
+              y: v[1].toFixed(4),
+              z: v[2].toFixed(4),
+            },
+          },
+        });
+      }
       // console.log({ x: v[0], y: v[1], z: v[2] });
       return unsubscribeCamera;
     });
