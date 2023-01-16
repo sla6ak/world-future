@@ -9,12 +9,14 @@ import { PointerCameraController } from 'ComponentsThree/CameraController/Camera
 import { useSphere } from '@react-three/cannon';
 import { useLordKeyboardControls } from 'Hooks/useLordKeyboardControls';
 import { Suspense } from 'react';
-
+import { useSendMessageMutation } from 'Redux/WebSocketsAPI/WS_BASE_API';
+// чтоб было чесно нам нужно нашего лорда отрисовывать по ответным данным с сервера а не по локальным. для начала передадим на сервер нашу позицию
 const SPEED = 3;
 
 const MyLordModel = props => {
   const { moveForward, moveBackward, moveLeft, moveRight, jump } =
     useLordKeyboardControls();
+  const [sendMessage, { isLoading }] = useSendMessageMutation();
   const { camera } = useThree();
   // const result = useLoader(GLTFLoader, LordGLB);
   const [ref, api] = useSphere(() => ({
@@ -28,16 +30,23 @@ const MyLordModel = props => {
   const velocity = useRef([0, 0, 0]); //скорость с сілкой на вектор центра карті
 
   useEffect(() => {
-    const unsubscribeHero = api.velocity.subscribe(v => (velocity.current = v));
+    const unsubscribeHero = api.velocity.subscribe(v => {
+      return (velocity.current = v);
+    });
     return unsubscribeHero;
   }, [api.velocity, camera.position]);
 
   useEffect(() => {
     const unsubscribeCamera = api.position.subscribe(v => {
       camera.position.copy({ x: v[0], y: v[1], z: v[2] });
+      sendMessage({
+        channel: 'planetaBlueHome',
+        data: { myPosition: { x: v[0], y: v[1], z: v[2] } },
+      });
+      // console.log({ x: v[0], y: v[1], z: v[2] });
       return unsubscribeCamera;
     });
-  }, [api.position, camera.position]);
+  }, [api.position, camera.position, sendMessage]);
 
   useFrame(() => {
     // создадим векторы управляющие камерой и героем

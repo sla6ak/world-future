@@ -17,6 +17,9 @@ import { auth } from './Slises/AuthSlise';
 import { lordInfo } from './Slises/myLordInfo';
 import { language } from './Slises/LanguageSlise';
 import { chatGame } from './Slises/chatGame';
+import { planetaBlueHomeInfo } from './Slises/planetaBlueHomeInfo';
+import { planetaYellowHomeInfo } from './Slises/planetaYellowHomeInfo';
+import { planetaLostWorldInfo } from './Slises/planetaLostWorldInfo';
 import { mult } from './Slises/mult';
 
 // ***********************local*************************
@@ -34,6 +37,9 @@ const rootReduser = combineReducers({
   lordInfo: lordInfo.reducer,
   chatGame: chatGame.reducer,
   language: language.reducer,
+  planetaYellowHomeInfo: planetaYellowHomeInfo.reducer,
+  planetaLostWorldInfo: planetaLostWorldInfo.reducer,
+  planetaBlueHomeInfo: planetaBlueHomeInfo.reducer,
   mult: mult.reducer,
 });
 const persistedReducer = persistReducer(tokenPersistConfig, rootReduser);

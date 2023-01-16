@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialЗlanetaBlueHomeInfo = {};
+const initialЗlanetaLostWorldInfo = { players: [{}] };
 
-export const planetaBlueHomeInfo = createSlice({
-  name: 'planetaBlueHome',
-  initialState: initialЗlanetaBlueHomeInfo,
+export const planetaLostWorldInfo = createSlice({
+  name: 'planetaLostWorld',
+  initialState: initialЗlanetaLostWorldInfo,
   reducers: {
     statePlayersAction(_state, _action) {
       return;
@@ -19,4 +19,4 @@ export const planetaBlueHomeInfo = createSlice({
 });
 
 export const { statePlayersAction, stateCristalsAction, stateAnomalsAction } =
-  planetaBlueHomeInfo.actions;
+  planetaLostWorldInfo.actions;

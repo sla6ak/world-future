@@ -24,6 +24,7 @@ import {
   SignalBox,
 } from './LayoutGame.styled';
 import { useEffect } from 'react';
+import CenterArrow from 'Components/CenterArrow/CenterArrow';
 
 const LeyoutGame = () => {
   useWsConnecting();
@@ -102,6 +103,9 @@ const LeyoutGame = () => {
           </SignalBox>
         </ArmBox>
       </HeaderHelmet>
+
+      <CenterArrow></CenterArrow>
+
       <FooterHelmet
         onClick={e => {
           e.stopPropagation();

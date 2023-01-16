@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 import { useSphere } from '@react-three/cannon';
 import { Suspense } from 'react';
 
-const SPEED = 3;
+const SPEED = 10;
 
 const AnotherLordModel = props => {
   // console.log(props);
