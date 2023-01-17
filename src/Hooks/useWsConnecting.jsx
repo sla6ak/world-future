@@ -16,6 +16,7 @@ export const useWsConnecting = () => {
     if (!dataWS?.data) return;
     if (!!isLoading) return;
     const { data } = dataWS;
+    console.log(data);
     if (data.channel === 'connect') {
       if (data.isErrorUser) {
         return;

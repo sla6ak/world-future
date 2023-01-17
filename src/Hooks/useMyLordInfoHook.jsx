@@ -3,28 +3,20 @@ import { allLordInfoAction } from 'Redux/Slises/lordInfo';
 import { useDispatch } from 'react-redux';
 import { useGetMyPersonQuery } from 'Redux/ServerAPI/API_BASE_SERVER';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
 export const useMyLordInfoHook = () => {
   // изначально переполучал весь объект но должен быть переработан и перезаписывать только измененные данные
-  const { data: lordInfoBack } = useGetMyPersonQuery();
   const { lordInfo } = useSelector(state => state);
+  const { data: lordInfoBack } = useGetMyPersonQuery();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   //
   useEffect(() => {
+    if (lordInfo) return;
     if (!lordInfoBack) {
       return;
     }
     dispatch(allLordInfoAction(lordInfoBack?.data));
-  }, [dispatch, lordInfoBack]);
+  }, [dispatch, lordInfo, lordInfoBack]);
 
-  useEffect(() => {
-    if (!lordInfo) {
-      return;
-    }
-    navigate(`/play/${lordInfo.planet}`);
-  }, [lordInfo, navigate]);
-
-  return { lordInfo };
+  return;
 };

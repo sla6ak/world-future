@@ -5,6 +5,7 @@ import Squad from 'Components/Squad/Squad';
 import Missions from 'Components/Missions/Missions';
 import { LoaderCastomGate } from 'Components/LoaderCastomGate/LoaderCastomGate';
 import { useWsConnecting } from 'Hooks/useWsConnecting';
+import WsConnectRout from 'ComponentsThree/WsConnectRout/WsConnectRout';
 import {
   Holst,
   HeaderHelmet,
@@ -25,12 +26,12 @@ import CenterArrow from 'Components/CenterArrow/CenterArrow';
 // import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useMyLordInfoHook } from 'Hooks/useMyLordInfoHook';
+import { useSelector } from 'react-redux';
 
 // нужно переписать код чтоб инфа про лорда была локальным стейтом а не удаленным так как получать мы ее будем и через сокеты тоже.
 const LeyoutGame = () => {
+  const { lordInfo } = useSelector(state => state);
   const navigate = useNavigate();
-  const { lordInfo } = useMyLordInfoHook(); // хук возвращает именно стор состояние а не запрос
   useWsConnecting();
   const [visability, setVisability] = useState({
     chat: false,
@@ -56,95 +57,103 @@ const LeyoutGame = () => {
   };
 
   return (
-    <Holst>
-      <HeaderHelmet
-        onClick={e => {
-          e.stopPropagation();
-        }}
-      >
-        <KristalBox>
-          <KristalsBlue>Blue kristals:{lordInfo?.kristalsBlue}</KristalsBlue>
-          <KristalsYellow>
-            Yellow kristals:{lordInfo?.kristalsYellow}
-          </KristalsYellow>
-        </KristalBox>
-        <Lord>
-          Lord: <NikLord>{lordInfo?.nikName}</NikLord>
-        </Lord>
-        <ArmBox
+    <WsConnectRout>
+      <Holst>
+        <HeaderHelmet
           onClick={e => {
             e.stopPropagation();
-            setVisability(pevState => ({
-              ...pevState,
-              missions: false,
-              squad: !pevState.squad,
-            }));
           }}
         >
-          Squad(P):
-          <SignalBox>
-            Rob
-            <SignalArm
-              style={{
-                backgroundColor: quickArmInfo('robot') ? '#00c421' : '#b10000',
-              }}
-            />
-            Shm
-            <SignalArm
-              style={{
-                backgroundColor: quickArmInfo('robot') ? '#00c421' : '#b10000',
-              }}
-            />
-            Snr
-            <SignalArm
-              style={{
-                backgroundColor: quickArmInfo('robot') ? '#00c421' : '#b10000',
-              }}
-            />
-          </SignalBox>
-        </ArmBox>
-      </HeaderHelmet>
+          <KristalBox>
+            <KristalsBlue>Blue kristals:{lordInfo?.kristalsBlue}</KristalsBlue>
+            <KristalsYellow>
+              Yellow kristals:{lordInfo?.kristalsYellow}
+            </KristalsYellow>
+          </KristalBox>
+          <Lord>
+            Lord: <NikLord>{lordInfo?.nikName}</NikLord>
+          </Lord>
+          <ArmBox
+            onClick={e => {
+              e.stopPropagation();
+              setVisability(pevState => ({
+                ...pevState,
+                missions: false,
+                squad: !pevState.squad,
+              }));
+            }}
+          >
+            Squad(P):
+            <SignalBox>
+              Rob
+              <SignalArm
+                style={{
+                  backgroundColor: quickArmInfo('robot')
+                    ? '#00c421'
+                    : '#b10000',
+                }}
+              />
+              Shm
+              <SignalArm
+                style={{
+                  backgroundColor: quickArmInfo('robot')
+                    ? '#00c421'
+                    : '#b10000',
+                }}
+              />
+              Snr
+              <SignalArm
+                style={{
+                  backgroundColor: quickArmInfo('robot')
+                    ? '#00c421'
+                    : '#b10000',
+                }}
+              />
+            </SignalBox>
+          </ArmBox>
+        </HeaderHelmet>
 
-      <CenterArrow></CenterArrow>
+        <CenterArrow></CenterArrow>
 
-      <FooterHelmet
-        onClick={e => {
-          e.stopPropagation();
-        }}
-      >
-        <ChatBox
+        <FooterHelmet
           onClick={e => {
             e.stopPropagation();
-            setVisability(pevState => ({
-              ...pevState,
-              chat: !pevState.chat,
-            }));
           }}
         >
-          Chat(C)
-        </ChatBox>
-        <div>
-          Planet:<NamePlanet>{lordInfo?.planet}</NamePlanet>
-        </div>
-        <MissionBox
-          onClick={() => {
-            setVisability(pevState => ({
-              ...pevState,
-              squad: false,
-              missions: !pevState.missions,
-            }));
-          }}
-        >
-          Missions(M)
-        </MissionBox>
-      </FooterHelmet>
-      {visability.chat && <Chat lordInfo={lordInfo} />}
-      {visability.missions && <Missions lordInfo={lordInfo} />}
-      {visability.squad && <Squad lordInfo={lordInfo} />}
-      <Suspense fallback={<LoaderCastomGate>loading...</LoaderCastomGate>}>
-        <Outlet />
-      </Suspense>
-    </Holst>
+          <ChatBox
+            onClick={e => {
+              e.stopPropagation();
+              setVisability(pevState => ({
+                ...pevState,
+                chat: !pevState.chat,
+              }));
+            }}
+          >
+            Chat(C)
+          </ChatBox>
+          <div>
+            Planet:<NamePlanet>{lordInfo?.planet}</NamePlanet>
+          </div>
+          <MissionBox
+            onClick={() => {
+              setVisability(pevState => ({
+                ...pevState,
+                squad: false,
+                missions: !pevState.missions,
+              }));
+            }}
+          >
+            Missions(M)
+          </MissionBox>
+        </FooterHelmet>
+        {visability.chat && <Chat lordInfo={lordInfo} />}
+        {visability.missions && <Missions lordInfo={lordInfo} />}
+        {visability.squad && <Squad lordInfo={lordInfo} />}
+        <Suspense fallback={<LoaderCastomGate>loading...</LoaderCastomGate>}>
+          <Outlet />
+        </Suspense>
+      </Holst>
+    </WsConnectRout>
   );
 };
 export default LeyoutGame;
