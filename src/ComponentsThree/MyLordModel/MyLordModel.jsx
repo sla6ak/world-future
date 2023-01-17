@@ -48,9 +48,9 @@ const MyLordModel = props => {
           channel: 'planetaBlueHome',
           data: {
             position: {
-              x: v[0].toFixed(4),
-              y: v[1].toFixed(4),
-              z: v[2].toFixed(4),
+              x: v[0].toFixed(2),
+              y: v[1].toFixed(2),
+              z: v[2].toFixed(2),
             },
           },
         });

@@ -28,7 +28,7 @@ const PlanetaBlueHome = () => {
   const textureBlueCosmos = useLoader(TextureLoader, CosmosSpace);
   // const [allLords, setAllLords] = useState([0, 0, 0]);
   useGetPlayersHook();
-  const players = useSelector(state => state.planetaBlueHomeInfo);
+  const { players } = useSelector(state => state.planetaBlueHomeInfo);
   const { nikName } = useSelector(state => state.lordInfo);
 
   return (
@@ -43,7 +43,7 @@ const PlanetaBlueHome = () => {
               position={[-54, 200, 0]}
             />
             {/* <directionalLight color="#9dc3da" position={[100, 100, 100]} /> */}
-            {players?.length > 0 &&
+            {players?.length > 1 &&
               players.map(el => {
                 if (el.nikName === nikName) {
                   return null;

@@ -15,7 +15,11 @@ let ws = null;
 
 function getSocket() {
   if (!ws) {
-    ws = new WebSocket(WS_PORT);
+    try {
+      ws = new WebSocket(WS_PORT);
+    } catch (error) {
+      console.log('вебсокет неудается запустить:', error);
+    }
   }
   return ws;
 }
@@ -29,12 +33,12 @@ export const WS_BASE_API = createApi({
     tagTypes: ['wsApi'],
 
     sendMessage: builder.mutation({
-      queryFn: objRes => {
-        const ws = getSocket();
+      queryFn: async objRes => {
+        const ws = await getSocket();
         new Promise(resolve => {
           resolve(ws.send(JSON.stringify(objRes)));
         });
-        return '1';
+        return 'send message WS';
       },
     }),
 
@@ -52,9 +56,9 @@ export const WS_BASE_API = createApi({
           cacheEntryRemoved, // позволяет дождаться, когда запись в кеше будет удалена
         }
       ) {
+        const ws = await getSocket();
         try {
           await cacheDataLoaded;
-          const ws = getSocket();
           ws.addEventListener('open', () => {
             ws.send(
               JSON.stringify({
@@ -77,6 +81,8 @@ export const WS_BASE_API = createApi({
           await cacheEntryRemoved;
           ws.close();
         } catch {
+          console.log('Ошибка неудается получить ответ от WS');
+          ws.close();
           // if cacheEntryRemoved resolved before cacheDataLoaded,
           // cacheDataLoaded throws
         }
