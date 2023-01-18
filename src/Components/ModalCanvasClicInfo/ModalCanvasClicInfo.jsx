@@ -1,20 +1,23 @@
-// import { GeneralButton } from 'Components/GeneralButton/GeneralButton.styled';
+import { GeneralButton } from 'Components/GeneralButton/GeneralButton.styled';
 import React from 'react';
-import { ModalInfo } from './ModalCanvasClicInfo.styled';
-// import { WrapperButtons } from './ModalCanvasLord.styled';
+import { ModalInfo, MoreInfo, ShortInfo } from './ModalCanvasClicInfo.styled';
+import { WrapperButtons } from './ModalCanvasClicInfo.styled';
 import { useSelector } from 'react-redux';
 
 export const ModalCanvasClicInfo = () => {
-  const { info } = useSelector(state => state.openCanvasModal);
+  const { openCanvasModal } = useSelector(state => state);
   return (
     <ModalInfo>
-      <h3>{info?.title}</h3>
-      <p>{info?.shortInfo}</p>
-      <p>{info?.moreInfo}</p>
-      {/* <WrapperButtons>
-        <GeneralButton onClick={() => {}}>Написать</GeneralButton>
-        <GeneralButton onClick={() => {}}>Атаковать</GeneralButton>
-      </WrapperButtons> */}
+      <h3>{openCanvasModal.info?.title}</h3>
+      <ShortInfo>{openCanvasModal.info?.shortInfo}</ShortInfo>
+      <MoreInfo>{openCanvasModal.info?.moreInfo}</MoreInfo>
+      {openCanvasModal.typeObj === 'portal' && (
+        <>
+          <WrapperButtons>
+            <GeneralButton onClick={() => {}}>Open the gate (G)</GeneralButton>
+          </WrapperButtons>
+        </>
+      )}
     </ModalInfo>
   );
 };

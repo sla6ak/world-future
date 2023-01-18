@@ -13,6 +13,7 @@ export const PointerCameraController = props => {
     if (controls) {
       document.addEventListener('click', () => {
         controls.current.lock();
+        // console.log(controls.pointer);
       });
     }
   }, []);

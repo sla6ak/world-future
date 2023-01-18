@@ -7,11 +7,13 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { closeCanvasModal } from 'Redux/Slises/openCanvasModalSlise';
 import { useSelector } from 'react-redux';
+import { useThree } from '@react-three/fiber';
 
 export const useOpenModalCanvasEl = () => {
   const { isClick, isHover, timerOpen } = useSelector(
     state => state.openCanvasModal
   );
+  const stateThree = useThree();
   const dispatch = useDispatch();
   // const modalPosition = new Vector3();
   // const modalPositionOffSet = new Vector3();
@@ -20,7 +22,6 @@ export const useOpenModalCanvasEl = () => {
   useEffect(() => {
     if (!isClick && !isHover) return;
     const modalWrapperElement = document.getElementById('modalcanvaswrapper');
-    const canvas = document.querySelector('canvas');
     // modalPositionOffSet.copy(ObjPosition.position);
     // modalPositionOffSet.sub(camera.position);
     // modalPositionOffSet.normalize();
@@ -35,14 +36,14 @@ export const useOpenModalCanvasEl = () => {
     // modalWrapperElement.style.top = `${modalPosition.y}px`;
     // modalWrapperElement.style.left = `${modalPosition.x}px`;
 
-    modalWrapperElement.style.top = `${canvas.height / 6}px`;
-    modalWrapperElement.style.left = `${canvas.width / 2.3}px`;
+    modalWrapperElement.style.top = `${stateThree.size.height / 7}px`;
+    modalWrapperElement.style.left = `${stateThree.size.width / 2.3}px`;
 
     if (!isClick) return;
     const timerId = setTimeout(() => {
       dispatch(closeCanvasModal());
       return clearTimeout(timerId);
     }, timerOpen);
-  }, [dispatch, isClick, timerOpen, isHover]);
+  }, [dispatch, isClick, isHover, stateThree.size, timerOpen]);
   // const { camera } = useThree();
 };

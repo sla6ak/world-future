@@ -10,6 +10,7 @@ import { useSphere } from '@react-three/cannon';
 import { useLordKeyboardControls } from 'Hooks/useLordKeyboardControls';
 import { Suspense } from 'react';
 import { useSendMessageMutation } from 'Redux/WebSocketsAPI/WS_BASE_API';
+import { useOpenModalCanvasEl } from 'Hooks/useOpenModalCanvasEl';
 // чтоб было чесно нам нужно нашего лорда отрисовывать по ответным данным с сервера а не по локальным. для начала передадим на сервер нашу позицию
 const SPEED = 3;
 
@@ -17,7 +18,9 @@ const MyLordModel = props => {
   const { moveForward, moveBackward, moveLeft, moveRight, jump } =
     useLordKeyboardControls();
   const [sendMessage] = useSendMessageMutation();
+  useOpenModalCanvasEl();
   const { camera } = useThree();
+
   // const result = useLoader(GLTFLoader, LordGLB);
   const [ref, api] = useSphere(() => ({
     type: 'Dynamic',

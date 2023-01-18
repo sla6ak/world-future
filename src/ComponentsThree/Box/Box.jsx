@@ -30,6 +30,7 @@ const Box = props => {
       newOpenCanvasModal({
         isClick: true,
         isHover: false,
+        typeObj: 'box',
         ObjPosition: {},
         timerOpen: 5000,
         info: {
