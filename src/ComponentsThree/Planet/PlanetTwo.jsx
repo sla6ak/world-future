@@ -1,4 +1,7 @@
-import { usePlane, useSphere } from '@react-three/cannon';
+import { 
+  // usePlane,
+   useSphere
+   } from '@react-three/cannon';
 import stoneJpg from './stoneTexture.jpg';
 import { useLoader } from '@react-three/fiber';
 import { TextureLoader } from 'three/src/loaders/TextureLoader';
@@ -11,7 +14,8 @@ const Planet = () => {
   textureStone.wrapT = RepeatWrapping;
   textureStone.repeat.set(200, 200);
 
-  const [refS, api] = useSphere(() => ({
+  const [refS, //  api
+    ] = useSphere(() => ({
     type: 'Dynamic',
     mass: 1,
     position: [3, 5, 0],
