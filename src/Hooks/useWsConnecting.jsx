@@ -10,7 +10,7 @@ import { statePlayersAction } from 'Redux/Slises/planetaBlueHomeInfoSlise';
 export const useWsConnecting = () => {
   const { data: dataWS, error } = useGetMessagesQuery();
   const [sendMessage, { isLoading }] = useSendMessageMutation();
-  const dispath = useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!dataWS?.data) return;
@@ -31,7 +31,7 @@ export const useWsConnecting = () => {
     if (data.channel === 'planetaBlueHome') {
       if (!!data.data) {
         // console.log('+++', data.data);
-        dispath(statePlayersAction(data.data));
+        dispatch(statePlayersAction(data.data));
         return;
       }
       // console.log(data);
@@ -67,14 +67,14 @@ export const useWsConnecting = () => {
       console.log(data);
     }
     if (data.isErrorUser) {
-      dispath(isErrorUser(data.isErrorUser));
+      dispatch(isErrorUser(data.isErrorUser));
       return;
     }
     if (data.allState) {
       // dispath();
       return;
     }
-  }, [dataWS, dispath, isLoading]);
+  }, [dataWS, dispatch, isLoading]);
 
   useEffect(() => {
     if (!error) return;
