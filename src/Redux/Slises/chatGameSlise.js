@@ -6,13 +6,15 @@ export const chatGame = createSlice({
   name: 'chatGame',
   initialState: initialChat,
   reducers: {
-    generalСhatAction(_state, action) {
-      return action.payload;
+    generalСhatAction(state, {payload}) {
+      state.generalСhat.push(payload);
+      // return action.payload;
     },
-    mySMSAction(_state, action) {
-      return action.payload;
+    mySMSAction(state, {payload}) {
+      state.mySMS.push(payload);
+      // return action.payload;
     },
   },
 });
 
-export const { generalСhatAction } = chatGame.actions;
+export const { generalСhatAction, mySMSAction } = chatGame.actions;

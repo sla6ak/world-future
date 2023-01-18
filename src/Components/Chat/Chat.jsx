@@ -9,16 +9,22 @@ import {
 } from './Chat.styled';
 import { toast } from 'react-toastify';
 import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { validationLetterSchema } from 'Helpers/validationForms';
+import { generalСhatAction } from 'Redux/Slises/chatGameSlise';
 
 const Chat = ({ lordInfo }) => {
   const [buttonDis, setButtonDis] = useState(false);
-  // заглушка
-  const allChat = null;
-  const createNewMassage = () => {
+  const [letter, setLetter] = useState('');
+
+  const dispatch = useDispatch();
+  const allChat = useSelector(store => store.chatGame.generalСhat);
+
+  const sendChatMessage = (mess) => {
+    console.log("sending message", mess);
+    // тут идёт отправка чата на сервер useWS..
     return;
   };
-  const [letter, setLetter] = useState('');
 
   const handleLetter = event => {
     setLetter(event.target.value);
@@ -26,19 +32,24 @@ const Chat = ({ lordInfo }) => {
 
   const onSubmitLetter = async event => {
     event.preventDefault();
+    console.log("submit chat message");
     try {
-      const send = {
-        autor: lordInfo?.data.nikName,
-        massage: letter,
-        rassa: lordInfo?.data.rassa,
+      const message = {
+        author: lordInfo?.nikName,
+        message: letter,
+        race: lordInfo?.rassa,
+        planet: lordInfo?.planet
       };
-      await validationLetterSchema.validate(send);
+
+      await validationLetterSchema.validate(message);
+      dispatch (generalСhatAction(message));
+
       setButtonDis(true);
       setTimeout(() => {
         setButtonDis(false);
       }, 30 * 1000);
       setLetter('');
-      await createNewMassage(send);
+      await sendChatMessage(message);
     } catch (error) {
       toast.warn(`${error}`);
       return;
@@ -54,20 +65,20 @@ const Chat = ({ lordInfo }) => {
     >
       <Title>Chat Game:</Title>
       <div>
-        {allChat?.letters.map((el, index, arr) => {
+        {allChat?.map((el, index, arr) => {
           if (index <= arr.length - 15) return null;
           return (
-            <LetterBox key={el._id}>
+            <LetterBox key={el.index}>
               <span
                 style={{
-                  color: el.rassa === 'Yellow' ? '#bfcf2e' : '#0b5dbb',
+                  color: el.race === 'Yellow' ? '#bfcf2e' : '#0b5dbb',
                   fontSize: '14px',
                   fontWeight: '800',
                 }}
               >
-                {el.autor}:
+                {el.author}:
               </span>
-              <BodyLetter>{el.massage}</BodyLetter>
+              <BodyLetter>{el.message}</BodyLetter>
               {/* <div>{el.date}</div> */}
             </LetterBox>
           );
@@ -83,8 +94,8 @@ const Chat = ({ lordInfo }) => {
           value={letter}
           onChange={handleLetter}
         />
-        <div>You can send one letter of 30 sec</div>
-        <ButtonLetter type="submit" disabled={buttonDis}>
+        <div>You can send one letter in 30 sec</div>
+        <ButtonLetter type="submit" onClick={onSubmitLetter} disabled={buttonDis}>
           Send
         </ButtonLetter>
       </FormSubmit>
