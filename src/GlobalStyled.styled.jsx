@@ -43,6 +43,14 @@ export const GlobalStyle = () => {
           min-width: 100vw;
           min-height: 100vh;
         }
+        .modal-canvas-wpapper {
+          position: absolute;
+          /* position: fixed; */
+          z-index: 17;
+          /* top: 0;
+  left: 0; */
+          /* border: 2px solid black; */
+        }
         .castom-spinner {
           display: flex;
           justify-content: center;

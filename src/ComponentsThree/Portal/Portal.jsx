@@ -1,15 +1,88 @@
 import { useRef } from 'react';
 // import { useState } from 'react';
 import { useGLTF } from '@react-three/drei';
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+import {
+  newOpenCanvasModal,
+  onHoverCanvasModal,
+  ofHoverCanvasModal,
+} from 'Redux/Slises/openCanvasModalSlise';
 
 const Portal = ({ ...props }) => {
-  // const [hovered, setHover] = useState(false);
-  // const [active, setActive] = useState(false);
+  const [hovered, setHover] = useState(false);
+  const [active, setActive] = useState(false);
 
+  const dispatch = useDispatch();
   const group = useRef();
   const { nodes, materials } = useGLTF('/models/time_machine/scene.gltf');
+  const onClickObj = () => {
+    dispatch(
+      newOpenCanvasModal({
+        isClick: true,
+        isHover: false,
+        ObjPosition: {},
+        timerOpen: 5000,
+        info: {
+          title: 'The Star Gate',
+          typeObj: 'history',
+          shortInfo:
+            'Врата построенные неизвестной цивилизацией позволяют путешествовать по вселенной',
+          moreInfo: '',
+        },
+      })
+    );
+    setActive(!active);
+  };
+  const onHoverObj = () => {
+    setHover(true);
+    dispatch(
+      onHoverCanvasModal({
+        isClick: false,
+        isHover: true,
+        ObjPosition: {},
+        info: {
+          title: 'The Star Gate',
+          shortInfo:
+            'Врата построенные неизвестной цивилизацией позволяют путешествовать по вселенной',
+        },
+      })
+    );
+    setActive(!active);
+  };
+  const offHoverObj = () => {
+    setHover(false);
+    dispatch(
+      ofHoverCanvasModal({
+        isClick: false,
+        isHover: false,
+        ObjPosition: {},
+        info: {
+          title: 'The Star Gate',
+          shortInfo:
+            'Врата построенные неизвестной цивилизацией позволяют путешествовать по вселенной',
+        },
+      })
+    );
+    setActive(!active);
+  };
+
   return (
-    <group ref={group} dispose={null} scale={0.1} {...props}>
+    <group
+      ref={group}
+      onPointerDown={e => {
+        onClickObj();
+      }}
+      onPointerEnter={e => {
+        onHoverObj();
+      }}
+      onPointerOut={e => {
+        offHoverObj();
+      }}
+      dispose={null}
+      scale={hovered ? 0.102 : 0.1}
+      {...props}
+    >
       <directionalLight color="#1d68f3" />
       <group rotation={[-Math.PI / 2, 0, 0]}>
         <mesh

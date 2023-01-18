@@ -14,13 +14,14 @@ import {
 import { WS_BASE_API } from './WebSocketsAPI/WS_BASE_API';
 import { API_BASE_SERVER } from './ServerAPI/API_BASE_SERVER';
 import { auth } from './Slises/AuthSlise';
-import { lordInfo } from './Slises/lordInfo';
+import { lordInfo } from './Slises/lordInfoSlise';
 import { language } from './Slises/LanguageSlise';
-import { chatGame } from './Slises/chatGame';
-import { planetaBlueHomeInfo } from './Slises/planetaBlueHomeInfo';
-import { planetaYellowHomeInfo } from './Slises/planetaYellowHomeInfo';
-import { planetaLostWorldInfo } from './Slises/planetaLostWorldInfo';
-import { errorUser } from './Slises/errorUser';
+import { chatGame } from './Slises/chatGameSlise';
+import { openCanvasModal } from './Slises/openCanvasModalSlise';
+import { planetaBlueHomeInfo } from './Slises/planetaBlueHomeInfoSlise';
+import { planetaYellowHomeInfo } from './Slises/planetaYellowHomeInfoSlise';
+import { planetaLostWorldInfo } from './Slises/planetaLostWorldInfoSlise';
+import { errorUser } from './Slises/errorUserSlise';
 
 // ***********************local*************************
 const tokenPersistConfig = {
@@ -40,6 +41,7 @@ const rootReduser = combineReducers({
   planetaYellowHomeInfo: planetaYellowHomeInfo.reducer,
   planetaLostWorldInfo: planetaLostWorldInfo.reducer,
   planetaBlueHomeInfo: planetaBlueHomeInfo.reducer,
+  openCanvasModal: openCanvasModal.reducer,
   errorUser: errorUser.reducer,
 });
 const persistedReducer = persistReducer(tokenPersistConfig, rootReduser);

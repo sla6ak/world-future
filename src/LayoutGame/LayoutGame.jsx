@@ -6,6 +6,10 @@ import Missions from 'Components/Missions/Missions';
 import { LoaderCastomGate } from 'Components/LoaderCastomGate/LoaderCastomGate';
 import { useWsConnecting } from 'Hooks/useWsConnecting';
 import WsConnectRout from 'ComponentsThree/WsConnectRout/WsConnectRout';
+import { ModalCanvasWpapper } from 'Components/ModalCanvasWpapper/ModalCanvasWrapper';
+import { ModalCanvasObjectInfo } from 'Components/ModalCanvasObjectInfo/ModalCanvasObjectInfo';
+import { ModalCanvasClicInfo } from 'Components/ModalCanvasClicInfo/ModalCanvasClicInfo';
+import { useOpenModalCanvasEl } from 'Hooks/useOpenModalCanvasEl';
 import {
   Holst,
   HeaderHelmet,
@@ -30,8 +34,9 @@ import { useSelector } from 'react-redux';
 
 // нужно переписать код чтоб инфа про лорда была локальным стейтом а не удаленным так как получать мы ее будем и через сокеты тоже.
 const LeyoutGame = () => {
-  const { lordInfo } = useSelector(state => state);
+  const { lordInfo, openCanvasModal } = useSelector(state => state);
   const navigate = useNavigate();
+  useOpenModalCanvasEl();
   useWsConnecting();
   const [visability, setVisability] = useState({
     chat: false,
@@ -59,6 +64,12 @@ const LeyoutGame = () => {
   return (
     <WsConnectRout>
       <Holst>
+        {(openCanvasModal.isClick || openCanvasModal.isHover) && (
+          <ModalCanvasWpapper>
+            {openCanvasModal.isHover && <ModalCanvasObjectInfo />}
+            {openCanvasModal.isClick && <ModalCanvasClicInfo />}
+          </ModalCanvasWpapper>
+        )}
         <HeaderHelmet
           onClick={e => {
             e.stopPropagation();
@@ -112,9 +123,7 @@ const LeyoutGame = () => {
             </SignalBox>
           </ArmBox>
         </HeaderHelmet>
-
         <CenterArrow></CenterArrow>
-
         <FooterHelmet
           onClick={e => {
             e.stopPropagation();

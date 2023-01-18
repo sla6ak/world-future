@@ -3,9 +3,9 @@ import {
   useGetMessagesQuery,
   useSendMessageMutation,
 } from 'Redux/WebSocketsAPI/WS_BASE_API';
-import { isErrorUser } from 'Redux/Slises/errorUser';
+import { isErrorUser } from 'Redux/Slises/errorUserSlise';
 import { useDispatch } from 'react-redux';
-import { statePlayersAction } from 'Redux/Slises/planetaBlueHomeInfo';
+import { statePlayersAction } from 'Redux/Slises/planetaBlueHomeInfoSlise';
 
 export const useWsConnecting = () => {
   const { data: dataWS, error } = useGetMessagesQuery();
@@ -16,7 +16,6 @@ export const useWsConnecting = () => {
     if (!dataWS?.data) return;
     if (!!isLoading) return;
     const { data } = dataWS;
-    console.log(data);
     if (data.channel === 'connect') {
       if (data.isErrorUser) {
         return;
@@ -61,6 +60,12 @@ export const useWsConnecting = () => {
       }
       // console.log(data);
     }
+    if (data.channel === 'errorServer') {
+      if (!data.data) {
+        return;
+      }
+      console.log(data);
+    }
     if (data.isErrorUser) {
       dispath(isErrorUser(data.isErrorUser));
       return;
@@ -78,3 +83,4 @@ export const useWsConnecting = () => {
 
   return { sendMessage };
 };
+// channel: 'errorServer';

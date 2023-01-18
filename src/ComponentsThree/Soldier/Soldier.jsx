@@ -10,15 +10,23 @@ import { useGLTF, useAnimations } from '@react-three/drei';
 import { useSphere } from '@react-three/cannon';
 import { useFrame } from '@react-three/fiber';
 import { Vector3 } from 'three';
-import { useLordKeyboardControls } from 'Hooks/useLordKeyboardControls';
+import { useDispatch } from 'react-redux';
+import {
+  newOpenCanvasModal,
+  onHoverCanvasModal,
+  ofHoverCanvasModal,
+} from 'Redux/Slises/openCanvasModalSlise';
 
 export function SoldierModel({ playerInfo }) {
+  const dispatch = useDispatch();
+  const [hovered, setHover] = useState(false);
+  const [active, setActive] = useState(false);
   const [curentPosition, setCurentPosition] = useState({
     x: playerInfo.position.x,
     y: playerInfo.position.y,
     z: playerInfo.position.z,
   });
-  const [curentAnimation, setCurentAnimation] = useState({});
+  const [curentAnimation, setCurentAnimation] = useState('state');
   const velocity = useRef([0, 0, 0]);
   const group = useRef();
 
@@ -34,10 +42,23 @@ export function SoldierModel({ playerInfo }) {
   const { actions, names } = useAnimations(animations, group);
 
   useEffect(() => {
-    actions[names[0]].reset().fadeIn().play();
-  }, [actions, names]);
+    if (curentAnimation === 'state') actions[names[0]].reset().fadeIn().play();
+    if (curentAnimation === 'go') actions[names[1]].reset().fadeIn().play();
+    if (curentAnimation === 'go-go') actions[names[2]].reset().fadeIn().play();
+  }, [actions, curentAnimation, names]);
 
   useFrame(() => {
+    if (
+      !!(
+        curentPosition.x === playerInfo.position.x ||
+        curentPosition.z === playerInfo.position.z ||
+        curentPosition.y === playerInfo.position.y
+      )
+    ) {
+      setCurentAnimation('state');
+      return;
+    }
+    setCurentAnimation('go');
     const direction = new Vector3();
     const frontVector = new Vector3(
       0,
@@ -95,9 +116,70 @@ export function SoldierModel({ playerInfo }) {
     });
   }, [apiSphera.position]);
 
+  const onClickObj = () => {
+    dispatch(
+      newOpenCanvasModal({
+        isClick: true,
+        isHover: false,
+        ObjPosition: {},
+        timerOpen: 5000,
+        info: {
+          title: `The Gamer ${playerInfo.nikName}`,
+          typeObj: 'lord',
+          rassa: playerInfo.rassa,
+          shortInfo: `Человек рожденный на планете ${playerInfo.rassa}`,
+          moreInfo: {},
+        },
+      })
+    );
+    setActive(!active);
+  };
+  const onHoverObj = () => {
+    setHover(true);
+    dispatch(
+      onHoverCanvasModal({
+        isClick: false,
+        isHover: true,
+        ObjPosition: {},
+        info: {
+          title: 'The Gamer',
+          shortInfo: `Человек рожденный на планете ${playerInfo.rassa}`,
+        },
+      })
+    );
+    setActive(!active);
+  };
+  const offHoverObj = () => {
+    setHover(false);
+    dispatch(
+      ofHoverCanvasModal({
+        isClick: false,
+        isHover: false,
+        ObjPosition: {},
+        info: {
+          title: 'The Gamer',
+          shortInfo: `Человек рожденный на планете ${playerInfo.rassa}`,
+        },
+      })
+    );
+    setActive(!active);
+  };
+
   return (
     <Suspense>
-      <mesh ref={refSphera} scale={0.7}>
+      <mesh
+        ref={refSphera}
+        scale={hovered ? 0.7 : 0.65}
+        onPointerDown={e => {
+          onClickObj();
+        }}
+        onPointerEnter={e => {
+          onHoverObj();
+        }}
+        onPointerOut={e => {
+          offHoverObj();
+        }}
+      >
         {/* <sphereGeometry args={[1, 10, 10]} /> */}
 
         {/* <meshPhysicalMaterial color="black" /> */}
