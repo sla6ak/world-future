@@ -3,7 +3,7 @@ import { ListAuth } from 'Components/ListAuth/ListAuth.styled';
 import { TextGame } from 'Views/StartPage/StartPage.styled';
 import { Typography, Grid } from '@mui/material/';
 import { useMyLordInfoHook } from 'Hooks/useMyLordInfoHook';
-import { allLordInfoAction } from 'Redux/Slises/lordInfo';
+import { allLordInfoAction } from 'Redux/Slises/lordInfoSlise';
 import {
   ButtonSelectLeft,
   NikName,

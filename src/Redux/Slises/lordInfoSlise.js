@@ -7,7 +7,6 @@ export const lordInfo = createSlice({
   initialState: initialLordInfo,
   reducers: {
     allLordInfoAction(_state, action) {
-      console.log('данные о персонаже с бекенда', action.payload);
       return action.payload;
     },
     myNikAction(state, action) {

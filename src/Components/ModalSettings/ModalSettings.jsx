@@ -25,6 +25,6 @@ export const ModalSettings = ({ onModalClose }) => {
         </WrapperButtons>
       </ModalWindow>
     </Overlay>,
-    document.querySelector('#modal')
+    document.querySelector('#modalsettings')
   );
 };

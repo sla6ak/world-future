@@ -9,7 +9,6 @@ export const planetaBlueHomeInfo = createSlice({
   initialState: initialPlanetaBlueHomeInfo,
   reducers: {
     statePlayersAction(_state, action) {
-      console.log(action.payload);
       return action.payload;
     },
     stateCristalsAction(_state, _action) {

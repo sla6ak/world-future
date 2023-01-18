@@ -5,7 +5,7 @@ export const CenterArr = styled.div`
   // display: 'flex';
   // justify-content: 'center';
   // align-items: 'center';
-  z-index: 1000;
+  z-index: 99;
 
   top: 50%;
   left: 50%;
