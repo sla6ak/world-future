@@ -1,20 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useSendMessageMutation } from 'Redux/WebSocketsAPI/WS_BASE_API';
 import { useSelector } from 'react-redux';
 
 export const useModalClickKeyboardControls = () => {
   const { lordInfo } = useSelector(state => state);
-  const [jumpToPlanet, setJumpToPlanet] = useState({
-    LostWorld: false,
-    BlueHome: false,
-    YellowHome: false,
-  });
   const [sendMessage] = useSendMessageMutation();
 
   useEffect(() => {
     function actionByKey(key) {
       let home = 'BlueHome';
-      if (lordInfo.raca === 'Blue') {
+      if (lordInfo.race === 'Blue') {
         home = 'BlueHome';
       } else {
         home = 'YellowHome';
@@ -27,11 +22,10 @@ export const useModalClickKeyboardControls = () => {
     }
     const handleKeyDown = e => {
       if (actionByKey(e.code)) {
-        setJumpToPlanet(state => {
-          return {
-            ...state,
-            [actionByKey(e.code)]: true,
-          };
+        const toPlanet = actionByKey(e.code);
+        sendMessage({
+          channel: 'myLord',
+          data: { event: 'choosePlanet', planet: toPlanet },
         });
       }
     };
@@ -41,9 +35,5 @@ export const useModalClickKeyboardControls = () => {
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [lordInfo.raca]);
-
-  useEffect(() => {
-    sendMessage({ channel: 'myLord', data: { planet: '' } });
-  }, [jumpToPlanet, sendMessage]);
+  }, [lordInfo.race, sendMessage]);
 };

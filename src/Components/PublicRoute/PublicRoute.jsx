@@ -3,9 +3,9 @@ import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
 function PublicRoute({ children }) {
-  const curentAuth = useSelector(state => state.auth.user.name);
+  const { name } = useSelector(state => state.auth.user);
 
-  return curentAuth.length < 2 ? children : <Navigate to="/setlord" />;
+  return name.length < 2 ? children : <Navigate to="/setlord" />;
 }
 
 export default PublicRoute;

@@ -75,11 +75,11 @@ const LeyoutGame = () => {
           }}
         >
           <KristalBox>
-            <KristalsBlue>Blue kristals:{lordInfo?.kristalsBlue}</KristalsBlue>
+            <KristalsBlue>Blue cristals:{lordInfo?.cristalsBlue}</KristalsBlue>
             <KristalsYellow>
-              Yellow kristals:{lordInfo?.kristalsYellow}
+              Yellow cristals:{lordInfo?.kristalsYellow}
             </KristalsYellow>
-            <DarkMatter>Dark matter:{lordInfo?.kristalsYellow}</DarkMatter>
+            <DarkMatter>Dark matter:{lordInfo?.darkMatter}</DarkMatter>
           </KristalBox>
           <Lord>
             Lord: <NikLord>{lordInfo?.nikName}</NikLord>
