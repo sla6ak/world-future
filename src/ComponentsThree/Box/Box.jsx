@@ -59,7 +59,6 @@ const Box = props => {
     setHover(false);
     dispatch(
       ofHoverCanvasModal({
-        isClick: false,
         isHover: false,
         ObjPosition: {},
         info: { title: 'The Box', shortInfo: '' },

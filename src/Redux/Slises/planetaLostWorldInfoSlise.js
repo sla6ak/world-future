@@ -1,10 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialЗlanetaLostWorldInfo = { players: [{}] };
+const initialplanetaLostWorldInfo = {
+  players: [{ nikName: '', position: { x: 10, y: -2, z: 8 } }],
+};
 
 export const planetaLostWorldInfo = createSlice({
   name: 'planetaLostWorld',
-  initialState: initialЗlanetaLostWorldInfo,
+  initialState: initialplanetaLostWorldInfo,
   reducers: {
     statePlayersAction(_state, _action) {
       return;

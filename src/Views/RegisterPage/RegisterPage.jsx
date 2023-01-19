@@ -67,7 +67,7 @@ const Registration = () => {
     }
     if (responsRegister.data) {
       dispatch(newToken(responsRegister.data.token));
-      dispatch(isAuth(responsRegister.data.user.name));
+      dispatch(isAuth(responsRegister.data.user));
       toast.success('Create new user!');
     }
   };

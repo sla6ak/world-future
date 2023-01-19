@@ -1,44 +1,80 @@
+// ***************** react  компоненты ***********************************
 import { Canvas } from '@react-three/fiber';
-import Box from 'ComponentsThree/Box/Box';
 import { Suspense } from 'react';
-import Planet from 'ComponentsThree/Planet/Planet';
 import { Physics } from '@react-three/cannon';
 import LoaderSuspense from 'Components/LoaderSuspense/LoaderSuspense';
+import { useLoader } from '@react-three/fiber';
+import { useSelector } from 'react-redux';
+import { TextureLoader } from 'three/src/loaders/TextureLoader';
+import { useGetPlayersHook } from '../../Hooks/useGetPlayersHook';
+// import { useState } from 'react';
+
+// ************* Модели на планету ************************************
 import MyLordModel from 'ComponentsThree/MyLordModel/MyLordModel';
 import CosmosBox from 'ComponentsThree/CosmosBox/CosmosBox';
-import { useLoader } from '@react-three/fiber';
-import { TextureLoader } from 'three/src/loaders/TextureLoader';
+import Box from 'ComponentsThree/Box/Box';
+import Planet from 'ComponentsThree/Planet/Planet';
+import PlanetTwo from 'ComponentsThree/Planet/PlanetTwo';
+import Spaceport from 'ComponentsThree/Spaceport/Spaceport';
+// import AnotherLordModel from 'componentsThree/AnotherLordModel/AnotherLordModel';
+import AutoFuture from 'ComponentsThree/AutoFuture/AutoFuture';
+import Portal from 'ComponentsThree/Portal/Portal';
+import { SoldierModel } from 'ComponentsThree/Soldier/Soldier';
 import CosmosSpace from './red.jpg';
 // import { useState } from 'react';
 
 const PlanetaYellowHome = () => {
-  // тут должен стартовать запрос на сокет подключение и вытягивать состояние объектов на планете
-  const textureYellowCosmos = useLoader(TextureLoader, CosmosSpace);
+  const textureCosmos = useLoader(TextureLoader, CosmosSpace);
   // const [allLords, setAllLords] = useState([0, 0, 0]);
-
+  useGetPlayersHook({ channel: 'planetaBlueHome' });
+  const { planetaYellowHomeInfo } = useSelector(state => state);
+  const { nikName } = useSelector(state => state.lordInfo);
+  const boxs = [];
+  for (let i = 0; i <= 20; i++) {
+    boxs.push(i);
+  }
+  function randomCount(max) {
+    return Math.floor(Math.random() * max);
+  }
   return (
     <div id="canvas-container">
       <Canvas>
         <Suspense fallback={<LoaderSuspense />}>
           <Physics>
-            <ambientLight color="#eeebbe" intensity={0.12} />
+            <ambientLight color="#beebee" intensity={0.2} />
             <pointLight
               color="#f1eec3"
-              intensity={0.9}
-              position={[-14, 9, 0]}
+              intensity={1}
+              position={[-54, 200, 0]}
             />
-            {/* <directionalLight color="#dad69d" position={[100, 100, 100]} /> */}
-            <Box position={[6, 7.5, 0.5]} />
-            <Box position={[1, 13, 4]} />
-            <Box position={[1, 4.5, 4.7]} />
-            <Box position={[2, 16, 0]} />
-            <Box position={[6, 7.5, 7.5]} />
-            <Box position={[1, 13, 9]} />
-            <Box position={[1, 4.5, 9.7]} />
-            <Box position={[7, 16, 0]} />
-            <CosmosBox textureCosmos={textureYellowCosmos} />
+            {/* <directionalLight color="#9dc3da" position={[100, 100, 100]} /> */}
+            {planetaYellowHomeInfo.players?.length > 1 &&
+              planetaYellowHomeInfo.players.map(el => {
+                if (el.nikName === nikName) {
+                  return null;
+                }
+                return <SoldierModel key={el.nikName} playerInfo={el} />;
+              })}
+            {boxs.map((el, ind) => {
+              return (
+                <Box
+                  key={ind}
+                  position={[
+                    randomCount(100) - 50,
+                    randomCount(3) - 2,
+                    randomCount(100) - 50,
+                  ]}
+                />
+              );
+            })}
+            <CosmosBox textureCosmos={textureCosmos} />
+            <AutoFuture position={[10, -5, 0]} />
             <MyLordModel />
             <Planet />
+            <PlanetTwo />
+            {/* <AnotherLordModel position={[2, -2, 5]} /> */}
+            <Spaceport position={[9, -15, 0]} />
+            <Portal position={[35, -2, 20]} />
           </Physics>
         </Suspense>
       </Canvas>

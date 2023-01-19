@@ -6,6 +6,7 @@ import {
 import { isErrorUser } from 'Redux/Slises/errorUserSlise';
 import { useDispatch } from 'react-redux';
 import { statePlayersAction } from 'Redux/Slises/planetaBlueHomeInfoSlise';
+import { allLordInfoAction } from 'Redux/Slises/lordInfoSlise';
 
 export const useWsConnecting = () => {
   const { data: dataWS, error } = useGetMessagesQuery();
@@ -58,7 +59,7 @@ export const useWsConnecting = () => {
       if (!data.data) {
         return;
       }
-      // console.log(data);
+      dispatch(allLordInfoAction(data.data));
     }
     if (data.channel === 'errorServer') {
       if (!data.data) {

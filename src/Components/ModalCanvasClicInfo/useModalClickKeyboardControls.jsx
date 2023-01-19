@@ -1,10 +1,13 @@
 import { useEffect } from 'react';
 import { useSendMessageMutation } from 'Redux/WebSocketsAPI/WS_BASE_API';
 import { useSelector } from 'react-redux';
+import { closeCanvasModal } from 'Redux/Slises/openCanvasModalSlise';
+import { useDispatch } from 'react-redux';
 
 export const useModalClickKeyboardControls = () => {
   const { lordInfo } = useSelector(state => state);
   const [sendMessage] = useSendMessageMutation();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     function actionByKey(key) {
@@ -27,6 +30,7 @@ export const useModalClickKeyboardControls = () => {
           channel: 'myLord',
           data: { event: 'choosePlanet', planet: toPlanet },
         });
+        return dispatch(closeCanvasModal());
       }
     };
 
@@ -35,5 +39,5 @@ export const useModalClickKeyboardControls = () => {
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [lordInfo.race, sendMessage]);
+  }, [dispatch, lordInfo.race, sendMessage]);
 };

@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialplanetaYellowHomeInfo = { players: [{}] };
+const initialplanetaYellowHomeInfo = {
+  players: [{ nikName: '', position: { x: 10, y: -2, z: 8 } }],
+};
 
 export const planetaYellowHomeInfo = createSlice({
   name: 'planetaYellowHome',
