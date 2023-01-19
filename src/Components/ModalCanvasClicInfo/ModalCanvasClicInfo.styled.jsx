@@ -13,7 +13,7 @@ export const MoreInfo = styled.div`
   flex-direction: column;
   width: 100%;
   font-size: 14;
-  color: #00ffaa;
+  color: #00b6ce;
   margin-bottom: 0.7rem;
 `;
 export const ShortInfo = styled.div`
