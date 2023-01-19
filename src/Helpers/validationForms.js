@@ -26,7 +26,7 @@ export const validationLordSchema = yup.object({
     .required('nikName is required')
     .min(3, 'nikName should be of minimum 3 characters length')
     .max(9, 'nikName should be of maximum 9 characters length'),
-  rassa: yup.string('click to rassa').required('Rassa is required'),
+  race: yup.string('click to rassa').required('Rassa is required'),
 });
 
 export const validationLetterSchema = yup.object({
@@ -43,5 +43,5 @@ export const validationLetterSchema = yup.object({
     .required('Rassa is required'),
   clan: yup.string('clan error'),
   status: yup.string('clan error'),
-  planet: yup.string('planet error')
+  planet: yup.string('planet error'),
 });

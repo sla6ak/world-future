@@ -7,6 +7,10 @@ export const KristalsBlue = styled.div`
   color: #0065fd;
   min-width: 10vw;
 `;
+export const DarkMatter = styled.div`
+  color: #8500dd;
+  min-width: 10vw;
+`;
 export const KristalsYellow = styled.div`
   color: #fdec00;
   min-width: 10vw;

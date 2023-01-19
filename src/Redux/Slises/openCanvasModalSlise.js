@@ -8,7 +8,7 @@ const initialCanvasModal = {
   timerOpen: 0,
   info: { title: '', typeObj: '', shortInfo: '', moreInfo: '' },
 };
-// typeObj определяет наличие кнопок или взаимодействий ["history","user","kristall",'']
+// typeObj определяет наличие кнопок или взаимодействий ["history","user","kristall",'portal']
 
 export const openCanvasModal = createSlice({
   name: 'canvasModal',

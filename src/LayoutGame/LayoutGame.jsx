@@ -9,7 +9,6 @@ import WsConnectRout from 'ComponentsThree/WsConnectRout/WsConnectRout';
 import { ModalCanvasWpapper } from 'Components/ModalCanvasWpapper/ModalCanvasWrapper';
 import { ModalCanvasObjectInfo } from 'Components/ModalCanvasObjectInfo/ModalCanvasObjectInfo';
 import { ModalCanvasClicInfo } from 'Components/ModalCanvasClicInfo/ModalCanvasClicInfo';
-import { useOpenModalCanvasEl } from 'Hooks/useOpenModalCanvasEl';
 import {
   Holst,
   HeaderHelmet,
@@ -25,6 +24,7 @@ import {
   ChatBox,
   SignalArm,
   SignalBox,
+  DarkMatter,
 } from './LayoutGame.styled';
 import CenterArrow from 'Components/CenterArrow/CenterArrow';
 // import { useSelector } from 'react-redux';
@@ -36,7 +36,6 @@ import { useSelector } from 'react-redux';
 const LeyoutGame = () => {
   const { lordInfo, openCanvasModal } = useSelector(state => state);
   const navigate = useNavigate();
-  useOpenModalCanvasEl();
   useWsConnecting();
   const [visability, setVisability] = useState({
     chat: false,
@@ -80,6 +79,7 @@ const LeyoutGame = () => {
             <KristalsYellow>
               Yellow kristals:{lordInfo?.kristalsYellow}
             </KristalsYellow>
+            <DarkMatter>Dark matter:{lordInfo?.kristalsYellow}</DarkMatter>
           </KristalBox>
           <Lord>
             Lord: <NikLord>{lordInfo?.nikName}</NikLord>

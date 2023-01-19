@@ -22,13 +22,15 @@ const Portal = ({ ...props }) => {
         isClick: true,
         isHover: false,
         ObjPosition: {},
-        timerOpen: 5000,
+        typeObj: 'portal',
+        timerOpen: 15000,
         info: {
           title: 'The Star Gate',
-          typeObj: 'history',
+          typeObj: 'portal',
           shortInfo:
             'Врата построенные неизвестной цивилизацией позволяют путешествовать по вселенной',
-          moreInfo: '',
+          moreInfo:
+            'Врата открывают портал в далеком космосе, тебе доступны путешествия в системы богатые ресурсами и аномалиями для исследования новых технологий но будь осторожен другая фракция хочет присвоить космос себе',
         },
       })
     );

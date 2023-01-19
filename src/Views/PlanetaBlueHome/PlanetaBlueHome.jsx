@@ -32,7 +32,7 @@ const PlanetaBlueHome = () => {
   const { planetaBlueHomeInfo } = useSelector(state => state);
   const { nikName } = useSelector(state => state.lordInfo);
   const boxs = [];
-  for (let i = 0; i <= 50; i++) {
+  for (let i = 0; i <= 20; i++) {
     boxs.push(i);
   }
   function randomCount(max) {
@@ -62,9 +62,9 @@ const PlanetaBlueHome = () => {
                 <Box
                   key={ind}
                   position={[
-                    randomCount(200) - 100,
+                    randomCount(100) - 50,
                     randomCount(3) - 2,
-                    randomCount(200) - 100,
+                    randomCount(100) - 50,
                   ]}
                 />
               );

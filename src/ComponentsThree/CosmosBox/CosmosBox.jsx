@@ -6,7 +6,7 @@ const CosmosBox = ({ textureCosmos }) => {
   const ref = useRef();
 
   useFrame(() => {
-    ref.current.rotation.x += 0.00106;
+    ref.current.rotation.x += 0.00026;
     ref.current.rotation.y += 0.0004;
   }, []);
 

@@ -1,10 +1,12 @@
 import React from 'react';
 import { CenterArr } from './CenterArrow.styled';
+import centreGoal from './centreGoal.png';
 
 const CenterArrow = () => {
   return (
     <CenterArr>
-      <span id="arrow">X</span>
+      <img src={centreGoal} style={{ opacity: 0.5 }} alt="" />
+      {/* <span id="arrow">X</span> */}
     </CenterArr>
   );
 };

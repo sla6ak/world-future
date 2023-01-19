@@ -40,10 +40,10 @@ const SetLordPage = () => {
   }, [lordInfo, navigate]);
 
   // **************** создадим нового персонажа в базе*************************************
-  const clikRassa = async nameRassa => {
+  const clikRace = async nameRace => {
     const lordCandidat = {
       nikName: nikName,
-      rassa: nameRassa,
+      race: nameRace,
     };
     try {
       await validationLordSchema.validate(lordCandidat);
@@ -93,14 +93,14 @@ const SetLordPage = () => {
           />
           <Grid container spacing={2} sx={{ mb: '30px' }}>
             <Grid item xs={6}>
-              <ButtonSelectLeft onClick={() => clikRassa('Blue')}>
+              <ButtonSelectLeft onClick={() => clikRace('Blue')}>
                 {!!setLordPage ? setLordPage.buttons.winter : 'Winter'}
               </ButtonSelectLeft>
             </Grid>
             <Grid item xs={6}>
               <ButtonSelectRight
                 onClick={() => {
-                  clikRassa('Yellow');
+                  clikRace('Yellow');
                 }}
               >
                 {!!setLordPage ? setLordPage.buttons.desert : 'Desert'}

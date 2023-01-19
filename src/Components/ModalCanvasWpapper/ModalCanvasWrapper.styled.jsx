@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 export const ModalWindow = styled.div`
   min-height: 40px;
   min-width: 100px;
-  max-width: 30%;
+  max-width: 40%;
   padding: 5px;
   background: #6dddff2f;
   color: #31cf3e;
