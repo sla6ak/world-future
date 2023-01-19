@@ -4,6 +4,7 @@ import { lazy } from 'react';
 import { Layout } from 'Layout/Layout';
 import PrivateRoute from 'Components/PrivateRoute/PrivateRoute';
 import PublicRoute from 'Components/PublicRoute/PublicRoute';
+import { useReroute } from './useReroute';
 
 // загрузка планет
 const SetLordPage = lazy(() => import('../Views/SetLordPage/SetLordPage'));
@@ -22,6 +23,7 @@ const PlanetaLostWorld = lazy(() =>
 );
 
 export const Routers = () => {
+  useReroute();
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
@@ -75,7 +77,7 @@ export const Routers = () => {
             }
           />
           <Route
-            path="/play/Lost"
+            path="/play/LostWorld"
             element={
               <PrivateRoute>
                 <PlanetaLostWorld />

@@ -40,7 +40,7 @@ const Portal = ({ ...props }) => {
     setHover(true);
     dispatch(
       onHoverCanvasModal({
-        isClick: false,
+        // isClick: false,
         isHover: true,
         ObjPosition: {},
         info: {
@@ -56,14 +56,8 @@ const Portal = ({ ...props }) => {
     setHover(false);
     dispatch(
       ofHoverCanvasModal({
-        isClick: false,
         isHover: false,
-        ObjPosition: {},
-        info: {
-          title: 'The Star Gate',
-          shortInfo:
-            'Врата построенные неизвестной цивилизацией позволяют путешествовать по вселенной',
-        },
+        info: {},
       })
     );
     setActive(!active);

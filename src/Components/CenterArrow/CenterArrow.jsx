@@ -6,7 +6,6 @@ const CenterArrow = () => {
   return (
     <CenterArr>
       <img src={centreGoal} style={{ opacity: 0.5 }} alt="" />
-      {/* <span id="arrow">X</span> */}
     </CenterArr>
   );
 };

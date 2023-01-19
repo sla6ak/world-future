@@ -6,6 +6,7 @@ import LoaderSuspense from 'Components/LoaderSuspense/LoaderSuspense';
 import { useLoader } from '@react-three/fiber';
 import { useSelector } from 'react-redux';
 import { TextureLoader } from 'three/src/loaders/TextureLoader';
+import { useGetPlayersHook } from '../../Hooks/useGetPlayersHook';
 // import { useState } from 'react';
 
 // ************* Модели на планету ************************************
@@ -23,12 +24,11 @@ import { SoldierModel } from 'ComponentsThree/Soldier/Soldier';
 // ************** Конфигурации для пропсов ****************************
 import CosmosSpace from './tim-barton-5.jpg';
 // *****************************************************************************************
-import { useGetPlayersHook } from './useGetPlayersHook';
 
 const PlanetaBlueHome = () => {
-  const textureBlueCosmos = useLoader(TextureLoader, CosmosSpace);
+  const textureCosmos = useLoader(TextureLoader, CosmosSpace);
   // const [allLords, setAllLords] = useState([0, 0, 0]);
-  useGetPlayersHook();
+  useGetPlayersHook({ channel: 'planetaBlueHome' });
   const { planetaBlueHomeInfo } = useSelector(state => state);
   const { nikName } = useSelector(state => state.lordInfo);
   const boxs = [];
@@ -69,7 +69,7 @@ const PlanetaBlueHome = () => {
                 />
               );
             })}
-            <CosmosBox textureCosmos={textureBlueCosmos} />
+            <CosmosBox textureCosmos={textureCosmos} />
             <AutoFuture position={[10, -5, 0]} />
             <MyLordModel />
             <Planet />

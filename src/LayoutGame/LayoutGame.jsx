@@ -28,27 +28,17 @@ import {
 } from './LayoutGame.styled';
 import CenterArrow from 'Components/CenterArrow/CenterArrow';
 // import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 // нужно переписать код чтоб инфа про лорда была локальным стейтом а не удаленным так как получать мы ее будем и через сокеты тоже.
 const LeyoutGame = () => {
   const { lordInfo, openCanvasModal } = useSelector(state => state);
-  const navigate = useNavigate();
   useWsConnecting();
   const [visability, setVisability] = useState({
     chat: false,
     missions: false,
     squad: false,
   });
-
-  useEffect(() => {
-    if (!lordInfo) {
-      return;
-    }
-    navigate(`/play/${lordInfo?.planet}`);
-  }, [lordInfo, navigate]);
 
   const quickArmInfo = unit => {
     const atac = lordInfo?.squad[unit].power.attack.shell.percent;
@@ -75,11 +65,11 @@ const LeyoutGame = () => {
           }}
         >
           <KristalBox>
-            <KristalsBlue>Blue kristals:{lordInfo?.kristalsBlue}</KristalsBlue>
+            <KristalsBlue>Blue cristals:{lordInfo?.cristalsBlue}</KristalsBlue>
             <KristalsYellow>
-              Yellow kristals:{lordInfo?.kristalsYellow}
+              Yellow cristals:{lordInfo?.cristalsYellow}
             </KristalsYellow>
-            <DarkMatter>Dark matter:{lordInfo?.kristalsYellow}</DarkMatter>
+            <DarkMatter>Dark matter:{lordInfo?.darkMatter}</DarkMatter>
           </KristalBox>
           <Lord>
             Lord: <NikLord>{lordInfo?.nikName}</NikLord>
@@ -123,7 +113,7 @@ const LeyoutGame = () => {
             </SignalBox>
           </ArmBox>
         </HeaderHelmet>
-        <CenterArrow></CenterArrow>
+        <CenterArrow />
         <FooterHelmet
           onClick={e => {
             e.stopPropagation();

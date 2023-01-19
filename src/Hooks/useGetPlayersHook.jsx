@@ -4,7 +4,7 @@ import { useSendMessageMutation } from 'Redux/WebSocketsAPI/WS_BASE_API';
 // positionX: { type: Number },
 //     positionY: { type: Number },
 //     positionZ: { type: Number },
-export const useGetPlayersHook = () => {
+export const useGetPlayersHook = ({ channal }) => {
   const [sendMessage] = useSendMessageMutation();
   // изначально переполучал весь объект но должен быть переработан и перезаписывать только измененные данные
   const { lordInfo } = useSelector(state => state);
@@ -14,7 +14,7 @@ export const useGetPlayersHook = () => {
       return;
     }
     sendMessage({
-      channal: 'planetaBlueHome',
+      channal: channal,
       data: {
         nikName: '',
         position: {

@@ -12,7 +12,6 @@ import {
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { Navigate } from 'react-router-dom';
 import { validationLordSchema } from 'Helpers/validationForms';
 import { useNavigate } from 'react-router-dom';
 import { useRegistrationPersonMutation } from 'Redux/ServerAPI/API_BASE_SERVER';
@@ -36,7 +35,7 @@ const SetLordPage = () => {
       return;
     }
     toast.success(`Your lord: ${lordInfo.nikName}`);
-    navigate(`/play/${lordInfo.planet}`);
+    // navigate(`/play/${lordInfo.planet}`);
   }, [lordInfo, navigate]);
 
   // **************** создадим нового персонажа в базе*************************************
@@ -75,7 +74,7 @@ const SetLordPage = () => {
             : 'К 4800-му году человечество научилось использовать кротовые норы для перемещений по галактике, но как далеко бы не шел прогресс внутриние межусобицы и борьба за власть и ресурсы только усиливались, что в конце концов привело к полному расколу правления на две крупнейшие фракции, которые заняли критически важные для технологий источники ресурсов. Какую бы рассу ты не выбрал ты защищаешь мирных граждан от дисбаланс во вселенной!'}
         </Typography>
       </TextGame>
-      {!lordInfo ? (
+      {!lordInfo && (
         <>
           <h3>
             {!!setLordPage
@@ -108,19 +107,9 @@ const SetLordPage = () => {
             </Grid>
           </Grid>
         </>
-      ) : (
-        <>{to(lordInfo)}</>
       )}
     </ListAuth>
   );
 };
 
 export default SetLordPage;
-
-function to(lordInfo) {
-  if (lordInfo?.planet === 'BlueHome') {
-    return <Navigate to="/play/BlueHome" />;
-  } else if (lordInfo?.planet === 'YellowHome') {
-    return <Navigate to="/play/YellowHome" />;
-  }
-}
