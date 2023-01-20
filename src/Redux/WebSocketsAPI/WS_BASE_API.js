@@ -10,15 +10,39 @@ const channels = [
   'myLord',
   'connect',
 ];
+async function waitFor(seconds) {
+  return new Promise(resolve => {
+    const id = setTimeout(resolve, seconds * 1000);
+    return clearTimeout(id);
+  });
+}
 
 let ws = null;
-
-function getSocket() {
+let token = '';
+async function getSocket(token) {
   if (!ws) {
     try {
-      ws = new WebSocket(WS_PORT);
+      return new Promise((resolve, reject) => {
+        ws = new WebSocket(WS_PORT);
+        ws.onopen = () => {
+          console.log('connect+++');
+          ws.send(
+            JSON.stringify({
+              channel: 'connect',
+              data: {
+                token,
+              },
+            })
+          );
+          return resolve(ws);
+        };
+        ws.onerror = reject;
+        ws.onclose = reject;
+      });
     } catch (error) {
       console.log('вебсокет неудается запустить:', error);
+      await waitFor(20);
+      return await getSocket(token);
     }
   }
   return ws;
@@ -34,16 +58,20 @@ export const WS_BASE_API = createApi({
 
     sendMessage: builder.mutation({
       queryFn: async objRes => {
-        const ws = await getSocket();
-        new Promise(resolve => {
-          resolve(ws.send(JSON.stringify(objRes)));
-        });
-        return 'send message WS';
+        const ws = await getSocket(token);
+        try {
+          new Promise(async resolve => {
+            resolve(ws.send(JSON.stringify(objRes)));
+          });
+        } catch (error) {
+          console.log('ws.readyState', error);
+        }
+        return '+';
       },
     }),
 
     getMessages: builder.query({
-      queryFn: () => BASE_DRAFT,
+      queryFn: async () => BASE_DRAFT,
       async onCacheEntryAdded(
         channel,
         {
@@ -56,22 +84,22 @@ export const WS_BASE_API = createApi({
           cacheEntryRemoved, // позволяет дождаться, когда запись в кеше будет удалена
         }
       ) {
-        const ws = await getSocket();
+        token = getState().auth.token;
+        const ws = await getSocket(token);
         try {
           await cacheDataLoaded;
-          ws.addEventListener('open', () => {
-            ws.send(
-              JSON.stringify({
-                channel: 'connect',
-                data: {
-                  token: getState().auth.token,
-                },
-              })
-            );
-          });
-
           ws.addEventListener('message', message => {
             const res = JSON.parse(message.data);
+            // if (res.channel === 'open') {
+            //   ws.send(
+            //     JSON.stringify({
+            //       channel: 'connect',
+            //       data: {
+            //         token: getState().auth.token,
+            //       },
+            //     })
+            //   );
+            // }
             if (!channels.includes(res.channel)) return;
 
             updateCachedData(draft => {

@@ -3,7 +3,7 @@ import React from 'react';
 import { ModalInfo, MoreInfo, ShortInfo } from './ModalCanvasClicInfo.styled';
 import { WrapperButtons } from './ModalCanvasClicInfo.styled';
 import { useSelector } from 'react-redux';
-import { useModalClickKeyboardControls } from './useModalClickKeyboardControls';
+import { useModalClickKeyboardControls } from '../../Hooks/useModalClickKeyboardControls';
 
 export const ModalCanvasClicInfo = () => {
   const { openCanvasModal } = useSelector(state => state);

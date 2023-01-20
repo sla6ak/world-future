@@ -5,6 +5,7 @@ export const GateFone = styled.div`
   width: 400px;
   height: 400px;
   background-color: transparent;
+  z-index: 49;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

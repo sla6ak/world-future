@@ -13,17 +13,18 @@ import MyLordModel from 'ComponentsThree/MyLordModel/MyLordModel';
 import CosmosBox from 'ComponentsThree/CosmosBox/CosmosBox';
 import Box from 'ComponentsThree/Box/Box';
 import Planet from 'ComponentsThree/Planet/Planet';
-import PlanetTwo from 'ComponentsThree/Planet/PlanetTwo';
 import Spaceport from 'ComponentsThree/Spaceport/Spaceport';
 // import AnotherLordModel from 'componentsThree/AnotherLordModel/AnotherLordModel';
-import AutoFuture from 'ComponentsThree/AutoFuture/AutoFuture';
-import Portal from 'ComponentsThree/Portal/Portal';
-import { SoldierModel } from 'ComponentsThree/Soldier/Soldier';
+import AutoFuture from 'ComponentsThree/3D_models/AutoFuture/AutoFuture';
+import Portal from 'ComponentsThree/3D_models/Portal/Portal';
+import { SoldierModel } from 'ComponentsThree/3D_models/Soldier/Soldier';
 
 // ************** Конфигурации для пропсов ****************************
-import CosmosSpace from './dym.png';
+import CosmosSpace from './blueStars.jpg';
 // *****************************************************************************************
 import { useGetPlayersHook } from 'Hooks/useGetPlayersHook';
+import { AvtoFuture1 } from 'ComponentsThree/3D_models/AvtoFuture1/AvtoFuture1';
+import { Model } from 'ComponentsThree/3D_models/Scene';
 
 const PlanetaLostWorld = () => {
   const textureCosmos = useLoader(TextureLoader, CosmosSpace);
@@ -70,13 +71,14 @@ const PlanetaLostWorld = () => {
               );
             })}
             <CosmosBox textureCosmos={textureCosmos} />
-            <AutoFuture position={[10, -5, 0]} />
+            <AutoFuture position={[10, -1, 0]} />
             <MyLordModel />
+            <AvtoFuture1 position={[3, 0, 4]} />
+            <Model position={[35, -2.3, 45]} />
             <Planet />
-            <PlanetTwo />
             {/* <AnotherLordModel position={[2, -2, 5]} /> */}
             <Spaceport position={[9, -15, 0]} />
-            <Portal position={[35, -2, 20]} />
+            <Portal position={[-35, -2, 20]} />
           </Physics>
         </Suspense>
       </Canvas>

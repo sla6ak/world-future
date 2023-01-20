@@ -17,11 +17,13 @@ export const useWsConnecting = () => {
     if (!dataWS?.data) return;
     if (!!isLoading) return;
     const { data } = dataWS;
+
     if (data.channel === 'connect') {
-      if (data.isErrorUser) {
+      if (!data.data) {
         return;
       }
-      // console.log(data);
+      dispatch(allLordInfoAction(data.data.lordInfo));
+      // console.log('connect', data);
     }
     if (data.channel === 'chat') {
       if (!data.data) {

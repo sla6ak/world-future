@@ -24,7 +24,6 @@ export const openCanvasModal = createSlice({
       return { ...state, ...action.payload };
     },
     closeCanvasModal(_state, _action) {
-      console.log('-----!');
       return { ...initialCanvasModal };
     },
   },
