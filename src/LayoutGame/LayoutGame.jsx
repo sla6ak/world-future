@@ -51,8 +51,8 @@ const LeyoutGame = () => {
   };
 
   return (
-    <WsConnectRout>
-      <Holst>
+    <Holst>
+      <WsConnectRout>
         {(openCanvasModal.isClick || openCanvasModal.isHover) && (
           <ModalCanvasWpapper>
             {openCanvasModal.isHover && <ModalCanvasObjectInfo />}
@@ -151,8 +151,8 @@ const LeyoutGame = () => {
         <Suspense fallback={<LoaderCastomGate>loading...</LoaderCastomGate>}>
           <Outlet />
         </Suspense>
-      </Holst>
-    </WsConnectRout>
+      </WsConnectRout>
+    </Holst>
   );
 };
 export default LeyoutGame;

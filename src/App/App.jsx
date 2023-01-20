@@ -3,7 +3,6 @@ import { Routers } from 'Routers/Routers';
 import { useLanguageStarting } from './useLanguageStarting';
 import { useAuthStartApp } from './useAuthStartApp';
 import { useOpenModalGeneralSettings } from './useOpenModalGeneralSettings';
-
 export const App = () => {
   useLanguageStarting();
   useAuthStartApp();

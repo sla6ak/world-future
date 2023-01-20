@@ -8,7 +8,7 @@ function WsConnectRout({ children }) {
   lordInfo?.nikName.length < 2 &&
     toast.warn(`Lord dont loaded, please repit one more`);
 
-  return lordInfo?.nikName.length > 2 ? children : <Navigate to="/" />;
+  return lordInfo?.nikName.length > 2 ? children : <Navigate to="/setlord" />;
 }
 
 export default WsConnectRout;

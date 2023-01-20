@@ -17,9 +17,9 @@ import Planet from 'ComponentsThree/Planet/Planet';
 import PlanetTwo from 'ComponentsThree/Planet/PlanetTwo';
 import Spaceport from 'ComponentsThree/Spaceport/Spaceport';
 // import AnotherLordModel from 'componentsThree/AnotherLordModel/AnotherLordModel';
-import AutoFuture from 'ComponentsThree/AutoFuture/AutoFuture';
-import Portal from 'ComponentsThree/Portal/Portal';
-import { SoldierModel } from 'ComponentsThree/Soldier/Soldier';
+import AutoFuture from 'ComponentsThree/3D_models/AutoFuture/AutoFuture';
+import Portal from 'ComponentsThree/3D_models/Portal/Portal';
+import { SoldierModel } from 'ComponentsThree/3D_models/Soldier/Soldier';
 
 // ************** Конфигурации для пропсов ****************************
 import CosmosSpace from './tim-barton-5.jpg';
@@ -55,7 +55,12 @@ const PlanetaBlueHome = () => {
                 if (el.nikName === nikName) {
                   return null;
                 }
-                return <SoldierModel key={el.nikName} playerInfo={el} />;
+                return (
+                  <SoldierModel
+                    key={el.nikName + randomCount(100)}
+                    playerInfo={el}
+                  />
+                );
               })}
             {boxs.map((el, ind) => {
               return (
@@ -73,7 +78,6 @@ const PlanetaBlueHome = () => {
             <AutoFuture position={[10, -5, 0]} />
             <MyLordModel />
             <Planet />
-            <PlanetTwo />
             {/* <AnotherLordModel position={[2, -2, 5]} /> */}
             <Spaceport position={[9, -15, 0]} />
             <Portal position={[35, -2, 20]} />

@@ -22,6 +22,7 @@ import { planetaBlueHomeInfo } from './Slises/planetaBlueHomeInfoSlise';
 import { planetaYellowHomeInfo } from './Slises/planetaYellowHomeInfoSlise';
 import { planetaLostWorldInfo } from './Slises/planetaLostWorldInfoSlise';
 import { errorUser } from './Slises/errorUserSlise';
+import { statusWS } from './Slises/statusWS';
 
 // ***********************local*************************
 const tokenPersistConfig = {
@@ -42,6 +43,7 @@ const rootReduser = combineReducers({
   planetaLostWorldInfo: planetaLostWorldInfo.reducer,
   planetaBlueHomeInfo: planetaBlueHomeInfo.reducer,
   openCanvasModal: openCanvasModal.reducer,
+  statusWS: statusWS.reducer,
   errorUser: errorUser.reducer,
 });
 const persistedReducer = persistReducer(tokenPersistConfig, rootReduser);
