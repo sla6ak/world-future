@@ -1,0 +1,11 @@
+Model Information:
+* title:	Stargate - USS Prometheus | BC-303
+* source:	https://sketchfab.com/3d-models/stargate-uss-prometheus-bc-303-88941cb7d761421f9bdfebe651311dda
+* author:	NepsterCZ (https://sketchfab.com/NepsterCZ)
+
+Model License:
+* license type:	CC-BY-SA-4.0 (http://creativecommons.org/licenses/by-sa/4.0/)
+* requirements:	Author must be credited. Modified versions must have the same license. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Stargate - USS Prometheus | BC-303" (https://sketchfab.com/3d-models/stargate-uss-prometheus-bc-303-88941cb7d761421f9bdfebe651311dda) by NepsterCZ (https://sketchfab.com/NepsterCZ) licensed under CC-BY-SA-4.0 (http://creativecommons.org/licenses/by-sa/4.0/)

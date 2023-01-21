@@ -1,15 +1,14 @@
 import React from 'react'
 import { usePlane } from '@react-three/cannon'
-import stoneJpg from './stoneTexture.jpg'
 import { useLoader } from '@react-three/fiber'
 import { TextureLoader } from 'three/src/loaders/TextureLoader'
 import { RepeatWrapping } from 'three'
 
-const Planet = () => {
-  const textureStone = useLoader(TextureLoader, stoneJpg)
+const Planet = ({ groundJpg }) => {
+  const textureStone = useLoader(TextureLoader, groundJpg)
   textureStone.wrapS = RepeatWrapping
   textureStone.wrapT = RepeatWrapping
-  textureStone.repeat.set(200, 200)
+  textureStone.repeat.set(300, 300)
 
   const [ref] = usePlane(() => ({
     rotation: [-Math.PI / 2, 0, 0],

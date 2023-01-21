@@ -7,7 +7,7 @@ import { useLordKeyboardControls } from 'Hooks/useLordKeyboardControls'
 import { useSendMessageMutation } from 'Redux/WebSocketsAPI/WS_BASE_API'
 import { useOpenModalCanvasEl } from 'Hooks/useOpenModalCanvasEl'
 // чтоб было чесно нам нужно нашего лорда отрисовывать по ответным данным с сервера а не по локальным. для начала передадим на сервер нашу позицию
-const SPEED = 3
+const SPEED = 10
 
 const MyLordModel = (props) => {
   const { moveForward, moveBackward, moveLeft, moveRight, jump } =

@@ -9,4 +9,5 @@ export const LoaderContainer = styled.div`
   flex-grow: 2;
   margin-top: 20px;
   margin-bottom: 40px;
+  z-index: 49;
 `

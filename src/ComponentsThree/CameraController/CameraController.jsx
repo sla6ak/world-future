@@ -4,10 +4,10 @@ import { useThree, extend } from '@react-three/fiber'
 
 extend({ PointerLockControlsImpl })
 
-export const PointerCameraController = props => {
+export const PointerCameraController = (props) => {
   const { camera, gl } = useThree()
+  camera.far = 2000
   const controls = useRef()
-
   useEffect(() => {
     if (controls) {
       document.addEventListener('click', () => {

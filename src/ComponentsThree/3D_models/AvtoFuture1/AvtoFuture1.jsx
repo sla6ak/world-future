@@ -6,60 +6,26 @@ License: CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
 Source: https://sketchfab.com/3d-models/sci-fi-vehicle-027-public-domain-cc0-6c7809dbf2f945c8b216b6afb71456c4
 Title: Sci-Fi Vehicle 027 - public domain (CC0)
 */
-import React, { useMemo, useRef } from 'react'
+import React from 'react'
 import { useGLTF } from '@react-three/drei'
-import { useTrimesh } from '@react-three/cannon'
-import CannonUtils from '../CannonUtils'
+// import { useTrimesh } from '@react-three/cannon'
+// import CannonUtils from '../CannonUtils'
 
-// export function Monkey(props) {
-//   const { nodes } = useGLTF(
-//     'https://cdn.jsdelivr.net/gh/Sean-Bradley/React-Three-Fiber-Boilerplate@cannon/public/models/monkey.glb'
-//   );
-//   const args = useMemo(
-//     () => CannonUtils.toTrimeshProps(nodes.Suzanne.geometry),
-//     [nodes.Suzanne.geometry]
-//   );
-//   const [ref] = useTrimesh(() => ({ args, mass: 1, ...props }), useRef());
-//   return (
-//     <group ref={ref} {...props} dispose={null}>
-//       <mesh
-//         castShadow
-//         geometry={nodes.Suzanne.geometry}
-//         material={useMemo(() => new MeshNormalMaterial(), [])}
-//       />
-//     </group>
-//   );
-// }
-
+// мне удалось воссоздать физику углов для авто!!! теперь она с массой
 export function AvtoFuture1(props) {
   const { nodes, materials } = useGLTF('/models/avtoFuture1/scene.gltf')
-  const args = useMemo(() => {
-    // console.log('-', nodes);
-    // console.log('++', nodes.blocker001_silver_0?.geometry);
-    // const afg = [
-    //   ...CannonUtils.toTrimeshProps(nodes.blocker016_silver_0.geometry),
-    //   ...CannonUtils.toTrimeshProps(nodes.blocker002_plastic_shiny_0.geometry),
-    //   ...CannonUtils.toTrimeshProps(nodes.blocker012_headlights_0.geometry),
-    //   ...CannonUtils.toTrimeshProps(nodes.blocker013_silver_0.geometry),
-    //   ...CannonUtils.toTrimeshProps(nodes.blocker014_silver_0.geometry),
-    //   ...CannonUtils.toTrimeshProps(nodes.blocker015_silver_0.geometry),
-    //   ...CannonUtils.toTrimeshProps(nodes.blocker017_silver_0.geometry),
-    //   ...CannonUtils.toTrimeshProps(nodes.blocker_blocker_0.geometry),
-    //   ...CannonUtils.toTrimeshProps(nodes.blocker011_silver_0.geometry),
-    //   ...CannonUtils.toTrimeshProps(nodes.blocker010_silver_0.geometry),
-    //   ...CannonUtils.toTrimeshProps(nodes.blocker003_silver_0.geometry),
-    //   ...CannonUtils.toTrimeshProps(nodes.blocker004_plastic_smoth_0.geometry),
-    //   ...CannonUtils.toTrimeshProps(nodes.blocker005_taillights_0.geometry),
-    //   ...CannonUtils.toTrimeshProps(nodes.blocker006_plastic_smoth_0.geometry),
-    //   ...CannonUtils.toTrimeshProps(nodes.blocker007_plastic_smoth_0.geometry),
-    //   ...CannonUtils.toTrimeshProps(nodes.blocker008_plastic_matte_0.geometry),
-    // ];
-    return CannonUtils.toTrimeshProps(nodes.blocker014_silver_0.geometry)
-  }, [nodes])
-  const [ref] = useTrimesh(() => ({ args, mass: 1, ...props }), useRef())
+  // const args1 = useMemo(
+  //   () => CannonUtils.toTrimeshProps(nodes.blocker_blocker_0.geometry),
+  //   [nodes]
+  // )
+  // const [ref1] = useTrimesh(
+  //   () => ({ args: args1, mass: 1, position: [5, -1, 6] }),
+  //   useRef()
+  // )
+
   return (
-    <group ref={ref} dispose={null}>
-      <group scale={0.01}>
+    <group {...props} dispose={null}>
+      <group scale={0.01} rotation={[Math.PI, Math.PI, Math.PI]}>
         <mesh
           geometry={nodes.blocker_blocker_0.geometry}
           material={materials.blocker}

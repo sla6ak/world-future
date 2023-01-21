@@ -1,0 +1,11 @@
+Model Information:
+* title:	Handpainted Tree [Smoothed]
+* source:	https://sketchfab.com/3d-models/handpainted-tree-smoothed-01c8163a33e34b2c99171b10c5f99197
+* author:	Kafu Dev (https://sketchfab.com/kafutschga)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Handpainted Tree [Smoothed]" (https://sketchfab.com/3d-models/handpainted-tree-smoothed-01c8163a33e34b2c99171b10c5f99197) by Kafu Dev (https://sketchfab.com/kafutschga) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

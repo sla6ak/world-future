@@ -1,0 +1,11 @@
+Model Information:
+* title:	Sci-Fi City - public domain (CC0)
+* source:	https://sketchfab.com/3d-models/sci-fi-city-public-domain-cc0-b353532235bb4c45afeac578187c9be1
+* author:	Unity Fan youtube channel (https://sketchfab.com/unityfan777)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Sci-Fi City - public domain (CC0)" (https://sketchfab.com/3d-models/sci-fi-city-public-domain-cc0-b353532235bb4c45afeac578187c9be1) by Unity Fan youtube channel (https://sketchfab.com/unityfan777) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

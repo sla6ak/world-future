@@ -1,10 +1,12 @@
 import { useLoader, useFrame } from '@react-three/fiber'
 import React, { useRef } from 'react'
 import { TextureLoader } from 'three/src/loaders/TextureLoader'
-import starFire from './starFire.jpg'
 
-const Star = ({ position }) => {
-  const textureStar = useLoader(TextureLoader, starFire)
+const Star = ({ position, reSize, starImg }) => {
+  let textureStar
+  if (starImg) {
+    textureStar = useLoader(TextureLoader, starImg)
+  }
   const refBox = useRef()
 
   useFrame(() => {
@@ -13,10 +15,32 @@ const Star = ({ position }) => {
   }, [])
 
   return (
-    <mesh position={position} ref={refBox}>
-      <sphereGeometry args={[30]} />
-      <meshStandardMaterial map={textureStar} />
-    </mesh>
+    <>
+      {starImg && (
+        <>
+          <directionalLight
+            color="#dab89d"
+            intensity={2}
+            position={[
+              -position[0] - 200,
+              -position[1] - 100,
+              -position[2] - 200
+            ]}
+          />{' '}
+        </>
+      )}
+      <mesh position={position} ref={refBox}>
+        <sphereGeometry args={reSize} />
+        {!starImg ? (
+          <meshStandardMaterial color={'black'} />
+        ) : (
+          <>
+            <meshStandardMaterial map={textureStar} />
+            <pointLight color="#e7ff7b" intensity={3} />
+          </>
+        )}
+      </mesh>
+    </>
   )
 }
 

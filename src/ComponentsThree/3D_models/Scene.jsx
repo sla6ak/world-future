@@ -9,11 +9,22 @@ Title: Cyberpunk City - #1
 
 import React from 'react'
 import { useGLTF } from '@react-three/drei'
+// import CannonUtils from './CannonUtils'
+// import { useTrimesh } from '@react-three/cannon'
 
 export function Model(props) {
   const { nodes, materials } = useGLTF(
     '/models/test/cyberpunk_city_-_1/scene.gltf'
   )
+  // const args1 = useMemo(
+  //   () => CannonUtils.toTrimeshProps(nodes.Object_10.geometry),
+  //   [nodes]
+  // )
+  // const [ref1] = useTrimesh(
+  //   () => ({ args: args1, mass: -1, ...props }),
+  //   useRef()
+  // )
+  // console.log(ref1)
   return (
     <group {...props} scale={10} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]} scale={0.45}>
