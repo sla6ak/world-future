@@ -1,11 +1,11 @@
-import styled from '@emotion/styled';
-import cosmo from '../Impegs/cosmo.jpg';
+import styled from '@emotion/styled'
+import cosmo from '../Impegs/cosmo.jpg'
 
 export const BoxHeader = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-`;
+`
 
 export const MainFone = styled.div`
   min-width: 100vw;
@@ -23,4 +23,4 @@ export const MainFone = styled.div`
       rgba(24, 0, 58, 0.274)
     ),
     url(${cosmo});
-`;
+`

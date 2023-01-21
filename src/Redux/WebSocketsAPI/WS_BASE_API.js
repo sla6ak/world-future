@@ -1,6 +1,6 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { WS_PORT } from 'Redux/PORT';
-const BASE_DRAFT = { data: {} };
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { WS_PORT } from 'Redux/PORT'
+const BASE_DRAFT = { data: {} }
 const channels = [
   'chat',
   'planetaBlueHome',
@@ -8,66 +8,70 @@ const channels = [
   'planetaLostWorld',
   'missions',
   'myLord',
-  'connect',
-];
+  'connect'
+]
 async function waitFor(seconds) {
-  return new Promise(resolve => {
-    const id = setTimeout(resolve, seconds * 1000);
-    return clearTimeout(id);
-  });
+  return new Promise((resolve) => {
+    const id = setTimeout(resolve, seconds * 1000)
+    return clearTimeout(id)
+  })
 }
 
-let ws = null;
-let token = '';
+let ws = null
+let token = ''
 async function getSocket(token) {
   if (!ws) {
     try {
       return new Promise((resolve, reject) => {
-        ws = new WebSocket(WS_PORT);
+        ws = new WebSocket(WS_PORT)
         ws.onopen = () => {
-          console.log('connect+++');
+          console.log('connectWS+++')
           ws.send(
             JSON.stringify({
               channel: 'connect',
               data: {
-                token,
-              },
+                token
+              }
             })
-          );
-          return resolve(ws);
-        };
-        ws.onerror = reject;
-        ws.onclose = reject;
-      });
+          )
+          return resolve(ws)
+        }
+        ws.onerror = reject
+        ws.onclose = () => {
+          console.log('disconnectWS---')
+          return reject
+        }
+      })
     } catch (error) {
-      console.log('вебсокет неудается запустить:', error);
-      await waitFor(20);
-      return await getSocket(token);
+      console.log('вебсокет неудается запустить:', error)
+      await waitFor(20)
+      return await getSocket(token)
     }
   }
-  return ws;
+  return ws
 }
 
 export const WS_BASE_API = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: '/',
+    baseUrl: '/'
   }),
 
-  endpoints: builder => ({
+  endpoints: (builder) => ({
     tagTypes: ['wsApi'],
 
     sendMessage: builder.mutation({
-      queryFn: async objRes => {
-        const ws = await getSocket(token);
+      queryFn: async (objRes) => {
+        const ws = await getSocket(token)
         try {
-          new Promise(async resolve => {
-            resolve(ws.send(JSON.stringify(objRes)));
-          });
+          // eslint-disable-next-line no-new
+          new Promise((resolve) => {
+            resolve(ws.send(JSON.stringify(objRes)))
+          })
         } catch (error) {
-          console.log('ws.readyState', error);
+          console.log('ws.readyState', error)
         }
-        return '+';
-      },
+        return '+'
+      }
     }),
 
     getMessages: builder.query({
@@ -81,15 +85,15 @@ export const WS_BASE_API = createApi({
           getState, // получения текущего состояния магазина
           updateCachedData,
           cacheDataLoaded, // Это позволяет вам awaitпока фактическое значение не окажется в кеше
-          cacheEntryRemoved, // позволяет дождаться, когда запись в кеше будет удалена
+          cacheEntryRemoved // позволяет дождаться, когда запись в кеше будет удалена
         }
       ) {
-        token = getState().auth.token;
-        const ws = await getSocket(token);
+        token = getState().auth.token
+        const ws = await getSocket(token)
         try {
-          await cacheDataLoaded;
-          ws.addEventListener('message', message => {
-            const res = JSON.parse(message.data);
+          await cacheDataLoaded
+          ws.addEventListener('message', (message) => {
+            const res = JSON.parse(message.data)
             // if (res.channel === 'open') {
             //   ws.send(
             //     JSON.stringify({
@@ -100,23 +104,23 @@ export const WS_BASE_API = createApi({
             //     })
             //   );
             // }
-            if (!channels.includes(res.channel)) return;
+            if (!channels.includes(res.channel)) return
 
-            updateCachedData(draft => {
-              draft.data = res;
-            });
-          });
-          await cacheEntryRemoved;
-          ws.close();
+            updateCachedData((draft) => {
+              draft.data = res
+            })
+          })
+          await cacheEntryRemoved
+          ws.close()
         } catch {
-          console.log('Ошибка неудается получить ответ от WS');
-          ws.close();
+          console.log('Ошибка неудается получить ответ от WS')
+          ws.close()
           // if cacheEntryRemoved resolved before cacheDataLoaded,
           // cacheDataLoaded throws
         }
-      },
-    }),
-  }),
-});
+      }
+    })
+  })
+})
 
-export const { useGetMessagesQuery, useSendMessageMutation } = WS_BASE_API;
+export const { useGetMessagesQuery, useSendMessageMutation } = WS_BASE_API

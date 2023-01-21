@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from '@emotion/styled'
 export const ButtonNavLink = styled.div`
   background-color: rgb(192, 29, 187);
   display: flex;
@@ -8,4 +8,4 @@ export const ButtonNavLink = styled.div`
   border-radius: 5px 15px;
   margin: auto 0px 50px 0px;
   color: #fff;
-`;
+`

@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from '@emotion/styled'
 
 export const FormPerson = styled.form`
   display: flex;
@@ -7,4 +7,4 @@ export const FormPerson = styled.form`
   flex-direction: column;
   /* margin-bottom: 20px; */
   max-width: 600px;
-`;
+`

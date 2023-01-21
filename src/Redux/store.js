@@ -1,5 +1,5 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
+import { configureStore, combineReducers } from '@reduxjs/toolkit'
+import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
 import {
   persistStore,
   persistReducer,
@@ -8,28 +8,28 @@ import {
   PAUSE,
   PERSIST,
   PURGE,
-  REGISTER,
-} from 'redux-persist';
+  REGISTER
+} from 'redux-persist'
 // апи и слайсы
-import { WS_BASE_API } from './WebSocketsAPI/WS_BASE_API';
-import { API_BASE_SERVER } from './ServerAPI/API_BASE_SERVER';
-import { auth } from './Slises/AuthSlise';
-import { lordInfo } from './Slises/lordInfoSlise';
-import { language } from './Slises/LanguageSlise';
-import { chatGame } from './Slises/chatGameSlise';
-import { openCanvasModal } from './Slises/openCanvasModalSlise';
-import { planetaBlueHomeInfo } from './Slises/planetaBlueHomeInfoSlise';
-import { planetaYellowHomeInfo } from './Slises/planetaYellowHomeInfoSlise';
-import { planetaLostWorldInfo } from './Slises/planetaLostWorldInfoSlise';
-import { errorUser } from './Slises/errorUserSlise';
-import { statusWS } from './Slises/statusWS';
+import { WS_BASE_API } from './WebSocketsAPI/WS_BASE_API'
+import { API_BASE_SERVER } from './ServerAPI/API_BASE_SERVER'
+import { auth } from './Slises/AuthSlise'
+import { lordInfo } from './Slises/lordInfoSlise'
+import { language } from './Slises/LanguageSlise'
+import { chatGame } from './Slises/chatGameSlise'
+import { openCanvasModal } from './Slises/openCanvasModalSlise'
+import { planetaBlueHomeInfo } from './Slises/planetaBlueHomeInfoSlise'
+import { planetaYellowHomeInfo } from './Slises/planetaYellowHomeInfoSlise'
+import { planetaLostWorldInfo } from './Slises/planetaLostWorldInfoSlise'
+import { errorUser } from './Slises/errorUserSlise'
+import { statusWS } from './Slises/statusWS'
 
 // ***********************local*************************
 const tokenPersistConfig = {
-  key: 'worldFuture', //это ключь под которым мы сохраняем сторе
+  key: 'worldFuture', // это ключь под которым мы сохраняем сторе
   storage,
-  whitelist: ['auth', 'language'], // этот ключь вытягивает уже из slice
-};
+  whitelist: ['auth', 'language'] // этот ключь вытягивает уже из slice
+}
 
 // *****************reduser*************************************
 const rootReduser = combineReducers({
@@ -44,9 +44,9 @@ const rootReduser = combineReducers({
   planetaBlueHomeInfo: planetaBlueHomeInfo.reducer,
   openCanvasModal: openCanvasModal.reducer,
   statusWS: statusWS.reducer,
-  errorUser: errorUser.reducer,
-});
-const persistedReducer = persistReducer(tokenPersistConfig, rootReduser);
+  errorUser: errorUser.reducer
+})
+const persistedReducer = persistReducer(tokenPersistConfig, rootReduser)
 
 // ****************store*********************************
 export const store = configureStore({
@@ -54,11 +54,11 @@ export const store = configureStore({
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+      }
     })
       .concat(API_BASE_SERVER.middleware)
-      .concat(WS_BASE_API.middleware),
-});
+      .concat(WS_BASE_API.middleware)
+})
 
-export const persistor = persistStore(store);
+export const persistor = persistStore(store)

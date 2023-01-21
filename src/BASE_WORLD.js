@@ -7,6 +7,6 @@ export const BASE_WORLD = {
     { chanal: 'planetaYellowHome', data: {} },
     { chanal: 'planetaLostWorld', data: {} },
     { chanal: 'missions', data: {} },
-    { chanal: 'myLord', data: {} },
-  ],
-};
+    { chanal: 'myLord', data: {} }
+  ]
+}

@@ -1,50 +1,50 @@
-import { useState } from 'react';
-import { nanoid } from 'nanoid';
-import { FormPerson } from './Form.styled';
-import Grid from '@mui/material/Grid';
-import propTypes from 'prop-types';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
+import React, { useState } from 'react'
+import { nanoid } from 'nanoid'
+import { FormPerson } from './Form.styled'
+import Grid from '@mui/material/Grid'
+import propTypes from 'prop-types'
+import TextField from '@mui/material/TextField'
+import Button from '@mui/material/Button'
 
-import { useAddContactMutation } from 'server/contacts';
-import { toast } from 'react-toastify';
+import { useAddContactMutation } from 'server/contacts'
+import { toast } from 'react-toastify'
 
 export const Form = () => {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
-  const [updatePost, { isError }] = useAddContactMutation();
+  const [name, setName] = useState('')
+  const [number, setNumber] = useState('')
+  const [updatePost, { isError }] = useAddContactMutation()
 
-  //генерируем необходимые ключи
-  const idName = nanoid();
-  const idTel = nanoid();
+  // генерируем необходимые ключи
+  const idName = nanoid()
+  const idTel = nanoid()
 
   // универсальный метод для инпутов
-  const onCangeInpute = event => {
-    const { name, value } = event.currentTarget;
+  const onCangeInpute = (event) => {
+    const { name, value } = event.currentTarget
     if (name === 'name') {
-      setName(value);
+      setName(value)
     } else if (name === 'number') {
-      setNumber(value);
+      setNumber(value)
     }
-  };
+  }
 
-  //внутрений метод сабмита обрабатывающий событие
-  const formSubmit = event => {
-    event.preventDefault();
-    updatePost({ name, number });
-    reset();
-  };
+  // внутрений метод сабмита обрабатывающий событие
+  const formSubmit = (event) => {
+    event.preventDefault()
+    updatePost({ name, number })
+    reset()
+  }
 
   // очистка формы
   const reset = () => {
-    setName('');
-    setNumber('');
+    setName('')
+    setNumber('')
     // тут же нам необходимо очистить локалку чтоб вводимые ранее значения не всплыли вновь
-    localStorage.removeItem('write');
-  };
+    localStorage.removeItem('write')
+  }
   const tosty = () => {
-    toast.error('Error add');
-  };
+    toast.error('Error add')
+  }
 
   return (
     <FormPerson action="" onSubmit={formSubmit}>
@@ -83,7 +83,7 @@ export const Form = () => {
         Save
       </Button>
     </FormPerson>
-  );
-};
+  )
+}
 
-Form.propTypes = { chengeSabmit: propTypes.func };
+Form.propTypes = { chengeSabmit: propTypes.func }

@@ -1,3 +1,4 @@
+import React from 'react'
 import {
   RiteHelmet,
   Title,
@@ -7,14 +8,14 @@ import {
   MainInfoBox,
   MainInfo,
   HelpInfo,
-  Del,
-} from './Squad.styled';
-import aaa from './aaa.png';
-import bbb from './bbb.png';
-import ccc from './ccc.png';
+  Del
+} from './Squad.styled'
+import aaa from './aaa.png'
+import bbb from './bbb.png'
+import ccc from './ccc.png'
 
 const Squad = ({ lordInfo }) => {
-  const { robot, shturm, sniper } = lordInfo?.data.squad;
+  const { robot, shturm, sniper } = lordInfo?.data.squad
 
   const resultSum = (unit, type) => {
     const sum =
@@ -23,14 +24,14 @@ const Squad = ({ lordInfo }) => {
       Math.floor(
         (unit.power[type].shell.base + unit.power[type].shell.bonuse) *
           (unit.power[type].shell.percent / 100)
-      );
-    return sum;
-  };
+      )
+    return sum
+  }
   return (
     <RiteHelmet
-      onClick={e => {
-        e.preventDefault();
-        e.stopPropagation();
+      onClick={(e) => {
+        e.preventDefault()
+        e.stopPropagation()
       }}
     >
       <Title>My squad:</Title>
@@ -170,7 +171,7 @@ const Squad = ({ lordInfo }) => {
         </HelpInfo>
       </div>
     </RiteHelmet>
-  );
-};
+  )
+}
 
-export default Squad;
+export default Squad

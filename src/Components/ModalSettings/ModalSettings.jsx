@@ -1,15 +1,14 @@
-import { GeneralButton } from 'Components/GeneralButton/GeneralButton.styled';
-import React from 'react';
-import { createPortal } from 'react-dom';
-import { Overlay, ModalWindow } from './ModalSettings.styled';
-import { WrapperButtons } from './ModalSettings.styled';
+import { GeneralButton } from 'Components/GeneralButton/GeneralButton.styled'
+import React from 'react'
+import { createPortal } from 'react-dom'
+import { Overlay, ModalWindow, WrapperButtons } from './ModalSettings.styled'
 
 export const ModalSettings = ({ onModalClose }) => {
   const mouseDownClouse = e => {
     if (e.target === e.currentTarget) {
-      onModalClose();
+      onModalClose()
     }
-  };
+  }
 
   return createPortal(
     <Overlay>
@@ -26,5 +25,5 @@ export const ModalSettings = ({ onModalClose }) => {
       </ModalWindow>
     </Overlay>,
     document.querySelector('#modalsettings')
-  );
-};
+  )
+}

@@ -1,13 +1,13 @@
-import styled from '@emotion/styled';
+import styled from '@emotion/styled'
 
-export const ModalInfo = styled.div``;
+export const ModalInfo = styled.div``
 export const WrapperButtons = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
   @media (min-width: 768px) {
   }
-`;
+`
 export const MoreInfo = styled.div`
   display: flex;
   flex-direction: column;
@@ -15,7 +15,7 @@ export const MoreInfo = styled.div`
   font-size: 14;
   color: #00b6ce;
   margin-bottom: 0.7rem;
-`;
+`
 export const ShortInfo = styled.div`
   display: flex;
   flex-direction: column;
@@ -23,11 +23,11 @@ export const ShortInfo = styled.div`
   width: 100%;
   color: #00d312;
   margin-bottom: 0.7rem;
-`;
+`
 export const TitleModal = styled.h3`
   display: flex;
   flex-direction: column;
   width: 100%;
   color: #00d412;
   margin-bottom: 0.7rem;
-`;
+`

@@ -6,10 +6,10 @@ License: CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
 Source: https://sketchfab.com/3d-models/sci-fi-vehicle-027-public-domain-cc0-6c7809dbf2f945c8b216b6afb71456c4
 Title: Sci-Fi Vehicle 027 - public domain (CC0)
 */
-import { useGLTF } from '@react-three/drei';
-import { useMemo, useRef } from 'react';
-import { useTrimesh } from '@react-three/cannon';
-import CannonUtils from '../CannonUtils';
+import React, { useMemo, useRef } from 'react'
+import { useGLTF } from '@react-three/drei'
+import { useTrimesh } from '@react-three/cannon'
+import CannonUtils from '../CannonUtils'
 
 // export function Monkey(props) {
 //   const { nodes } = useGLTF(
@@ -32,7 +32,7 @@ import CannonUtils from '../CannonUtils';
 // }
 
 export function AvtoFuture1(props) {
-  const { nodes, materials } = useGLTF('/models/avtoFuture1/scene.gltf');
+  const { nodes, materials } = useGLTF('/models/avtoFuture1/scene.gltf')
   const args = useMemo(() => {
     // console.log('-', nodes);
     // console.log('++', nodes.blocker001_silver_0?.geometry);
@@ -54,9 +54,9 @@ export function AvtoFuture1(props) {
     //   ...CannonUtils.toTrimeshProps(nodes.blocker007_plastic_smoth_0.geometry),
     //   ...CannonUtils.toTrimeshProps(nodes.blocker008_plastic_matte_0.geometry),
     // ];
-    return CannonUtils.toTrimeshProps(nodes.blocker014_silver_0.geometry);
-  }, [nodes]);
-  const [ref] = useTrimesh(() => ({ args, mass: 1, ...props }), useRef());
+    return CannonUtils.toTrimeshProps(nodes.blocker014_silver_0.geometry)
+  }, [nodes])
+  const [ref] = useTrimesh(() => ({ args, mass: 1, ...props }), useRef())
   return (
     <group ref={ref} dispose={null}>
       <group scale={0.01}>
@@ -170,7 +170,7 @@ export function AvtoFuture1(props) {
         />
       </group>
     </group>
-  );
+  )
 }
 
-useGLTF.preload('/models/avtoFuture1/scene.gltf');
+useGLTF.preload('/models/avtoFuture1/scene.gltf')

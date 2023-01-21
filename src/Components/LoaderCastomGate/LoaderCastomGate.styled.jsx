@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
-import starGate from '../../Impegs/stargatecast.png';
+import styled from '@emotion/styled'
+import starGate from '../../Impegs/stargatecast.png'
 
 export const GateFone = styled.div`
   width: 400px;
@@ -18,4 +18,4 @@ export const GateFone = styled.div`
       rgba(92, 58, 139, 0.048)
     ),
     url(${starGate});
-`;
+`

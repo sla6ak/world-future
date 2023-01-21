@@ -1,15 +1,15 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit'
 
-const initialNik = '';
+const initialNik = ''
 
 export const nikName = createSlice({
   name: 'person',
   initialState: initialNik,
   reducers: {
     myNik(_state, action) {
-      return action.payload;
-    },
-  },
-});
+      return action.payload
+    }
+  }
+})
 
-export const { myNik } = nikName.actions;
+export const { myNik } = nikName.actions

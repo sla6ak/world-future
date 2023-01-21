@@ -1,42 +1,42 @@
-import styled from '@emotion/styled';
-import { TextField } from '@mui/material';
+import styled from '@emotion/styled'
+import { TextField } from '@mui/material'
 
 export const LinkToRegister = styled.div`
   margin: auto 0px 30px 0px;
   display: flex;
   align-items: center;
-`;
+`
 
 export const AskToRegister = styled.span`
   margin: 0px 10px 0px 10px;
-`;
+`
 
 export const FormSubmit = styled.form`
   max-width: 500px;
   padding: 10px 30px 20px 20px;
-`;
+`
 
 export const ValidationTextField = styled(TextField)({
   margin: '0.5rem',
   '& input:valid + fieldset': {
     borderColor: '#4a9448',
-    borderWidth: 2,
+    borderWidth: 2
   },
   '& label': {
-    color: '#00000053',
+    color: '#00000053'
   },
   '& input': {
-    color: '#000000',
+    color: '#000000'
   },
   '&:hover fieldset': {
-    borderColor: '#0020af',
+    borderColor: '#0020af'
   },
 
   '& input:valid:focus + fieldset': {
     borderLeftWidth: 6,
-    padding: '4px !important', // override inline-style
-  },
-});
+    padding: '4px !important' // override inline-style
+  }
+})
 
 // export const ButtonSubmit = styled(Button)({
 //   display: 'flex',
@@ -52,7 +52,7 @@ export const ButtonWrapper = styled.div`
   align-items: center;
   margin-top: 'auto';
   height: 150px;
-`;
+`
 export const ButtonHome = styled.div`
   position: absolute;
   display: flex;
@@ -72,7 +72,7 @@ export const ButtonHome = styled.div`
   /* @media (max-width: 767px) {
         display: none;
     } */
-`;
+`
 
 export const ButtonLicensia = styled.button`
   background-color: rgb(255, 255, 255);
@@ -84,4 +84,4 @@ export const ButtonLicensia = styled.button`
   width: 20px;
   height: 20px;
   border-color: '#0020af';
-`;
+`

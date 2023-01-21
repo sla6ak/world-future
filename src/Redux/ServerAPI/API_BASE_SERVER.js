@@ -1,17 +1,17 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { PORT } from 'Redux/PORT';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { PORT } from 'Redux/PORT'
 
 export const API_BASE_SERVER = createApi({
   reducerPath: 'serverApi',
   baseQuery: fetchBaseQuery({
     baseUrl: `${PORT}`,
     prepareHeaders: (headers, { getState }) => {
-      const token = getState().auth.token;
+      const token = getState().auth.token
       if (token) {
-        headers.set('authorization', `Bearer ${token}`);
+        headers.set('authorization', `Bearer ${token}`)
       }
-      return headers;
-    },
+      return headers
+    }
   }),
 
   endpoints: builder => ({
@@ -21,67 +21,67 @@ export const API_BASE_SERVER = createApi({
     getLanguage: builder.query({
       query: lang => ({
         url: `language/${lang}`,
-        method: 'GET',
+        method: 'GET'
       }),
       providesTags: ['languageAPI'],
-      keepUnusedDataFor: 3,
+      keepUnusedDataFor: 3
     }),
     // авторизация юзера
     getIsActivUser: builder.query({
       query: () => ({
-        url: `auth/current`,
-        method: 'GET',
+        url: 'auth/current',
+        method: 'GET'
       }),
-      providesTags: ['authApi'],
+      providesTags: ['authApi']
     }),
     registrationUser: builder.mutation({
       query: newUser => ({
         url: 'auth/signup',
         method: 'POST',
-        body: newUser,
+        body: newUser
       }),
-      invalidatesTags: ['authApi'],
+      invalidatesTags: ['authApi']
     }),
 
     loginUser: builder.mutation({
       query: userData => ({
-        url: `auth/login`,
+        url: 'auth/login',
         method: 'POST',
-        body: userData,
+        body: userData
       }),
-      invalidatesTags: ['authApi'],
+      invalidatesTags: ['authApi']
     }),
     // после регистрации создаем персонажа игроку
     // работать с персонажем предлогаю смешанно как через фетч запросы так и через вебсокеты.
     getMyPerson: builder.query({
       query: () => ({
-        url: `lord/`,
-        method: 'GET',
+        url: 'lord/',
+        method: 'GET'
       }),
       providesTags: ['personApi'],
-      keepUnusedDataFor: 3,
+      keepUnusedDataFor: 3
     }),
 
     chooseCurentPlanet: builder.mutation({
       query: planet => ({
         url: 'lord/',
         method: 'PATCH',
-        body: planet,
+        body: planet
       }),
       invalidatesTags: ['personApi'],
-      keepUnusedDataFor: 3,
+      keepUnusedDataFor: 3
     }),
 
     registrationPerson: builder.mutation({
       query: newNik => ({
         url: 'lord/',
         method: 'POST',
-        body: newNik,
+        body: newNik
       }),
-      invalidatesTags: ['personApi'],
-    }),
-  }),
-});
+      invalidatesTags: ['personApi']
+    })
+  })
+})
 export const {
   useGetIsActivUserQuery,
   useRegistrationUserMutation,
@@ -89,5 +89,5 @@ export const {
   useGetLanguageQuery,
   useGetMyPersonQuery,
   useChooseCurentPlanetMutation,
-  useRegistrationPersonMutation,
-} = API_BASE_SERVER;
+  useRegistrationPersonMutation
+} = API_BASE_SERVER

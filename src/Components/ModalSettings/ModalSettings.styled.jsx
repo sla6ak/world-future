@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from '@emotion/styled'
 
 export const Overlay = styled.div`
   position: fixed;
@@ -11,7 +11,7 @@ export const Overlay = styled.div`
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.2);
   }
-`;
+`
 
 export const ModalWindow = styled.div`
   position: relative;
@@ -30,11 +30,11 @@ export const ModalWindow = styled.div`
     max-width: 540 px;
     border-radius: 20px;
   }
-`;
+`
 export const WrapperButtons = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
   @media (min-width: 768px) {
   }
-`;
+`

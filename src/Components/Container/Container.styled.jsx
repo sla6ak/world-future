@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from '@emotion/styled'
 
 export const Shell = styled.div`
     margin: 0 auto;
@@ -19,4 +19,4 @@ export const Shell = styled.div`
         padding-left: 16px;
         padding-right: 16px;
     }
-`;
+`

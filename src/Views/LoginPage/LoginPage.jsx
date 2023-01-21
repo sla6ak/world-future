@@ -1,66 +1,65 @@
-import { ListAuth } from 'Components/ListAuth/ListAuth.styled';
-import { Title } from 'Components/Title/Title.styled';
-import { NavLink } from 'react-router-dom';
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useLoginUserMutation } from 'Redux/ServerAPI/API_BASE_SERVER';
-import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
-import { newToken, isAuth } from 'Redux/Slises/AuthSlise';
-import CloseIcon from '@mui/icons-material/Close';
-import { validationLoginSchema } from 'Helpers/validationForms';
-import { GeneralButton } from 'Components/GeneralButton/GeneralButton.styled';
-import { Grid } from '@mui/material';
+import { ListAuth } from 'Components/ListAuth/ListAuth.styled'
+import { Title } from 'Components/Title/Title.styled'
+import { NavLink, useNavigate } from 'react-router-dom'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useLoginUserMutation } from 'Redux/ServerAPI/API_BASE_SERVER'
+import { toast } from 'react-toastify'
+import { newToken, isAuth } from 'Redux/Slises/AuthSlise'
+import CloseIcon from '@mui/icons-material/Close'
+import { validationLoginSchema } from 'Helpers/validationForms'
+import { GeneralButton } from 'Components/GeneralButton/GeneralButton.styled'
+import { Grid } from '@mui/material'
 import {
   LinkToRegister,
   AskToRegister,
   ValidationTextField,
   ButtonWrapper,
   ButtonHome,
-  FormSubmit,
-} from './LoginPage.styled';
+  FormSubmit
+} from './LoginPage.styled'
 
 const LoginPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const [createUser] = useLoginUserMutation();
-  const { loginPage } = useSelector(state => state.language.transleter);
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const [createUser] = useLoginUserMutation()
+  const { loginPage } = useSelector((state) => state.language.transleter)
 
-  const handleEmail = event => {
-    setEmail(event.target.value);
-  };
-  const handlePassword = event => {
-    setPassword(event.target.value);
-  };
+  const handleEmail = (event) => {
+    setEmail(event.target.value)
+  }
+  const handlePassword = (event) => {
+    setPassword(event.target.value)
+  }
 
-  const onSubmitRegister = async event => {
-    event.preventDefault();
+  const onSubmitRegister = async (event) => {
+    event.preventDefault()
     try {
       await validationLoginSchema.validate({
         email,
-        password,
-      });
+        password
+      })
     } catch (error) {
-      toast.warn(`${error}`);
-      return;
+      toast.warn(`${error}`)
+      return
     }
-    const send = { email: email, password: password };
-    const responsLogin = await createUser(send);
+    const send = { email, password }
+    const responsLogin = await createUser(send)
     if (responsLogin.error?.status === 404) {
-      toast.error('User not found');
-      return;
+      toast.error('User not found')
+      return
     }
     if (responsLogin.data) {
-      dispatch(newToken(responsLogin.data.token));
-      dispatch(isAuth(responsLogin.data.user));
-      toast.success('Succesful login user!');
+      dispatch(newToken(responsLogin.data.token))
+      dispatch(isAuth(responsLogin.data.user))
+      toast.success('Succesful login user!')
     }
-  };
+  }
   return (
     <ListAuth>
-      <Title>{!!loginPage ? loginPage.h1 : 'Login Please'}</Title>
+      <Title>{loginPage ? loginPage.h1 : 'Login Please'}</Title>
       <ButtonHome onClick={() => navigate('/')}>
         <CloseIcon />
       </ButtonHome>
@@ -93,20 +92,20 @@ const LoginPage = () => {
         </Grid>
         <ButtonWrapper>
           <GeneralButton type="submit">
-            {!!loginPage ? loginPage.buttons.submit : 'Submit'}
+            {loginPage ? loginPage.buttons.submit : 'Submit'}
           </GeneralButton>
         </ButtonWrapper>
       </FormSubmit>
       <LinkToRegister>
         <AskToRegister>
-          {!!loginPage ? loginPage.ask : 'You don&#39;t have a login?'}
+          {loginPage ? loginPage.ask : 'You don&#39;t have a login?'}
         </AskToRegister>
         <NavLink style={{ color: '#2663e7' }} to="/auth/register">
-          {!!loginPage ? loginPage.buttons.registration : 'Registration'}
+          {loginPage ? loginPage.buttons.registration : 'Registration'}
         </NavLink>
       </LinkToRegister>
     </ListAuth>
-  );
-};
+  )
+}
 
-export default LoginPage;
+export default LoginPage

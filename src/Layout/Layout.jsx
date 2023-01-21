@@ -1,7 +1,7 @@
-import { Suspense } from 'react';
-import { MainFone } from './Layout.styled';
-import { Outlet } from 'react-router-dom';
-import { LoaderCastomGate } from 'Components/LoaderCastomGate/LoaderCastomGate';
+import React, { Suspense } from 'react'
+import { MainFone } from './Layout.styled'
+import { Outlet } from 'react-router-dom'
+import { LoaderCastomGate } from 'Components/LoaderCastomGate/LoaderCastomGate'
 
 export function Layout() {
   return (
@@ -10,5 +10,5 @@ export function Layout() {
         <Outlet />
       </Suspense>
     </MainFone>
-  );
+  )
 }

@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit'
 
 const initialLanguage = {
   myLanguage: 'en',
@@ -7,21 +7,21 @@ const initialLanguage = {
     startPage: null,
     loginPage: null,
     registerPage: null,
-    settingLord: null,
-  },
-}; // ru
+    settingLord: null
+  }
+} // ru
 
 export const language = createSlice({
   name: 'language',
   initialState: initialLanguage,
   reducers: {
     switchLanguage(state, action) {
-      state.myLanguage = action.payload;
+      state.myLanguage = action.payload
     },
     transleter(state, action) {
-      state.transleter = action.payload;
-    },
-  },
-});
+      state.transleter = action.payload
+    }
+  }
+})
 
-export const { switchLanguage, transleter } = language.actions;
+export const { switchLanguage, transleter } = language.actions

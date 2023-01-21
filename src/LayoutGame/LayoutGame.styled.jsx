@@ -1,26 +1,26 @@
-import styled from '@emotion/styled';
+import styled from '@emotion/styled'
 
 export const Holst = styled.div`
   position: relative;
-`;
+`
 export const KristalsBlue = styled.div`
   color: #0065fd;
   min-width: 10vw;
-`;
+`
 export const DarkMatter = styled.div`
   color: #8500dd;
   min-width: 10vw;
-`;
+`
 export const KristalsYellow = styled.div`
   color: #fdec00;
   min-width: 10vw;
-`;
+`
 export const KristalBox = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin-left: 5vw;
   width: 100%;
-`;
+`
 export const ArmBox = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -31,7 +31,7 @@ export const ArmBox = styled.div`
   padding-top: 15px;
   padding-bottom: 15px;
   cursor: pointer;
-`;
+`
 export const HeaderHelmet = styled.div`
   position: fixed;
   top: 0;
@@ -44,7 +44,7 @@ export const HeaderHelmet = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 5;
-`;
+`
 
 export const FooterHelmet = styled.div`
   position: fixed;
@@ -58,7 +58,7 @@ export const FooterHelmet = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 3;
-`;
+`
 
 export const Lord = styled.div`
   display: flex;
@@ -69,14 +69,14 @@ export const Lord = styled.div`
   border-radius: 50%;
   padding-left: 1.2rem;
   padding-right: 1.2rem;
-`;
+`
 export const NikLord = styled.div`
   display: flex;
   flex-direction: row;
   font-size: 2rem;
   font-weight: bold;
   color: #14aa00;
-`;
+`
 
 export const NamePlanet = styled.div`
   display: flex;
@@ -88,7 +88,7 @@ export const NamePlanet = styled.div`
   border-radius: 50%;
   padding-left: 1.2rem;
   padding-right: 1.2rem;
-`;
+`
 
 export const ChatBox = styled.div`
   display: flex;
@@ -99,7 +99,7 @@ export const ChatBox = styled.div`
   padding-bottom: 15px;
   font-weight: bold;
   cursor: pointer;
-`;
+`
 export const MissionBox = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -110,7 +110,7 @@ export const MissionBox = styled.div`
   font-weight: bold;
   justify-content: end;
   cursor: pointer;
-`;
+`
 export const SignalArm = styled.div`
   display: flex;
   width: 0.7rem;
@@ -118,11 +118,11 @@ export const SignalArm = styled.div`
   border-radius: 50%;
   margin-left: 5px;
   margin-right: 3px;
-`;
+`
 export const SignalBox = styled.div`
   display: flex;
   font-weight: 400;
   font-size: 14px;
   align-items: center;
   margin-left: 5px;
-`;
+`

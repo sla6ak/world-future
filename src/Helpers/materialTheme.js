@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material';
+import { createTheme } from '@mui/material'
 
 const customTheme = {
   colors: {
@@ -6,7 +6,7 @@ const customTheme = {
       hoverAccent: '#348844',
       hoverWhite: '#eef',
       white: '#FFFFFF',
-      accent: '#4a9448',
+      accent: '#4a9448'
     },
     green: '#24CCA7',
     purpure: '#FF6596',
@@ -14,9 +14,9 @@ const customTheme = {
     helperText: '#BDBDBD',
     iconColor: '#E0E0E0',
     fone: '#E5E5E5',
-    error: '#97000099',
+    error: '#97000099'
   },
-  spacing: value => `${4 * value}px`,
-};
+  spacing: value => `${4 * value}px`
+}
 
-export const materialTheme = createTheme(customTheme);
+export const materialTheme = createTheme(customTheme)

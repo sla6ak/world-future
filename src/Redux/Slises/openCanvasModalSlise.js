@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit'
 // статус определяет рендерить модалку или нет тип определяет какую модалку встроить как взаимодействовать таймер закроет модалку автоматически инфо это стандартные поля для модалки title, ... позиция модалки должна определить где именно модалку отренднрить
 const initialCanvasModal = {
   isClick: false,
@@ -6,8 +6,8 @@ const initialCanvasModal = {
   typeObj: null,
   ObjPosition: {},
   timerOpen: 0,
-  info: { title: '', typeObj: '', shortInfo: '', moreInfo: '' },
-};
+  info: { title: '', typeObj: '', shortInfo: '', moreInfo: '' }
+}
 // typeObj определяет наличие кнопок или взаимодействий ["history","user","kristall",'portal']
 
 export const openCanvasModal = createSlice({
@@ -15,23 +15,23 @@ export const openCanvasModal = createSlice({
   initialState: initialCanvasModal,
   reducers: {
     newOpenCanvasModal(_state, action) {
-      return action.payload;
+      return action.payload
     },
     onHoverCanvasModal(state, action) {
-      return { ...state, ...action.payload };
+      return { ...state, ...action.payload }
     },
     ofHoverCanvasModal(state, action) {
-      return { ...state, ...action.payload };
+      return { ...state, ...action.payload }
     },
     closeCanvasModal(_state, _action) {
-      return { ...initialCanvasModal };
-    },
-  },
-});
+      return { ...initialCanvasModal }
+    }
+  }
+})
 
 export const {
   newOpenCanvasModal,
   ofHoverCanvasModal,
   onHoverCanvasModal,
-  closeCanvasModal,
-} = openCanvasModal.actions;
+  closeCanvasModal
+} = openCanvasModal.actions

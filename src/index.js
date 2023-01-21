@@ -1,16 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { App } from 'App/App';
-import { BrowserRouter } from 'react-router-dom'; // это маршрутизатор для обработки js страниц
-import { store } from './Redux/store';
-import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react';
-import { persistor } from './Redux/store';
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer, Zoom } from 'react-toastify';
-import { GlobalStyle } from './GlobalStyled.styled';
-import { ThemeProvider } from '@mui/material/styles';
-import { materialTheme } from './Helpers/materialTheme';
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { App } from 'App/App'
+import { BrowserRouter } from 'react-router-dom' // это маршрутизатор для обработки js страниц
+import { store, persistor } from './Redux/store'
+import { Provider } from 'react-redux'
+import { PersistGate } from 'redux-persist/integration/react'
+import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer, Zoom } from 'react-toastify'
+import { GlobalStyle } from './GlobalStyled.styled'
+import { ThemeProvider } from '@mui/material/styles'
+import { materialTheme } from './Helpers/materialTheme'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
@@ -38,4 +37,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </PersistGate>
   </Provider>
   // </React.StrictMode>
-);
+)

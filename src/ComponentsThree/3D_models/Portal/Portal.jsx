@@ -1,21 +1,20 @@
-import { useRef } from 'react';
+import React, { useRef, useState } from 'react'
 // import { useState } from 'react';
-import { useGLTF } from '@react-three/drei';
-import { useDispatch } from 'react-redux';
-import { useState } from 'react';
+import { useGLTF } from '@react-three/drei'
+import { useDispatch } from 'react-redux'
 import {
   newOpenCanvasModal,
   onHoverCanvasModal,
-  ofHoverCanvasModal,
-} from 'Redux/Slises/openCanvasModalSlise';
+  ofHoverCanvasModal
+} from 'Redux/Slises/openCanvasModalSlise'
 
 const Portal = ({ ...props }) => {
-  const [hovered, setHover] = useState(false);
-  const [active, setActive] = useState(false);
+  const [hovered, setHover] = useState(false)
+  const [active, setActive] = useState(false)
 
-  const dispatch = useDispatch();
-  const group = useRef();
-  const { nodes, materials } = useGLTF('/models/time_machine/scene.gltf');
+  const dispatch = useDispatch()
+  const group = useRef()
+  const { nodes, materials } = useGLTF('/models/time_machine/scene.gltf')
   const onClickObj = () => {
     dispatch(
       newOpenCanvasModal({
@@ -30,14 +29,14 @@ const Portal = ({ ...props }) => {
           shortInfo:
             'Врата построенные неизвестной цивилизацией позволяют путешествовать по вселенной',
           moreInfo:
-            'Врата открывают портал в далеком космосе, тебе доступны путешествия в системы богатые ресурсами и аномалиями для исследования новых технологий но будь осторожен другая фракция хочет присвоить космос себе',
-        },
+            'Врата открывают портал в далеком космосе, тебе доступны путешествия в системы богатые ресурсами и аномалиями для исследования новых технологий но будь осторожен другая фракция хочет присвоить космос себе'
+        }
       })
-    );
-    setActive(!active);
-  };
+    )
+    setActive(!active)
+  }
   const onHoverObj = () => {
-    setHover(true);
+    setHover(true)
     dispatch(
       onHoverCanvasModal({
         isClick: false,
@@ -46,34 +45,34 @@ const Portal = ({ ...props }) => {
         info: {
           title: 'The Star Gate',
           shortInfo:
-            'Врата построенные неизвестной цивилизацией позволяют путешествовать по вселенной',
-        },
+            'Врата построенные неизвестной цивилизацией позволяют путешествовать по вселенной'
+        }
       })
-    );
-    setActive(!active);
-  };
+    )
+    setActive(!active)
+  }
   const offHoverObj = () => {
-    setHover(false);
+    setHover(false)
     dispatch(
       ofHoverCanvasModal({
         isHover: false,
-        info: {},
+        info: {}
       })
-    );
-    setActive(!active);
-  };
+    )
+    setActive(!active)
+  }
 
   return (
     <group
       ref={group}
-      onPointerDown={e => {
-        onClickObj();
+      onPointerDown={(e) => {
+        onClickObj()
       }}
-      onPointerEnter={e => {
-        onHoverObj();
+      onPointerEnter={(e) => {
+        onHoverObj()
       }}
-      onPointerOut={e => {
-        offHoverObj();
+      onPointerOut={(e) => {
+        offHoverObj()
       }}
       dispose={null}
       scale={hovered ? 0.102 : 0.1}
@@ -140,9 +139,9 @@ const Portal = ({ ...props }) => {
         />
       </group>
     </group>
-  );
-};
+  )
+}
 
-useGLTF.preload('/models/time_machine/scene.gltf');
+useGLTF.preload('/models/time_machine/scene.gltf')
 
-export default Portal;
+export default Portal

@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
-import { Button } from '@mui/material';
+import styled from '@emotion/styled'
+import { Button } from '@mui/material'
 
 export const RiteHelmet = styled.div`
   position: fixed;
@@ -14,18 +14,18 @@ export const RiteHelmet = styled.div`
   justify-content: end;
   align-items: end;
   z-index: 3;
-`;
+`
 export const FormSubmit = styled.form`
   margin-top: auto;
   margin-bottom: 5vh;
   width: 100%;
-`;
+`
 export const Title = styled.div`
   width: 100%;
   font-weight: bold;
   justify-content: end;
   display: flex;
-`;
+`
 
 export const ButtonLetter = styled(Button)({
   display: 'flex',
@@ -37,6 +37,6 @@ export const ButtonLetter = styled(Button)({
   backgroundColor: 'rgba(0, 66, 9, 0.308)',
   color: '#0b3000',
   ':hover': {
-    backgroundColor: '#06752796',
-  },
-});
+    backgroundColor: '#06752796'
+  }
+})
