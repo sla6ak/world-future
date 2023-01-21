@@ -1,29 +1,28 @@
-import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom'; // работа с маршрутизацией
-import { lazy } from 'react';
-import { Layout } from 'Layout/Layout';
-import PrivateRoute from 'Components/PrivateRoute/PrivateRoute';
-import PublicRoute from 'Components/PublicRoute/PublicRoute';
-import { useReroute } from './useReroute';
+import { Routes, Route, Navigate } from 'react-router-dom' // работа с маршрутизацией
+import React, { lazy } from 'react'
+import { Layout } from 'Layout/Layout'
+import PrivateRoute from 'Components/PrivateRoute/PrivateRoute'
+import PublicRoute from 'Components/PublicRoute/PublicRoute'
+import { useReroute } from './useReroute'
 
 // загрузка планет
-const SetLordPage = lazy(() => import('../Views/SetLordPage/SetLordPage'));
-const StartPage = lazy(() => import('../Views/StartPage/StartPage'));
-const LoginPage = lazy(() => import('../Views/LoginPage/LoginPage'));
-const RegisterPage = lazy(() => import('../Views/RegisterPage/RegisterPage'));
-const LayoutGame = lazy(() => import('../LayoutGame/LayoutGame'));
+const SetLordPage = lazy(() => import('../Views/SetLordPage/SetLordPage'))
+const StartPage = lazy(() => import('../Views/StartPage/StartPage'))
+const LoginPage = lazy(() => import('../Views/LoginPage/LoginPage'))
+const RegisterPage = lazy(() => import('../Views/RegisterPage/RegisterPage'))
+const LayoutGame = lazy(() => import('../LayoutGame/LayoutGame'))
 const PlanetaBlueHome = lazy(() =>
   import('../Views/PlanetaBlueHome/PlanetaBlueHome')
-);
+)
 const PlanetaYellowHome = lazy(() =>
   import('../Views/PlanetaYellowHome/PlanetaYellowHome')
-);
+)
 const PlanetaLostWorld = lazy(() =>
   import('../Views/PlanetaLostWorld/PlanetaLostWorld')
-);
+)
 
 export const Routers = () => {
-  useReroute();
+  useReroute()
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
@@ -105,5 +104,5 @@ export const Routers = () => {
 
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
-  );
-};
+  )
+}

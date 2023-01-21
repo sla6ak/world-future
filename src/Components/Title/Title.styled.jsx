@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from '@emotion/styled'
 
 export const Title = styled.div`
   font-weight: 700;
@@ -6,4 +6,4 @@ export const Title = styled.div`
   font-size: 2rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
-`;
+`

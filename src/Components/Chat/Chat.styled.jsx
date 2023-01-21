@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
-import { TextField, Button } from '@mui/material';
+import styled from '@emotion/styled'
+import { TextField, Button } from '@mui/material'
 
 export const LeftHelmet = styled.div`
   position: fixed;
@@ -13,16 +13,16 @@ export const LeftHelmet = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   z-index: 3;
-`;
+`
 export const FormSubmit = styled.form`
   margin-top: auto;
   margin-bottom: 5vh;
   width: 100%;
-`;
+`
 export const Title = styled.form`
   width: 100%;
   font-weight: 800;
-`;
+`
 
 export const FormTextField = styled(TextField)({
   marginBottom: '0.5rem',
@@ -31,23 +31,23 @@ export const FormTextField = styled(TextField)({
   borderRadius: '15px',
   '& input:valid + fieldset': {
     borderColor: 'rgba(19, 82, 0, 0.842)',
-    borderWidth: 2,
+    borderWidth: 2
   },
   '& label': {
-    color: '#052b00b3',
+    color: '#052b00b3'
   },
   '& input': {
-    color: '#063300',
+    color: '#063300'
   },
   '& input:invalid + fieldset': {
     borderColor: '#0f810052',
-    borderWidth: 2,
+    borderWidth: 2
   },
   '& input:valid:focus + fieldset': {
     borderLeftWidth: 6,
-    padding: '4px !important', // override inline-style
-  },
-});
+    padding: '4px !important' // override inline-style
+  }
+})
 
 export const ButtonLetter = styled(Button)({
   display: 'flex',
@@ -57,14 +57,14 @@ export const ButtonLetter = styled(Button)({
   backgroundColor: 'rgba(0, 66, 9, 0.308)',
   color: '#0b3000',
   ':hover': {
-    backgroundColor: '#06752796',
-  },
-});
+    backgroundColor: '#06752796'
+  }
+})
 
 export const BodyLetter = styled.span`
   font-weight: 600;
   margin-left: 5px;
-`;
+`
 export const LetterBox = styled.div`
   max-width: 20vw;
   max-height: 70vh;
@@ -72,4 +72,4 @@ export const LetterBox = styled.div`
   /* display: flex;
   flex-wrap: wrap; */
   position: relative;
-`;
+`

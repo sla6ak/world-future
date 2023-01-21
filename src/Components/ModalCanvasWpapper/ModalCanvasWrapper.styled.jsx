@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from '@emotion/styled'
 
 export const ModalWindow = styled.div`
   min-height: 40px;
@@ -15,4 +15,4 @@ export const ModalWindow = styled.div`
   justify-content: center;
   border-radius: 10px;
   box-shadow: -10px -5px 5px #ae22ff40;
-`;
+`

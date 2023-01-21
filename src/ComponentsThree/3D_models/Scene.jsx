@@ -7,13 +7,13 @@ Source: https://sketchfab.com/3d-models/cyberpunk-city-1-14d2eaa145ee42938e00411
 Title: Cyberpunk City - #1
 */
 
-import React, { useRef } from 'react';
-import { useGLTF } from '@react-three/drei';
+import React from 'react'
+import { useGLTF } from '@react-three/drei'
 
 export function Model(props) {
   const { nodes, materials } = useGLTF(
     '/models/test/cyberpunk_city_-_1/scene.gltf'
-  );
+  )
   return (
     <group {...props} scale={10} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]} scale={0.45}>
@@ -143,7 +143,7 @@ export function Model(props) {
         </group>
       </group>
     </group>
-  );
+  )
 }
 
-useGLTF.preload('/models/test/cyberpunk_city_-_1/scene.gltf');
+useGLTF.preload('/models/test/cyberpunk_city_-_1/scene.gltf')

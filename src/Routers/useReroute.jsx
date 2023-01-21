@@ -1,20 +1,18 @@
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 export const useReroute = () => {
-  const { lordInfo } = useSelector(state => state);
-  const navigate = useNavigate();
-  const pathname = useLocation().pathname;
+  const { lordInfo } = useSelector(state => state)
+  const navigate = useNavigate()
+  const pathname = useLocation().pathname
   useEffect(() => {
     if (!lordInfo) {
-      return;
+      return
     }
-    const rerout = `/play/${lordInfo?.planet}`;
+    const rerout = `/play/${lordInfo?.planet}`
     if (pathname !== rerout) {
-      navigate(rerout);
+      navigate(rerout)
     }
-  }, [lordInfo, navigate, pathname]);
-
-  return;
-};
+  }, [lordInfo, navigate, pathname])
+}

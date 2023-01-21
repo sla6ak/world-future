@@ -1,15 +1,15 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit'
 
-const initialStatusWS = false;
+const initialStatusWS = false
 
 export const statusWS = createSlice({
   name: 'statusWS',
   initialState: initialStatusWS,
   reducers: {
     isWsConnect(_state, action) {
-      return action.payload;
-    },
-  },
-});
+      return action.payload
+    }
+  }
+})
 
-export const { isWsConnect } = statusWS.actions;
+export const { isWsConnect } = statusWS.actions

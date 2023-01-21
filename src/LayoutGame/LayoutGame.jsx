@@ -1,14 +1,14 @@
-import { Suspense, useState } from 'react';
-import { Outlet } from 'react-router-dom';
-import Chat from 'Components/Chat/Chat';
-import Squad from 'Components/Squad/Squad';
-import Missions from 'Components/Missions/Missions';
-import { LoaderCastomGate } from 'Components/LoaderCastomGate/LoaderCastomGate';
-import { useWsConnecting } from 'Hooks/useWsConnecting';
-import WsConnectRout from 'ComponentsThree/WsConnectRout/WsConnectRout';
-import { ModalCanvasWpapper } from 'Components/ModalCanvasWpapper/ModalCanvasWrapper';
-import { ModalCanvasObjectInfo } from 'Components/ModalCanvasObjectInfo/ModalCanvasObjectInfo';
-import { ModalCanvasClicInfo } from 'Components/ModalCanvasClicInfo/ModalCanvasClicInfo';
+import React, { Suspense, useState } from 'react'
+import { Outlet } from 'react-router-dom'
+import Chat from 'Components/Chat/Chat'
+import Squad from 'Components/Squad/Squad'
+import Missions from 'Components/Missions/Missions'
+import { LoaderCastomGate } from 'Components/LoaderCastomGate/LoaderCastomGate'
+import { useWsConnecting } from 'Hooks/useWsConnecting'
+import WsConnectRout from 'ComponentsThree/WsConnectRout/WsConnectRout'
+import { ModalCanvasWpapper } from 'Components/ModalCanvasWpapper/ModalCanvasWrapper'
+import { ModalCanvasObjectInfo } from 'Components/ModalCanvasObjectInfo/ModalCanvasObjectInfo'
+import { ModalCanvasClicInfo } from 'Components/ModalCanvasClicInfo/ModalCanvasClicInfo'
 import {
   Holst,
   HeaderHelmet,
@@ -24,31 +24,31 @@ import {
   ChatBox,
   SignalArm,
   SignalBox,
-  DarkMatter,
-} from './LayoutGame.styled';
-import CenterArrow from 'Components/CenterArrow/CenterArrow';
+  DarkMatter
+} from './LayoutGame.styled'
+import CenterArrow from 'Components/CenterArrow/CenterArrow'
 // import { useSelector } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux'
 
 // нужно переписать код чтоб инфа про лорда была локальным стейтом а не удаленным так как получать мы ее будем и через сокеты тоже.
 const LeyoutGame = () => {
-  const { lordInfo, openCanvasModal } = useSelector(state => state);
-  useWsConnecting();
+  const { lordInfo, openCanvasModal } = useSelector((state) => state)
+  useWsConnecting()
   const [visability, setVisability] = useState({
     chat: false,
     missions: false,
-    squad: false,
-  });
+    squad: false
+  })
 
-  const quickArmInfo = unit => {
-    const atac = lordInfo?.squad[unit].power.attack.shell.percent;
-    const def = lordInfo?.squad[unit].power.defend.shell.percent;
-    const life = lordInfo?.squad[unit].power.life.shell.percent;
+  const quickArmInfo = (unit) => {
+    const atac = lordInfo?.squad[unit].power.attack.shell.percent
+    const def = lordInfo?.squad[unit].power.defend.shell.percent
+    const life = lordInfo?.squad[unit].power.life.shell.percent
     if (atac + def + life < 300) {
-      return false;
+      return false
     }
-    return true;
-  };
+    return true
+  }
 
   return (
     <Holst>
@@ -60,8 +60,8 @@ const LeyoutGame = () => {
           </ModalCanvasWpapper>
         )}
         <HeaderHelmet
-          onClick={e => {
-            e.stopPropagation();
+          onClick={(e) => {
+            e.stopPropagation()
           }}
         >
           <KristalBox>
@@ -75,13 +75,13 @@ const LeyoutGame = () => {
             Lord: <NikLord>{lordInfo?.nikName}</NikLord>
           </Lord>
           <ArmBox
-            onClick={e => {
-              e.stopPropagation();
-              setVisability(pevState => ({
+            onClick={(e) => {
+              e.stopPropagation()
+              setVisability((pevState) => ({
                 ...pevState,
                 missions: false,
-                squad: !pevState.squad,
-              }));
+                squad: !pevState.squad
+              }))
             }}
           >
             Squad(P):
@@ -89,25 +89,19 @@ const LeyoutGame = () => {
               Rob
               <SignalArm
                 style={{
-                  backgroundColor: quickArmInfo('robot')
-                    ? '#00c421'
-                    : '#b10000',
+                  backgroundColor: quickArmInfo('robot') ? '#00c421' : '#b10000'
                 }}
               />
               Shm
               <SignalArm
                 style={{
-                  backgroundColor: quickArmInfo('robot')
-                    ? '#00c421'
-                    : '#b10000',
+                  backgroundColor: quickArmInfo('robot') ? '#00c421' : '#b10000'
                 }}
               />
               Snr
               <SignalArm
                 style={{
-                  backgroundColor: quickArmInfo('robot')
-                    ? '#00c421'
-                    : '#b10000',
+                  backgroundColor: quickArmInfo('robot') ? '#00c421' : '#b10000'
                 }}
               />
             </SignalBox>
@@ -115,17 +109,17 @@ const LeyoutGame = () => {
         </HeaderHelmet>
         <CenterArrow />
         <FooterHelmet
-          onClick={e => {
-            e.stopPropagation();
+          onClick={(e) => {
+            e.stopPropagation()
           }}
         >
           <ChatBox
-            onClick={e => {
-              e.stopPropagation();
-              setVisability(pevState => ({
+            onClick={(e) => {
+              e.stopPropagation()
+              setVisability((pevState) => ({
                 ...pevState,
-                chat: !pevState.chat,
-              }));
+                chat: !pevState.chat
+              }))
             }}
           >
             Chat(C)
@@ -135,11 +129,11 @@ const LeyoutGame = () => {
           </div>
           <MissionBox
             onClick={() => {
-              setVisability(pevState => ({
+              setVisability((pevState) => ({
                 ...pevState,
                 squad: false,
-                missions: !pevState.missions,
-              }));
+                missions: !pevState.missions
+              }))
             }}
           >
             Missions(M)
@@ -153,6 +147,6 @@ const LeyoutGame = () => {
         </Suspense>
       </WsConnectRout>
     </Holst>
-  );
-};
-export default LeyoutGame;
+  )
+}
+export default LeyoutGame

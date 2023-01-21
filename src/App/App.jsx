@@ -1,13 +1,14 @@
-import { ModalSettings } from 'Components/ModalSettings/ModalSettings';
-import { Routers } from 'Routers/Routers';
-import { useLanguageStarting } from './useLanguageStarting';
-import { useAuthStartApp } from './useAuthStartApp';
-import { useOpenModalGeneralSettings } from './useOpenModalGeneralSettings';
+import React from 'react'
+import { ModalSettings } from 'Components/ModalSettings/ModalSettings'
+import { Routers } from 'Routers/Routers'
+import { useLanguageStarting } from './useLanguageStarting'
+import { useAuthStartApp } from './useAuthStartApp'
+import { useOpenModalGeneralSettings } from './useOpenModalGeneralSettings'
 export const App = () => {
-  useLanguageStarting();
-  useAuthStartApp();
+  useLanguageStarting()
+  useAuthStartApp()
   const { statusSettingsModal, setStatusSettingsModal } =
-    useOpenModalGeneralSettings();
+    useOpenModalGeneralSettings()
 
   return (
     <>
@@ -16,5 +17,5 @@ export const App = () => {
       )}
       <Routers />
     </>
-  );
-};
+  )
+}

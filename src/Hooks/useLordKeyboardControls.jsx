@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 
 function actionByKey(key) {
   const keys = {
@@ -6,9 +6,9 @@ function actionByKey(key) {
     KeyS: 'moveBackward',
     KeyA: 'moveLeft',
     KeyD: 'moveRight',
-    Space: 'jump',
-  };
-  return keys[key];
+    Space: 'jump'
+  }
+  return keys[key]
 }
 
 export const useLordKeyboardControls = () => {
@@ -17,8 +17,8 @@ export const useLordKeyboardControls = () => {
     moveBackward: false,
     moveLeft: false,
     moveRight: false,
-    jump: false,
-  });
+    jump: false
+  })
 
   useEffect(() => {
     const handleKeyDown = e => {
@@ -28,36 +28,36 @@ export const useLordKeyboardControls = () => {
           if (e.code === 'Space' && state.jump === true) {
             return {
               ...state,
-              [actionByKey(e.code)]: false,
-            };
+              [actionByKey(e.code)]: false
+            }
           }
           return {
             ...state,
-            [actionByKey(e.code)]: true,
-          };
-        });
+            [actionByKey(e.code)]: true
+          }
+        })
       }
-    };
+    }
     const handleKeyUp = e => {
       if (actionByKey(e.code)) {
         setMovement(state => ({
           ...state,
-          [actionByKey(e.code)]: false,
-        }));
+          [actionByKey(e.code)]: false
+        }))
       }
-    };
+    }
 
-    document.addEventListener('keydown', handleKeyDown);
-    document.addEventListener('keyup', handleKeyUp);
+    document.addEventListener('keydown', handleKeyDown)
+    document.addEventListener('keyup', handleKeyUp)
 
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-      document.removeEventListener('keyup', handleKeyUp);
-    };
-  }, []);
+      document.removeEventListener('keydown', handleKeyDown)
+      document.removeEventListener('keyup', handleKeyUp)
+    }
+  }, [])
 
-  return movement;
-};
+  return movement
+}
 
 //   function keyUp(e) {
 //     //если отпустили кукую-то кнопку запишем в переменную это

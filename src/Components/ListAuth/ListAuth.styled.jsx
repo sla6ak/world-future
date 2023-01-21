@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from '@emotion/styled'
 
 export const ListAuth = styled.div`
   background-color: rgb(185, 185, 185);
@@ -19,4 +19,4 @@ export const ListAuth = styled.div`
   @media (max-width: 500px) {
     width: 350px;
   }
-`;
+`

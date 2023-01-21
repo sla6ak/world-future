@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
-import { Button } from '@mui/material';
+import styled from '@emotion/styled'
+import { Button } from '@mui/material'
 
 export const GeneralButton = styled(Button)(
   ({ theme, bts }) => `
@@ -30,4 +30,4 @@ export const GeneralButton = styled(Button)(
         max-width: 450px;
     }
 `
-);
+)

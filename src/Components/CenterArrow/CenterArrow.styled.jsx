@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from '@emotion/styled'
 
 export const CenterArr = styled.div`
   position: absolute;
@@ -10,4 +10,4 @@ export const CenterArr = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-`;
+`

@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from '@emotion/styled'
 
 export const LoaderContainer = styled.div`
   display: flex;
@@ -9,4 +9,4 @@ export const LoaderContainer = styled.div`
   flex-grow: 2;
   margin-top: 20px;
   margin-bottom: 40px;
-`;
+`
