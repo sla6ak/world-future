@@ -6,8 +6,11 @@ const AutoFuture = ({ props }) => {
   const refGroup = useRef()
   const { nodes, materials } = useGLTF('/models/avto-future/scene.gltf')
 
+  let stoped = 0
   useFrame((state) => {
-    const t = state.clock.getElapsedTime()
+    const t = Number(state.clock.getElapsedTime().toFixed(2))
+    if (t === stoped) return
+    stoped = t
     const sinM = Math.sin(t / 5)
     const pike = 1 - (1 + sinM) * 10 // вращение пикеты
     const where = (1 + sinM) * 500

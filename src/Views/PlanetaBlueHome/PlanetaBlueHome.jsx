@@ -1,10 +1,9 @@
 import React, { Suspense } from 'react'
 // ***************** react  компоненты ***********************************
-import { Canvas, useLoader } from '@react-three/fiber'
+import { Canvas } from '@react-three/fiber'
 import { Physics } from '@react-three/cannon'
 import LoaderSuspense from 'Components/LoaderSuspense/LoaderSuspense'
 import { useSelector } from 'react-redux'
-import { TextureLoader } from 'three/src/loaders/TextureLoader'
 import { useGetPlayersHook } from '../../Hooks/useGetPlayersHook'
 // import { useState } from 'react';
 
@@ -13,18 +12,18 @@ import MyLordModel from 'ComponentsThree/MyLordModel/MyLordModel'
 import CosmosBox from 'ComponentsThree/CosmosBox/CosmosBox'
 import Box from 'ComponentsThree/Box/Box'
 import Planet from 'ComponentsThree/Planet/Planet'
-import Spaceport from 'ComponentsThree/Spaceport/Spaceport'
+import Spaceport from 'ComponentsThree/3D_models/Spaceport/Spaceport'
 // import AnotherLordModel from 'componentsThree/AnotherLordModel/AnotherLordModel';
 import AutoFuture from 'ComponentsThree/3D_models/AutoFuture/AutoFuture'
 import Portal from 'ComponentsThree/3D_models/Portal/Portal'
 import { SoldierModel } from 'ComponentsThree/3D_models/Soldier/Soldier'
 
 // ************** Конфигурации для пропсов ****************************
-import CosmosSpace from './tim-barton-5.jpg'
+import CosmosSpace from '../../Impegs/textureCosmos/tim-barton-5.jpg'
+import iseJpg from '../../Impegs/texturePlane/ise2.jpg'
 // *****************************************************************************************
 
 const PlanetaBlueHome = () => {
-  const textureCosmos = useLoader(TextureLoader, CosmosSpace)
   // const [allLords, setAllLords] = useState([0, 0, 0]);
   useGetPlayersHook({ channel: 'planetaBlueHome' })
   const { planetaBlueHomeInfo } = useSelector((state) => state)
@@ -72,10 +71,10 @@ const PlanetaBlueHome = () => {
                 />
               )
             })}
-            <CosmosBox textureCosmos={textureCosmos} />
+            <CosmosBox CosmosSpace={CosmosSpace} />
             <AutoFuture position={[10, -5, 0]} />
             <MyLordModel />
-            <Planet />
+            <Planet groundJpg={iseJpg} />
             {/* <AnotherLordModel position={[2, -2, 5]} /> */}
             <Spaceport position={[9, -15, 0]} />
             <Portal position={[35, -2, 20]} />

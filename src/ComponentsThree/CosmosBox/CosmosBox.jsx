@@ -1,8 +1,10 @@
 import React, { useRef } from 'react'
-import { useFrame } from '@react-three/fiber'
+import { useFrame, useLoader } from '@react-three/fiber'
 import { BackSide } from 'three'
+import { TextureLoader } from 'three/src/loaders/TextureLoader'
 
-const CosmosBox = ({ textureCosmos }) => {
+const CosmosBox = ({ CosmosSpace }) => {
+  const textureCosmos = useLoader(TextureLoader, CosmosSpace)
   const ref = useRef()
 
   useFrame(() => {
@@ -12,7 +14,7 @@ const CosmosBox = ({ textureCosmos }) => {
 
   return (
     <mesh ref={ref}>
-      <sphereBufferGeometry args={[500, 500, 500]} />
+      <sphereBufferGeometry args={[1000, 1000, 1000]} />
       <meshStandardMaterial map={textureCosmos} side={BackSide} fog={true} />
     </mesh>
   )

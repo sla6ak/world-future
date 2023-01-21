@@ -12,7 +12,7 @@
   "plugins": ["react"],
   "rules": {
     "space-before-function-paren": 0,
-    "react/no-unknown-property": 1,
+    "react/no-unknown-property": 0,
     "react/prop-types": "off",
     "multiline-ternary": 0,
     "no-new": 1

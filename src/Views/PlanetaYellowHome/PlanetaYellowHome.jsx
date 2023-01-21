@@ -1,10 +1,9 @@
 // ***************** react  компоненты ***********************************
-import { Canvas, useLoader } from '@react-three/fiber'
+import { Canvas } from '@react-three/fiber'
 import React, { Suspense } from 'react'
 import { Physics } from '@react-three/cannon'
 import LoaderSuspense from 'Components/LoaderSuspense/LoaderSuspense'
 import { useSelector } from 'react-redux'
-import { TextureLoader } from 'three/src/loaders/TextureLoader'
 import { useGetPlayersHook } from '../../Hooks/useGetPlayersHook'
 // import { useState } from 'react';
 
@@ -13,16 +12,16 @@ import MyLordModel from 'ComponentsThree/MyLordModel/MyLordModel'
 import CosmosBox from 'ComponentsThree/CosmosBox/CosmosBox'
 import Box from 'ComponentsThree/Box/Box'
 import Planet from 'ComponentsThree/Planet/Planet'
-import Spaceport from 'ComponentsThree/Spaceport/Spaceport'
+import Spaceport from 'ComponentsThree/3D_models/Spaceport/Spaceport'
 // import AnotherLordModel from 'componentsThree/AnotherLordModel/AnotherLordModel';
 import AutoFuture from 'ComponentsThree/3D_models/AutoFuture/AutoFuture'
 import Portal from 'ComponentsThree/3D_models/Portal/Portal'
 import { SoldierModel } from 'ComponentsThree/3D_models/Soldier/Soldier'
-import CosmosSpace from './red.jpg'
+import CosmosSpace from '../../Impegs/textureCosmos/red.jpg'
+import stoneJpg from '../../Impegs/texturePlane/stoneTexture.jpg'
 // import { useState } from 'react';
 
 const PlanetaYellowHome = () => {
-  const textureCosmos = useLoader(TextureLoader, CosmosSpace)
   // const [allLords, setAllLords] = useState([0, 0, 0]);
   useGetPlayersHook({ channel: 'planetaBlueHome' })
   const { planetaYellowHomeInfo } = useSelector((state) => state)
@@ -65,10 +64,10 @@ const PlanetaYellowHome = () => {
                 />
               )
             })}
-            <CosmosBox textureCosmos={textureCosmos} />
+            <CosmosBox CosmosSpace={CosmosSpace} />
             <AutoFuture position={[10, -1, 0]} />
             <MyLordModel />
-            <Planet />
+            <Planet groundJpg={stoneJpg} />
             {/* <AnotherLordModel position={[2, -2, 5]} /> */}
             <Spaceport position={[9, -15, 0]} />
             <Portal position={[35, -2, 20]} />
