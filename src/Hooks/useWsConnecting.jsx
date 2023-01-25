@@ -32,7 +32,7 @@ export const useWsConnecting = () => {
       }
       // console.log(data);
     }
-    if (data.channel === 'planetaBlueHome') {
+    if (data.channel === 'BlueHome') {
       if (data.data) {
         // console.log('+++', data.data);
         dispatch(statePlayersAction(data.data))
@@ -40,13 +40,13 @@ export const useWsConnecting = () => {
       }
       // console.log(data);
     }
-    if (data.channel === 'planetaYellowHome') {
+    if (data.channel === 'YellowHome') {
       if (!data.data) {
         return
       }
       // console.log(data);
     }
-    if (data.channel === 'planetaLostWorld') {
+    if (data.channel === 'LostWorld') {
       if (!data.data) {
         return
       }

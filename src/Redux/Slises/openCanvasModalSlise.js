@@ -3,12 +3,12 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialCanvasModal = {
   isClick: false,
   isHover: false,
-  typeObj: null,
-  ObjPosition: {},
-  timerOpen: 0,
-  info: { title: '', typeObj: '', shortInfo: '', moreInfo: '' }
+  typeObject: null,
+  position: {},
+  distancion: null,
+  timerOpen: 0
 }
-// typeObj определяет наличие кнопок или взаимодействий ["history","user","kristall",'portal']
+// typeObject определяет наличие кнопок или взаимодействий ["history","user","kristall",'portal']
 
 export const openCanvasModal = createSlice({
   name: 'canvasModal',

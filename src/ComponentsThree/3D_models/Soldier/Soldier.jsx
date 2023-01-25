@@ -50,8 +50,8 @@ export function SoldierModel({ playerInfo }) {
   useFrame(() => {
     if (
       curentPosition.x === playerInfo.position.x ||
-        curentPosition.z === playerInfo.position.z ||
-        curentPosition.y === playerInfo.position.y
+      curentPosition.z === playerInfo.position.z ||
+      curentPosition.y === playerInfo.position.y
     ) {
       setCurentAnimation('state')
       return
@@ -98,13 +98,13 @@ export function SoldierModel({ playerInfo }) {
 
   useEffect(() => {
     const unsubscribeHero = apiSphera.velocity.subscribe(
-      v => (velocity.current = v)
+      (v) => (velocity.current = v)
     )
     return unsubscribeHero
   }, [apiSphera.velocity])
 
   useEffect(() => {
-    const unsubscribeCamera = apiSphera.position.subscribe(v => {
+    const unsubscribeCamera = apiSphera.position.subscribe((v) => {
       group.current.position.copy({
         x: v[0],
         y: v[1] - 1,
@@ -168,13 +168,13 @@ export function SoldierModel({ playerInfo }) {
       <mesh
         ref={refSphera}
         scale={hovered ? 0.7 : 0.65}
-        onPointerDown={e => {
+        onPointerDown={(e) => {
           onClickObj()
         }}
-        onPointerEnter={e => {
+        onPointerEnter={(e) => {
           onHoverObj()
         }}
-        onPointerOut={e => {
+        onPointerOut={(e) => {
           offHoverObj()
         }}
       >

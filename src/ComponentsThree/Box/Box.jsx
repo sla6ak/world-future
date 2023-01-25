@@ -5,52 +5,49 @@ import boxJpg from './box.jpg'
 import boxJpgQ from './fds.jpg'
 import { useBox } from '@react-three/cannon'
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   newOpenCanvasModal,
   onHoverCanvasModal,
   ofHoverCanvasModal
 } from 'Redux/Slises/openCanvasModalSlise'
 
-const Box = (props) => {
+const Box = ({ position, planet }) => {
   const [hovered, setHover] = useState(false)
   const [active, setActive] = useState(false)
   const dispatch = useDispatch()
+  const positionHero = useSelector((state) => state.myPosition)
 
   const textureBox = useLoader(TextureLoader, boxJpg)
   const textureBoxQ = useLoader(TextureLoader, boxJpgQ)
   const [refBox] = useBox(() => ({
-    position: [0, 5, 0],
     mass: 1,
-    ...props
+    position
   }))
 
   const onClickObj = () => {
+    const distancia = refBox.current.position.distanceTo(positionHero)
     dispatch(
       newOpenCanvasModal({
         isClick: true,
         isHover: false,
-        typeObj: 'box',
-        ObjPosition: {},
-        timerOpen: 5000,
-        info: {
-          title: 'The Box',
-          typeObj: 'history',
-          shortInfo: 'Пустая старая коробка',
-          moreInfo: ''
-        }
+        typeObject: 'box',
+        position: {},
+        distancion: distancia,
+        timerOpen: 5000
       })
     )
     setActive(!active)
   }
   const onHoverObj = () => {
+    const distancia = refBox.current.position.distanceTo(positionHero)
     setHover(true)
     dispatch(
       onHoverCanvasModal({
         isClick: false,
         isHover: true,
-        ObjPosition: {},
-        info: { title: 'The Box', shortInfo: '' }
+        position: {},
+        distancion: distancia
       })
     )
     setActive(!active)
@@ -60,8 +57,8 @@ const Box = (props) => {
     dispatch(
       ofHoverCanvasModal({
         isHover: false,
-        ObjPosition: {},
-        info: { title: 'The Box', shortInfo: '' }
+        position: {},
+        distancion: null
       })
     )
     setActive(!active)

@@ -35,8 +35,8 @@ import Star from 'ComponentsThree/Star/Star'
 
 const PlanetaLostWorld = () => {
   // const [allLords, setAllLords] = useState([0, 0, 0]);
-  useGetPlayersHook({ channel: 'planetaLostWorld' })
-  const { planetaLostWorldInfo } = useSelector((state) => state)
+  useGetPlayersHook({ channel: 'LostWorld' })
+  const { LostWorldInfo } = useSelector((state) => state)
   const { nikName } = useSelector((state) => state.lordInfo)
   const boxs = []
   for (let i = 0; i <= 20; i++) {
@@ -58,8 +58,8 @@ const PlanetaLostWorld = () => {
               position={[-54, 200, 0]}
             /> */}
             {/* <directionalLight color="#9dc3da" position={[100, 100, 100]} /> */}
-            {planetaLostWorldInfo.players?.length > 1 &&
-              planetaLostWorldInfo.players.map((el) => {
+            {LostWorldInfo.players?.length > 1 &&
+              LostWorldInfo.players.map((el) => {
                 if (el.nikName === nikName) {
                   return null
                 }
@@ -77,27 +77,39 @@ const PlanetaLostWorld = () => {
                 />
               )
             })} */}
-            <CosmosBox CosmosSpace={CosmosSpace} />
-            <MyLordModel />
-            <Planet groundJpg={stoneJpg} />
+            <CosmosBox planet={'LostWorldInfo'} CosmosSpace={CosmosSpace} />
+            <MyLordModel planet={'LostWorldInfo'} />
+            <Planet planet={'LostWorldInfo'} groundJpg={stoneJpg} />
             <Portal position={[-35, -2, 10]} />
             <Star
+              planet={'LostWorldInfo'}
               starImg={starFire}
               position={[-725, 102, -850]}
               reSize={[280]}
             />
-            <Star starImg={null} position={[31, 252, -840]} reSize={[40]} />
+            <Star
+              planet={'LostWorldInfo'}
+              starImg={null}
+              position={[31, 252, -840]}
+              reSize={[40]}
+            />
             <Debug>
               {/* <ScifiPortal position={[-45, 2, 30]} /> */}
-              <StargatePrometheus position={[210, 99, 30]} />
-              <AutoFuture position={[10, -1, 0]} />
-              <AvtoFuture1 position={[-38, -1.5, 16]} />
+              <StargatePrometheus
+                planet={'LostWorldInfo'}
+                position={[210, 99, 30]}
+              />
+              <AutoFuture planet={'LostWorldInfo'} position={[10, -1, 0]} />
+              <AvtoFuture1
+                planet={'LostWorldInfo'}
+                position={[-38, -1.5, 16]}
+              />
               {/* <Model position={[35, -2.4, 45]} />
               <Model2 position={[35, -2, -79]} /> */}
               {/* <AnomalTop position={[-35, -1.2, -29]} /> */}
               {/* <RobotAnime position={[5, -1.9, 4]} /> */}
               {/* <Spaceport position={[9, -15, 20]} /> */}
-              <BaseYrs position={[-110, -1, 110]} />
+              <BaseYrs planet={'LostWorldInfo'} position={[-110, -1, 110]} />
             </Debug>
           </Physics>
         </Suspense>

@@ -1,15 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { WS_PORT } from 'Redux/PORT'
 const BASE_DRAFT = { data: {} }
-const channels = [
-  'chat',
-  'planetaBlueHome',
-  'planetaYellowHome',
-  'planetaLostWorld',
-  'missions',
-  'myLord',
-  'connect'
-]
+
 async function waitFor(seconds) {
   return new Promise((resolve) => {
     const id = setTimeout(resolve, seconds * 1000)
@@ -94,17 +86,6 @@ export const WS_BASE_API = createApi({
           await cacheDataLoaded
           ws.addEventListener('message', (message) => {
             const res = JSON.parse(message.data)
-            // if (res.channel === 'open') {
-            //   ws.send(
-            //     JSON.stringify({
-            //       channel: 'connect',
-            //       data: {
-            //         token: getState().auth.token,
-            //       },
-            //     })
-            //   );
-            // }
-            if (!channels.includes(res.channel)) return
 
             updateCachedData((draft) => {
               draft.data = res

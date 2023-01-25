@@ -18,11 +18,12 @@ import { lordInfo } from './Slises/lordInfoSlise'
 import { language } from './Slises/LanguageSlise'
 import { chatGame } from './Slises/chatGameSlise'
 import { openCanvasModal } from './Slises/openCanvasModalSlise'
-import { planetaBlueHomeInfo } from './Slises/planetaBlueHomeInfoSlise'
-import { planetaYellowHomeInfo } from './Slises/planetaYellowHomeInfoSlise'
-import { planetaLostWorldInfo } from './Slises/planetaLostWorldInfoSlise'
+import { BlueHomeInfo } from './Slises/planetaBlueHomeInfoSlise'
+import { YellowHomeInfo } from './Slises/planetaYellowHomeInfoSlise'
+import { LostWorldInfo } from './Slises/planetaLostWorldInfoSlise'
 import { errorUser } from './Slises/errorUserSlise'
 import { statusWS } from './Slises/statusWS'
+import { myPosition } from './Slises/myPositionSlise'
 
 // ***********************local*************************
 const tokenPersistConfig = {
@@ -39,9 +40,10 @@ const rootReduser = combineReducers({
   lordInfo: lordInfo.reducer,
   chatGame: chatGame.reducer,
   language: language.reducer,
-  planetaYellowHomeInfo: planetaYellowHomeInfo.reducer,
-  planetaLostWorldInfo: planetaLostWorldInfo.reducer,
-  planetaBlueHomeInfo: planetaBlueHomeInfo.reducer,
+  YellowHomeInfo: YellowHomeInfo.reducer,
+  LostWorldInfo: LostWorldInfo.reducer,
+  BlueHomeInfo: BlueHomeInfo.reducer,
+  myPosition: myPosition.reducer,
   openCanvasModal: openCanvasModal.reducer,
   statusWS: statusWS.reducer,
   errorUser: errorUser.reducer
@@ -51,7 +53,7 @@ const persistedReducer = persistReducer(tokenPersistConfig, rootReduser)
 // ****************store*********************************
 export const store = configureStore({
   reducer: persistedReducer,
-  middleware: getDefaultMiddleware =>
+  middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
