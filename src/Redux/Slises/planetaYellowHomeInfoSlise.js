@@ -1,24 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialplanetaYellowHomeInfo = {
-  players: [{ nikName: '', position: { x: 10, y: -2, z: 8 } }]
+const initialYellowHomeInfo = {
+  players: { nikName: { position: { x: 10, y: -2, z: 8 } } }
 }
 
-export const planetaYellowHomeInfo = createSlice({
-  name: 'planetaYellowHome',
-  initialState: initialplanetaYellowHomeInfo,
+export const YellowHomeInfo = createSlice({
+  name: 'YellowHome',
+  initialState: initialYellowHomeInfo,
   reducers: {
-    statePlayersAction(_state, _action) {
-
+    statePlanetAction(_state, action) {
+      return action.payload
     },
-    stateCristalsAction(_state, _action) {
-
+    stateCristalsAction(_state, action) {
+      return action.payload
     },
-    stateAnomalsAction(_state, _action) {
-
+    stateAnomalsAction(_state, action) {
+      return action.payload
     }
   }
 })
 
-export const { statePlayersAction, stateCristalsAction, stateAnomalsAction } =
-  planetaYellowHomeInfo.actions
+export const { statePlanetAction, stateCristalsAction, stateAnomalsAction } =
+  YellowHomeInfo.actions

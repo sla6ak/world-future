@@ -23,8 +23,8 @@ import stoneJpg from '../../Impegs/texturePlane/stoneTexture.jpg'
 
 const PlanetaYellowHome = () => {
   // const [allLords, setAllLords] = useState([0, 0, 0]);
-  useGetPlayersHook({ channel: 'planetaBlueHome' })
-  const { planetaYellowHomeInfo } = useSelector((state) => state)
+  useGetPlayersHook({ channel: 'BlueHome' })
+  const { YellowHomeInfo } = useSelector((state) => state)
   const { nikName } = useSelector((state) => state.lordInfo)
   const boxs = []
   for (let i = 0; i <= 20; i++) {
@@ -45,8 +45,8 @@ const PlanetaYellowHome = () => {
               position={[-54, 200, 0]}
             />
             {/* <directionalLight color="#9dc3da" position={[100, 100, 100]} /> */}
-            {planetaYellowHomeInfo.players?.length > 1 &&
-              planetaYellowHomeInfo.players.map((el) => {
+            {YellowHomeInfo.players?.length > 1 &&
+              YellowHomeInfo.players.map((el) => {
                 if (el.nikName === nikName) {
                   return null
                 }
@@ -55,6 +55,7 @@ const PlanetaYellowHome = () => {
             {boxs.map((el, ind) => {
               return (
                 <Box
+                  planet={'YellowHomeInfo'}
                   key={ind}
                   position={[
                     randomCount(100) - 50,
@@ -64,13 +65,13 @@ const PlanetaYellowHome = () => {
                 />
               )
             })}
-            <CosmosBox CosmosSpace={CosmosSpace} />
-            <AutoFuture position={[10, -1, 0]} />
-            <MyLordModel />
-            <Planet groundJpg={stoneJpg} />
+            <CosmosBox planet={'YellowHomeInfo'} CosmosSpace={CosmosSpace} />
+            <AutoFuture planet={'YellowHomeInfo'} position={[10, -1, 0]} />
+            <MyLordModel planet={'YellowHomeInfo'} />
+            <Planet planet={'YellowHomeInfo'} groundJpg={stoneJpg} />
             {/* <AnotherLordModel position={[2, -2, 5]} /> */}
-            <Spaceport position={[9, -15, 0]} />
-            <Portal position={[35, -2, 20]} />
+            <Spaceport planet={'YellowHomeInfo'} position={[9, -15, 0]} />
+            <Portal planet={'YellowHomeInfo'} position={[35, -2, 20]} />
           </Physics>
         </Suspense>
       </Canvas>

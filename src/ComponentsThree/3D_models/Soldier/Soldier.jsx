@@ -9,25 +9,21 @@ import { useGLTF, useAnimations } from '@react-three/drei'
 // import * as THREE from 'three';
 import { useSphere } from '@react-three/cannon'
 import { useFrame } from '@react-three/fiber'
-import { Vector3 } from 'three'
-import { useDispatch } from 'react-redux'
+// import { Vector3 } from 'three'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   newOpenCanvasModal,
   onHoverCanvasModal,
   ofHoverCanvasModal
 } from 'Redux/Slises/openCanvasModalSlise'
 
-export function SoldierModel({ playerInfo }) {
+export function SoldierModel({ nikName, planet }) {
+  const playerInfo = useSelector((state) => state[planet].players[nikName])
   const dispatch = useDispatch()
   const [hovered, setHover] = useState(false)
   const [active, setActive] = useState(false)
-  const [curentPosition, setCurentPosition] = useState({
-    x: playerInfo.position.x,
-    y: playerInfo.position.y,
-    z: playerInfo.position.z
-  })
+  const [lastPosition, setLastPosition] = useState(playerInfo.position)
   const [curentAnimation, setCurentAnimation] = useState('state')
-  const velocity = useRef([0, 0, 0])
   const group = useRef()
 
   const { nodes, materials, animations } = useGLTF(
@@ -48,71 +44,45 @@ export function SoldierModel({ playerInfo }) {
   }, [actions, curentAnimation, names])
 
   useFrame(() => {
+    apiSphera.position.copy(playerInfo.position)
+    apiSphera.rotation.copy(playerInfo.rotation)
+
+    // console.log(lastPosition.x, playerInfo.position.x)
+    // console.log(lastPosition.z, playerInfo.position.z)
     if (
-      curentPosition.x === playerInfo.position.x ||
-        curentPosition.z === playerInfo.position.z ||
-        curentPosition.y === playerInfo.position.y
+      lastPosition.x === playerInfo.position.x ||
+      lastPosition.z === playerInfo.position.z
     ) {
       setCurentAnimation('state')
       return
     }
     setCurentAnimation('go')
-    const direction = new Vector3()
-    const frontVector = new Vector3(
-      0,
-      0,
-      curentPosition.z - playerInfo.position.z
-    )
-    const sideVector = new Vector3(
-      playerInfo.position.x - curentPosition.x,
-      0,
-      0
-    )
-    setCurentPosition({
+    setLastPosition({
       x: playerInfo.position.x,
       y: playerInfo.position.y,
       z: playerInfo.position.z
     })
-    direction.subVectors(frontVector, sideVector).normalize().multiplyScalar(3)
-    // .applyEuler(group.current.rotation);
-    apiSphera.velocity.set(direction.x, velocity.current[1], direction.z)
-
-    apiSphera.velocity.set(direction.x, velocity.current[1], direction.z)
-    // if (
-    //   curentPosition.x > playerInfo.position.z &&
-    //   Math.abs(velocity.current[1].toFixed(2)) < 0.05
-    // ) {
-    //   return apiSphera.velocity.set(
-    //     velocity.current[0],
-    //     -8,
-    //     velocity.current[2]
-    //   );
-    // }
-    // if (
-    //   curentPosition.x < playerInfo.position.z &&
-    //   Math.abs(velocity.current[1].toFixed(2)) < 0.05
-    // ) {
-    //   apiSphera.velocity.set(velocity.current[0], 8, velocity.current[2]);
-    // }
   })
 
   useEffect(() => {
-    const unsubscribeHero = apiSphera.velocity.subscribe(
-      v => (velocity.current = v)
-    )
-    return unsubscribeHero
-  }, [apiSphera.velocity])
-
-  useEffect(() => {
-    const unsubscribeCamera = apiSphera.position.subscribe(v => {
+    const unsubscribeHero = apiSphera.position.subscribe((v) => {
       group.current.position.copy({
         x: v[0],
         y: v[1] - 1,
         z: v[2]
       })
-      return unsubscribeCamera
+      return unsubscribeHero
     })
   }, [apiSphera.position])
+
+  useEffect(() => {
+    const unsubscribeHero = apiSphera.rotation.subscribe((v) => {
+      group.current.rotation.y = v[1]
+      group.current.rotation.x = v[0]
+      group.current.rotation.z = v[2]
+      return unsubscribeHero
+    })
+  }, [apiSphera.rotation])
 
   const onClickObj = () => {
     dispatch(
@@ -168,24 +138,21 @@ export function SoldierModel({ playerInfo }) {
       <mesh
         ref={refSphera}
         scale={hovered ? 0.7 : 0.65}
-        onPointerDown={e => {
+        onPointerDown={(e) => {
           onClickObj()
         }}
-        onPointerEnter={e => {
+        onPointerEnter={(e) => {
           onHoverObj()
         }}
-        onPointerOut={e => {
+        onPointerOut={(e) => {
           offHoverObj()
         }}
       >
-        {/* <sphereGeometry args={[1, 10, 10]} /> */}
-
-        {/* <meshPhysicalMaterial color="black" /> */}
         <meshStandardMaterial />
       </mesh>
-      <group ref={group} rotation={[-Math.PI / 2, 0, 0]} dispose={null}>
+      <group ref={group} dispose={null}>
         <group name="Scene">
-          <group name="Character" scale={0.01}>
+          <group rotation={[-Math.PI / 2, 0, 0]} name="Character" scale={0.01}>
             <primitive object={nodes.mixamorigHips} />
             <skinnedMesh
               name="vanguard_Mesh"

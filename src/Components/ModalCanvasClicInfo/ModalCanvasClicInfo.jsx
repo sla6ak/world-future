@@ -1,29 +1,32 @@
 import { GeneralButton } from 'Components/GeneralButton/GeneralButton.styled'
 import React from 'react'
-import { ModalInfo, MoreInfo, ShortInfo, WrapperButtons } from './ModalCanvasClicInfo.styled'
+import {
+  ModalInfo,
+  MoreInfo,
+  ShortInfo,
+  WrapperButtons
+} from './ModalCanvasClicInfo.styled'
 import { useSelector } from 'react-redux'
 import { useModalClickKeyboardControls } from '../../Hooks/useModalClickKeyboardControls'
 
 export const ModalCanvasClicInfo = () => {
-  const { openCanvasModal } = useSelector(state => state)
-  const { lordInfo } = useSelector(state => state)
+  const { openCanvasModal, lordInfo } = useSelector((state) => state)
+  const { objects } = useSelector((state) => state.language.transleter)
   useModalClickKeyboardControls()
   return (
     <ModalInfo>
-      <h3>{openCanvasModal.info?.title}</h3>
-      <ShortInfo>{openCanvasModal.info?.shortInfo}</ShortInfo>
-      <MoreInfo>{openCanvasModal.info?.moreInfo}</MoreInfo>
-      {openCanvasModal.typeObj === 'portal' && (
+      <h3>{objects[openCanvasModal.typeObject].title}</h3>
+      <ShortInfo>{objects[openCanvasModal.typeObject].shortInfo}</ShortInfo>
+      <MoreInfo>{objects[openCanvasModal.typeObject].moreInfo}</MoreInfo>
+      {openCanvasModal.typeObject === 'portal' && (
         <>
           <WrapperButtons>
             {lordInfo.planet === 'BlueHome' ||
-            lordInfo.planet === 'YellowHome'
-              ? (
+            lordInfo.planet === 'YellowHome' ? (
               <GeneralButton onClick={() => {}}>To LostWorld (G)</GeneralButton>
-                )
-              : (
+            ) : (
               <GeneralButton onClick={() => {}}>To Home (H)</GeneralButton>
-                )}
+            )}
           </WrapperButtons>
         </>
       )}

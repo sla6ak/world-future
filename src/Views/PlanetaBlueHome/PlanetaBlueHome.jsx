@@ -1,7 +1,7 @@
-import React, { Suspense } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 // ***************** react  компоненты ***********************************
 import { Canvas } from '@react-three/fiber'
-import { Physics } from '@react-three/cannon'
+import { Physics, Debug } from '@react-three/cannon'
 import LoaderSuspense from 'Components/LoaderSuspense/LoaderSuspense'
 import { useSelector } from 'react-redux'
 import { useGetPlayersHook } from '../../Hooks/useGetPlayersHook'
@@ -24,12 +24,19 @@ import iseJpg from '../../Impegs/texturePlane/ise2.jpg'
 // *****************************************************************************************
 
 const PlanetaBlueHome = () => {
-  // const [allLords, setAllLords] = useState([0, 0, 0]);
-  useGetPlayersHook({ channel: 'planetaBlueHome' })
-  const { planetaBlueHomeInfo } = useSelector((state) => state)
+  useGetPlayersHook({ channel: 'BlueHome' })
+  const { BlueHomeInfo } = useSelector((state) => state)
   const { nikName } = useSelector((state) => state.lordInfo)
+  const [listClients, setListClients] = useState(
+    Object.keys(BlueHomeInfo.players)
+  )
+
+  useEffect(() => {
+    setListClients(Object.keys(BlueHomeInfo.players))
+  }, [BlueHomeInfo.players])
+
   const boxs = []
-  for (let i = 0; i <= 20; i++) {
+  for (let i = 0; i <= 10; i++) {
     boxs.push(i)
   }
   function randomCount(max) {
@@ -47,21 +54,25 @@ const PlanetaBlueHome = () => {
               position={[-54, 200, 0]}
             />
             {/* <directionalLight color="#9dc3da" position={[100, 100, 100]} /> */}
-            {planetaBlueHomeInfo.players?.length > 1 &&
-              planetaBlueHomeInfo.players.map((el) => {
-                if (el.nikName === nikName) {
-                  return null
-                }
-                return (
-                  <SoldierModel
-                    key={el.nikName + randomCount(100)}
-                    playerInfo={el}
-                  />
-                )
-              })}
+            <Debug>
+              {listClients.length > 1 &&
+                listClients.map((el) => {
+                  if (el === nikName) {
+                    return null
+                  }
+                  return (
+                    <SoldierModel
+                      planet={'BlueHomeInfo'}
+                      key={el}
+                      nikName={el}
+                    />
+                  )
+                })}
+            </Debug>
             {boxs.map((el, ind) => {
               return (
                 <Box
+                  planet={'BlueHomeInfo'}
                   key={ind}
                   position={[
                     randomCount(100) - 50,
@@ -71,13 +82,12 @@ const PlanetaBlueHome = () => {
                 />
               )
             })}
-            <CosmosBox CosmosSpace={CosmosSpace} />
-            <AutoFuture position={[10, -5, 0]} />
-            <MyLordModel />
-            <Planet groundJpg={iseJpg} />
-            {/* <AnotherLordModel position={[2, -2, 5]} /> */}
-            <Spaceport position={[9, -15, 0]} />
-            <Portal position={[35, -2, 20]} />
+            <CosmosBox planet={'BlueHomeInfo'} CosmosSpace={CosmosSpace} />
+            <AutoFuture planet={'BlueHomeInfo'} position={[10, -5, 0]} />
+            <MyLordModel planet={'BlueHomeInfo'} />
+            <Planet planet={'BlueHomeInfo'} groundJpg={iseJpg} />
+            <Spaceport planet={'BlueHomeInfo'} position={[9, -15, 0]} />
+            <Portal planet={'BlueHomeInfo'} position={[35, -2, 20]} />
           </Physics>
         </Suspense>
       </Canvas>

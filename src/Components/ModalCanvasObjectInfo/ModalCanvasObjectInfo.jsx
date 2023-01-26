@@ -1,14 +1,27 @@
 // import { GeneralButton } from 'Components/GeneralButton/GeneralButton.styled';
 import React from 'react'
-import { ModalInfo } from './ModalCanvasObjectInfo.styled'
+import {
+  ModalInfo,
+  DistanceInfo,
+  ShortInfo
+} from './ModalCanvasObjectInfo.styled'
 import { useSelector } from 'react-redux'
 
 export const ModalCanvasObjectInfo = () => {
-  const { info } = useSelector(state => state.openCanvasModal)
+  const { openCanvasModal } = useSelector((state) => state)
+  const { objects } = useSelector((state) => state.language.transleter)
   return (
     <ModalInfo>
-      <h3>{info?.title}</h3>
-      <p>{info?.shortInfo}</p>
+      <h2>{objects[openCanvasModal.typeObject].title}</h2>
+      {openCanvasModal?.distance && (
+        <DistanceInfo>
+          {objects[openCanvasModal.typeObject].distance}
+          {openCanvasModal?.distance > 100
+            ? ' 100 +'
+            : openCanvasModal?.distance.toFixed(0)}
+        </DistanceInfo>
+      )}
+      <ShortInfo>{objects[openCanvasModal.typeObject].shortInfo}</ShortInfo>
     </ModalInfo>
   )
 }

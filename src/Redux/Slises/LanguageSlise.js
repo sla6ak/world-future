@@ -7,9 +7,10 @@ const initialLanguage = {
     startPage: null,
     loginPage: null,
     registerPage: null,
-    settingLord: null
+    settingLord: null,
+    objects: null
   }
-} // ru
+}
 
 export const language = createSlice({
   name: 'language',

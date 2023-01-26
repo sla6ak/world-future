@@ -1,20 +1,23 @@
 import { useThree, useFrame } from '@react-three/fiber'
-import React, { useRef, useEffect, Suspense } from 'react'
+import React, { useRef, useEffect, Suspense, useState } from 'react'
 import { Vector3 } from 'three'
 import { PointerCameraController } from 'ComponentsThree/CameraController/CameraController'
 import { useSphere } from '@react-three/cannon'
 import { useLordKeyboardControls } from 'Hooks/useLordKeyboardControls'
-import { useSendMessageMutation } from 'Redux/WebSocketsAPI/WS_BASE_API'
 import { useOpenModalCanvasEl } from 'Hooks/useOpenModalCanvasEl'
+import { useDispatch } from 'react-redux'
+import { myPositionAction } from 'Redux/Slises/myPositionSlise'
+import { useMyPositionHook } from 'Hooks/useMyPositionHook'
 // чтоб было чесно нам нужно нашего лорда отрисовывать по ответным данным с сервера а не по локальным. для начала передадим на сервер нашу позицию
-const SPEED = 10
-
+const SPEED = 3
 const MyLordModel = (props) => {
   const { moveForward, moveBackward, moveLeft, moveRight, jump } =
     useLordKeyboardControls()
-  const [sendMessage] = useSendMessageMutation()
   useOpenModalCanvasEl()
+  useMyPositionHook()
   const { camera } = useThree()
+  const [speed, setSpeed] = useState(10)
+  const dispatch = useDispatch()
 
   // const result = useLoader(GLTFLoader, LordGLB);
   const [ref, api] = useSphere(() => ({
@@ -26,37 +29,52 @@ const MyLordModel = (props) => {
     ...props
   }))
   const velocity = useRef([0, 0, 0]) // скорость с сілкой на вектор центра карті
-
+  const centrMap = new Vector3()
   useEffect(() => {
     const unsubscribeHero = api.velocity.subscribe((v) => {
       return (velocity.current = v)
     })
     return unsubscribeHero
-  }, [api.velocity, camera.position])
+  }, [api.velocity])
 
   useEffect(() => {
     const unsubscribeCamera = api.position.subscribe((v) => {
+      const vx = v[0].toFixed(3)
+      const vy = v[1].toFixed(3)
+      const vz = v[2].toFixed(3)
       if (
-        camera.position.x.toFixed(2) !== v[0].toFixed(2) ||
-        camera.position.y.toFixed(2) !== v[1].toFixed(2) ||
-        camera.position.z.toFixed(2) !== v[2].toFixed(2)
+        camera.position.x.toFixed(3) !== vx ||
+        camera.position.y.toFixed(3) !== vy ||
+        camera.position.z.toFixed(3) !== vz
       ) {
-        camera.position.copy({ x: v[0], y: v[1], z: v[2] })
-        sendMessage({
-          channel: 'planetaBlueHome',
-          data: {
-            position: {
-              x: v[0].toFixed(2),
-              y: v[1].toFixed(2),
-              z: v[2].toFixed(2)
-            }
+        const positionShort = { x: v[0], y: v[1], z: v[2] }
+        const rotationShort = {
+          x: camera.rotation._x,
+          y: camera.rotation._y,
+          z: camera.rotation._z
+        }
+        const distancia = camera.position.distanceTo(centrMap)
+        const speedResult = (distancia) => {
+          if (distancia > 350) {
+            return 0.00000000001
           }
-        })
+          const result =
+            SPEED / (1 + distancia * (1 + distancia) * (1 + distancia) * 0.0001)
+          // console.log('distancia:', distancia, 'speed:', result)
+          return result
+        }
+        setSpeed((prev) => speedResult(distancia))
+        camera.position.copy(positionShort)
+        dispatch(
+          myPositionAction({
+            position: positionShort,
+            rotation: rotationShort
+          })
+        )
       }
-      // console.log({ x: v[0], y: v[1], z: v[2] });
       return unsubscribeCamera
     })
-  }, [api.position, camera.position, sendMessage])
+  }, [api.position, camera.position])
 
   useFrame(() => {
     // создадим векторы управляющие камерой и героем
@@ -78,11 +96,11 @@ const MyLordModel = (props) => {
     direction
       .subVectors(frontVector, sideVector)
       .normalize()
-      .multiplyScalar(SPEED)
+      .multiplyScalar(speed)
       .applyEuler(camera.rotation)
     api.velocity.set(direction.x, velocity.current[1], direction.z)
     // эту сложную матиматическую фомулу ниже я не смог осмыслить поэтому скопипастил из интернета бросил в консоль апи.велосите.курент еррор но пріжки срабатівают
-    if (jump && Math.abs(velocity.current[1].toFixed(2)) < 0.05) {
+    if (jump && Math.abs(velocity.current[1].toFixed(3)) < 0.05) {
       api.velocity.set(velocity.current[0], 8, velocity.current[2])
     }
   })

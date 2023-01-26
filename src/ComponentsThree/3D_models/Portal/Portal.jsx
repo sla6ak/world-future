@@ -1,52 +1,46 @@
 import React, { useRef, useState } from 'react'
 // import { useState } from 'react';
 import { useGLTF } from '@react-three/drei'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   newOpenCanvasModal,
   onHoverCanvasModal,
   ofHoverCanvasModal
 } from 'Redux/Slises/openCanvasModalSlise'
 
-const Portal = ({ ...props }) => {
+const Portal = ({ position, planet }) => {
+  const positionHero = useSelector((state) => state.myPosition.position)
   const [hovered, setHover] = useState(false)
   const [active, setActive] = useState(false)
-
   const dispatch = useDispatch()
   const group = useRef()
   const { nodes, materials } = useGLTF('/models/time_machine/scene.gltf')
+
   const onClickObj = () => {
+    const distance = group.current.position.distanceTo(positionHero)
+    if (distance > 10) return
     dispatch(
       newOpenCanvasModal({
         isClick: true,
         isHover: false,
-        ObjPosition: {},
-        typeObj: 'portal',
-        timerOpen: 15000,
-        info: {
-          title: 'The Star Gate',
-          typeObj: 'portal',
-          shortInfo:
-            'Врата построенные неизвестной цивилизацией позволяют путешествовать по вселенной',
-          moreInfo:
-            'Врата открывают портал в далеком космосе, тебе доступны путешествия в системы богатые ресурсами и аномалиями для исследования новых технологий но будь осторожен другая фракция хочет присвоить космос себе'
-        }
+        position: {},
+        distance,
+        typeObject: 'portal',
+        timerOpen: 15000
       })
     )
     setActive(!active)
   }
   const onHoverObj = () => {
+    const distance = group.current.position.distanceTo(positionHero)
     setHover(true)
     dispatch(
       onHoverCanvasModal({
         isClick: false,
         isHover: true,
-        ObjPosition: {},
-        info: {
-          title: 'The Star Gate',
-          shortInfo:
-            'Врата построенные неизвестной цивилизацией позволяют путешествовать по вселенной'
-        }
+        typeObject: 'portal',
+        distance,
+        position: {}
       })
     )
     setActive(!active)
@@ -55,8 +49,7 @@ const Portal = ({ ...props }) => {
     setHover(false)
     dispatch(
       ofHoverCanvasModal({
-        isHover: false,
-        info: {}
+        isHover: false
       })
     )
     setActive(!active)
@@ -76,7 +69,7 @@ const Portal = ({ ...props }) => {
       }}
       dispose={null}
       scale={hovered ? 0.102 : 0.1}
-      {...props}
+      position={position}
     >
       <directionalLight color="#1d68f3" />
       <group rotation={[-Math.PI / 2, 0, 0]}>
