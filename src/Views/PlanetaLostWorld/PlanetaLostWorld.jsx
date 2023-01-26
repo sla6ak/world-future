@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 // ***************** react  компоненты ***********************************
 import { Canvas } from '@react-three/fiber'
 import { Physics, Debug } from '@react-three/cannon'
@@ -38,8 +38,16 @@ const PlanetaLostWorld = () => {
   useGetPlayersHook({ channel: 'LostWorld' })
   const { LostWorldInfo } = useSelector((state) => state)
   const { nikName } = useSelector((state) => state.lordInfo)
+  const [listClients, setListClients] = useState(
+    Object.keys(LostWorldInfo.players)
+  )
+
+  useEffect(() => {
+    setListClients(Object.keys(LostWorldInfo.players))
+  }, [LostWorldInfo.players])
+
   const boxs = []
-  for (let i = 0; i <= 20; i++) {
+  for (let i = 0; i <= 10; i++) {
     boxs.push(i)
   }
   // function randomCount(max) {
@@ -58,25 +66,19 @@ const PlanetaLostWorld = () => {
               position={[-54, 200, 0]}
             /> */}
             {/* <directionalLight color="#9dc3da" position={[100, 100, 100]} /> */}
-            {LostWorldInfo.players?.length > 1 &&
-              LostWorldInfo.players.map((el) => {
-                if (el.nikName === nikName) {
+            {listClients.length > 1 &&
+              listClients.map((el) => {
+                if (el === nikName) {
                   return null
                 }
-                return <SoldierModel key={el.nikName} playerInfo={el} />
+                return (
+                  <SoldierModel
+                    planet={'LostWorldInfo'}
+                    key={el}
+                    nikName={el}
+                  />
+                )
               })}
-            {/* {boxs.map((el, ind) => {
-              return (
-                <Box
-                  key={ind}
-                  position={[
-                    randomCount(100) - 50,
-                    randomCount(3) - 2,
-                    randomCount(100) - 50
-                  ]}
-                />
-              )
-            })} */}
             <CosmosBox planet={'LostWorldInfo'} CosmosSpace={CosmosSpace} />
             <MyLordModel planet={'LostWorldInfo'} />
             <Planet planet={'LostWorldInfo'} groundJpg={stoneJpg} />
@@ -94,7 +96,6 @@ const PlanetaLostWorld = () => {
               reSize={[40]}
             />
             <Debug>
-              {/* <ScifiPortal position={[-45, 2, 30]} /> */}
               <StargatePrometheus
                 planet={'LostWorldInfo'}
                 position={[210, 99, 30]}
@@ -104,6 +105,7 @@ const PlanetaLostWorld = () => {
                 planet={'LostWorldInfo'}
                 position={[-38, -1.5, 16]}
               />
+              {/* <ScifiPortal position={[-45, 2, 30]} /> */}
               {/* <Model position={[35, -2.4, 45]} />
               <Model2 position={[35, -2, -79]} /> */}
               {/* <AnomalTop position={[-35, -1.2, -29]} /> */}

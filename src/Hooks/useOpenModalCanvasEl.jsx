@@ -10,7 +10,7 @@ import { useThree } from '@react-three/fiber'
 
 export const useOpenModalCanvasEl = () => {
   const { isClick, isHover, timerOpen } = useSelector(
-    state => state.openCanvasModal
+    (state) => state.openCanvasModal
   )
   const stateThree = useThree()
   const dispatch = useDispatch()
@@ -35,7 +35,7 @@ export const useOpenModalCanvasEl = () => {
     // modalWrapperElement.style.top = `${modalPosition.y}px`;
     // modalWrapperElement.style.left = `${modalPosition.x}px`;
 
-    modalWrapperElement.style.top = `${stateThree.size.height / 7}px`
+    modalWrapperElement.style.top = `${stateThree.size.height / 8}px`
     modalWrapperElement.style.left = `${stateThree.size.width / 2.3}px`
 
     if (!isClick) return

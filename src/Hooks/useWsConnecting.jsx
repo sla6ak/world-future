@@ -5,7 +5,7 @@ import {
 } from 'Redux/WebSocketsAPI/WS_BASE_API'
 import { isErrorUser } from 'Redux/Slises/errorUserSlise'
 import { useDispatch } from 'react-redux'
-import { statePlayersAction } from 'Redux/Slises/planetaBlueHomeInfoSlise'
+import { statePlanetAction } from 'Redux/Slises/planetaBlueHomeInfoSlise'
 import { allLordInfoAction } from 'Redux/Slises/lordInfoSlise'
 
 export const useWsConnecting = () => {
@@ -34,8 +34,7 @@ export const useWsConnecting = () => {
     }
     if (data.channel === 'BlueHome') {
       if (data.data) {
-        // console.log('+++', data.data);
-        dispatch(statePlayersAction(data.data))
+        dispatch(statePlanetAction(data.data))
         return
       }
       // console.log(data);

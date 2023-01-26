@@ -8,8 +8,8 @@ import {
   ofHoverCanvasModal
 } from 'Redux/Slises/openCanvasModalSlise'
 
-const Portal = ({ ...props }) => {
-  const positionHero = useSelector((state) => state.myPosition)
+const Portal = ({ position, planet }) => {
+  const positionHero = useSelector((state) => state.myPosition.position)
   const [hovered, setHover] = useState(false)
   const [active, setActive] = useState(false)
   const dispatch = useDispatch()
@@ -17,13 +17,14 @@ const Portal = ({ ...props }) => {
   const { nodes, materials } = useGLTF('/models/time_machine/scene.gltf')
 
   const onClickObj = () => {
-    const distancia = group.current.position.distanceTo(positionHero)
+    const distance = group.current.position.distanceTo(positionHero)
+    if (distance > 10) return
     dispatch(
       newOpenCanvasModal({
         isClick: true,
         isHover: false,
         position: {},
-        distancia,
+        distance,
         typeObject: 'portal',
         timerOpen: 15000
       })
@@ -31,13 +32,14 @@ const Portal = ({ ...props }) => {
     setActive(!active)
   }
   const onHoverObj = () => {
-    const distancia = group.current.position.distanceTo(positionHero)
+    const distance = group.current.position.distanceTo(positionHero)
     setHover(true)
     dispatch(
       onHoverCanvasModal({
         isClick: false,
         isHover: true,
-        distancia,
+        typeObject: 'portal',
+        distance,
         position: {}
       })
     )
@@ -67,7 +69,7 @@ const Portal = ({ ...props }) => {
       }}
       dispose={null}
       scale={hovered ? 0.102 : 0.1}
-      {...props}
+      position={position}
     >
       <directionalLight color="#1d68f3" />
       <group rotation={[-Math.PI / 2, 0, 0]}>

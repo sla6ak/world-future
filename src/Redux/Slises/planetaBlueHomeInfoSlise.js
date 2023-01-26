@@ -1,20 +1,31 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialBlueHomeInfo = {
-  players: [{ nikName: '', position: { x: 10, y: -2, z: 8 } }]
+  players: {
+    nikName: {
+      position: { x: 0, y: 0, z: 0 },
+      rotation: { x: 0, y: 0, z: 0 }
+    }
+  },
+  cristals: {},
+  anomals: {}
 }
 
 export const BlueHomeInfo = createSlice({
   name: 'BlueHome',
   initialState: initialBlueHomeInfo,
   reducers: {
-    statePlayersAction(_state, action) {
+    statePlanetAction(_state, action) {
       return action.payload
     },
-    stateCristalsAction(_state, _action) {},
-    stateAnomalsAction(_state, _action) {}
+    stateCristalsAction(_state, action) {
+      return action.payload
+    },
+    stateAnomalsAction(_state, action) {
+      return action.payload
+    }
   }
 })
 
-export const { statePlayersAction, stateCristalsAction, stateAnomalsAction } =
+export const { statePlanetAction, stateCristalsAction, stateAnomalsAction } =
   BlueHomeInfo.actions

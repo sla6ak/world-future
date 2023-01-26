@@ -72,7 +72,7 @@ const LeyoutGame = () => {
             <DarkMatter>Dark matter:{lordInfo?.darkMatter}</DarkMatter>
           </KristalBox>
           <Lord>
-            Lord: <NikLord>{lordInfo?.nikName}</NikLord>
+            Hero: <NikLord>{lordInfo?.nikName}</NikLord>
           </Lord>
           <ArmBox
             onClick={(e) => {

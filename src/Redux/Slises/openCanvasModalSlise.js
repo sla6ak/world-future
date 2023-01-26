@@ -5,7 +5,7 @@ const initialCanvasModal = {
   isHover: false,
   typeObject: null,
   position: {},
-  distancion: null,
+  distance: null,
   timerOpen: 0
 }
 // typeObject определяет наличие кнопок или взаимодействий ["history","user","kristall",'portal']

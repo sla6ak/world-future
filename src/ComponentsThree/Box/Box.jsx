@@ -16,7 +16,7 @@ const Box = ({ position, planet }) => {
   const [hovered, setHover] = useState(false)
   const [active, setActive] = useState(false)
   const dispatch = useDispatch()
-  const positionHero = useSelector((state) => state.myPosition)
+  const positionHero = useSelector((state) => state.myPosition.position)
 
   const textureBox = useLoader(TextureLoader, boxJpg)
   const textureBoxQ = useLoader(TextureLoader, boxJpgQ)
@@ -26,28 +26,30 @@ const Box = ({ position, planet }) => {
   }))
 
   const onClickObj = () => {
-    const distancia = refBox.current.position.distanceTo(positionHero)
+    const distance = refBox.current.position.distanceTo(positionHero)
+    if (distance > 5) return
     dispatch(
       newOpenCanvasModal({
         isClick: true,
         isHover: false,
         typeObject: 'box',
         position: {},
-        distancion: distancia,
+        distance,
         timerOpen: 5000
       })
     )
     setActive(!active)
   }
   const onHoverObj = () => {
-    const distancia = refBox.current.position.distanceTo(positionHero)
+    const distance = refBox.current.position.distanceTo(positionHero)
     setHover(true)
     dispatch(
       onHoverCanvasModal({
         isClick: false,
+        typeObject: 'box',
         isHover: true,
         position: {},
-        distancion: distancia
+        distance
       })
     )
     setActive(!active)
@@ -56,9 +58,7 @@ const Box = ({ position, planet }) => {
     setHover(false)
     dispatch(
       ofHoverCanvasModal({
-        isHover: false,
-        position: {},
-        distancion: null
+        isHover: false
       })
     )
     setActive(!active)

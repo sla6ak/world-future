@@ -1,4 +1,22 @@
 import * as yup from 'yup'
+
+// yup.addMethod(
+//   yup.string,
+//   'nikName',
+//   function (nikName, message = 'only english') {
+//     const nikNameRules = /[a-zA-Z]d+[a-zA-Z]{3,30}/
+
+//     return this.test({
+//       message,
+//       test: (value) =>
+//         value === null ||
+//         value === '' ||
+//         value === undefined ||
+//         nikNameRules.test(value)
+//     })
+//   }
+// )
+
 export const validationRegisterSchema = yup.object({
   email: yup
     .string('Enter your email')
@@ -23,6 +41,9 @@ export const validationLoginSchema = yup.object({
 export const validationLordSchema = yup.object({
   nikName: yup
     .string('Enter your nikName')
+    .test('nikName', 'only english, no number start!', (val) =>
+      /^[A-Za-z]+[A-Za-z0-9]/.test(val)
+    )
     .required('nikName is required')
     .min(3, 'nikName should be of minimum 3 characters length')
     .max(9, 'nikName should be of maximum 9 characters length'),
