@@ -5,21 +5,12 @@ import PrivateRoute from 'Components/PrivateRoute/PrivateRoute'
 import PublicRoute from 'Components/PublicRoute/PublicRoute'
 import { useReroute } from './useReroute'
 
-// загрузка планет
 const SetLordPage = lazy(() => import('../Views/SetLordPage/SetLordPage'))
 const StartPage = lazy(() => import('../Views/StartPage/StartPage'))
 const LoginPage = lazy(() => import('../Views/LoginPage/LoginPage'))
 const RegisterPage = lazy(() => import('../Views/RegisterPage/RegisterPage'))
 const LayoutGame = lazy(() => import('../LayoutGame/LayoutGame'))
-const PlanetaBlueHome = lazy(() =>
-  import('../Views/PlanetaBlueHome/PlanetaBlueHome')
-)
-const PlanetaYellowHome = lazy(() =>
-  import('../Views/PlanetaYellowHome/PlanetaYellowHome')
-)
-const PlanetaLostWorld = lazy(() =>
-  import('../Views/PlanetaLostWorld/PlanetaLostWorld')
-)
+const GameBoard = lazy(() => import('../Views/GameBoard/GameBoard'))
 
 export const Routers = () => {
   useReroute()
@@ -60,45 +51,13 @@ export const Routers = () => {
           }
         >
           <Route
-            path="/play/BlueHome"
+            path="/play/gameBoard"
             element={
               <PrivateRoute>
-                <PlanetaBlueHome />
+                <GameBoard />
               </PrivateRoute>
             }
           />
-          <Route
-            path="/play/YellowHome"
-            element={
-              <PrivateRoute>
-                <PlanetaYellowHome />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/play/LostWorld"
-            element={
-              <PrivateRoute>
-                <PlanetaLostWorld />
-              </PrivateRoute>
-            }
-          />
-          {/* <Route
-      path="/play/mainingWorld"
-      element={
-        <PrivateRoute>
-          <SetLord />
-        </PrivateRoute>
-      }
-    />
-    <Route
-      path="/play/portalWorld"
-      element={
-        <PrivateRoute>
-          <SetLord />
-        </PrivateRoute>
-      }
-    /> */}
         </Route>
       </Route>
 

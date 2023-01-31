@@ -1,14 +1,16 @@
 import React, { Suspense } from 'react'
-import { MainFone } from './Layout.styled'
+import { MainFone, MainBlur } from './Layout.styled'
 import { Outlet } from 'react-router-dom'
 import { LoaderCastomGate } from 'Components/LoaderCastomGate/LoaderCastomGate'
 
 export function Layout() {
   return (
     <MainFone>
-      <Suspense fallback={<LoaderCastomGate>loading...</LoaderCastomGate>}>
-        <Outlet />
-      </Suspense>
+      <MainBlur>
+        <Suspense fallback={<LoaderCastomGate>loading...</LoaderCastomGate>}>
+          <Outlet />
+        </Suspense>
+      </MainBlur>
     </MainFone>
   )
 }

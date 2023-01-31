@@ -25,6 +25,7 @@ export function SoldierModel({ nikName, planet }) {
   const [lastPosition, setLastPosition] = useState(playerInfo.position)
   const [curentAnimation, setCurentAnimation] = useState('state')
   const group = useRef()
+  const positionHero = useSelector((state) => state.myPosition.position)
 
   const { nodes, materials, animations } = useGLTF(
     '/models/soldier/Soldier.glb'
@@ -85,34 +86,31 @@ export function SoldierModel({ nikName, planet }) {
   }, [apiSphera.rotation])
 
   const onClickObj = () => {
+    const distance = group.current.position.distanceTo(positionHero)
     dispatch(
       newOpenCanvasModal({
         isClick: true,
         isHover: false,
+        typeObject: 'hero',
+        nikName,
         ObjPosition: {},
-        timerOpen: 5000,
-        info: {
-          title: `The Gamer ${playerInfo.nikName}`,
-          typeObj: 'lord',
-          rassa: playerInfo.rassa,
-          shortInfo: `Человек рожденный на планете ${playerInfo.rassa}`,
-          moreInfo: {}
-        }
+        distance,
+        timerOpen: 5000
       })
     )
     setActive(!active)
   }
   const onHoverObj = () => {
+    const distance = group.current.position.distanceTo(positionHero)
     setHover(true)
     dispatch(
       onHoverCanvasModal({
         isClick: false,
         isHover: true,
+        nikName,
+        typeObject: 'hero',
         ObjPosition: {},
-        info: {
-          title: `${playerInfo.nikName}`,
-          shortInfo: `Человек рожденный на планете ${playerInfo.rassa}`
-        }
+        distance
       })
     )
     setActive(!active)
@@ -135,8 +133,10 @@ export function SoldierModel({ nikName, planet }) {
 
   return (
     <Suspense>
-      <mesh
-        ref={refSphera}
+      <mesh ref={refSphera}>
+        <meshStandardMaterial />
+      </mesh>
+      <group
         scale={hovered ? 0.7 : 0.65}
         onPointerDown={(e) => {
           onClickObj()
@@ -147,10 +147,9 @@ export function SoldierModel({ nikName, planet }) {
         onPointerOut={(e) => {
           offHoverObj()
         }}
+        ref={group}
+        dispose={null}
       >
-        <meshStandardMaterial />
-      </mesh>
-      <group ref={group} dispose={null}>
         <group name="Scene">
           <group rotation={[-Math.PI / 2, 0, 0]} name="Character" scale={0.01}>
             <primitive object={nodes.mixamorigHips} />
