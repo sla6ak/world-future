@@ -17,9 +17,3 @@ jobs:
           yarn install
           yarn run lint
           yarn run build
-
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.0
-        with:
-          branch: gh-pages
-          folder: build

@@ -3,10 +3,10 @@ import {
   useGetMessagesQuery,
   useSendMessageMutation
 } from 'Redux/WebSocketsAPI/WS_BASE_API'
-import { isErrorUser } from 'Redux/Slices/errorUserSlise'
+import { isErrorUser } from 'Redux/Slices/errorUserSlice'
 import { useDispatch } from 'react-redux'
-import { statePlanetAction } from 'Redux/Slices/planetaBlueHomeInfoSlise'
-import { allLordInfoAction } from 'Redux/Slices/lordInfoSlise'
+import { statePlanetAction } from 'Redux/Slices/planetBlueHomeInfoSlice'
+import { allLordInfoAction } from 'Redux/Slices/lordInfoSlice'
 
 export const useWsConnecting = () => {
   const { data: dataWS, error } = useGetMessagesQuery()

@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialStatusWS = false
+const initialData = false
 
 export const statusWS = createSlice({
   name: 'statusWS',
-  initialState: initialStatusWS,
+  initialState: initialData,
   reducers: {
     isWsConnect(_state, action) {
       return action.payload

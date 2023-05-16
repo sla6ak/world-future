@@ -11,7 +11,7 @@ import { toast } from 'react-toastify'
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { validationLetterSchema } from 'Helpers/validationForms'
-import { generalСhatAction } from 'Redux/Slices/chatGameSlise'
+import { generalСhatAction } from 'Redux/Slices/chatGameSlice'
 
 const Chat = ({ lordInfo }) => {
   const [buttonDis, setButtonDis] = useState(false)

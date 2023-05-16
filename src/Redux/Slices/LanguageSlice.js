@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialLanguage = {
+const initialData = {
   myLanguage: 'en',
   transleter: {
     listLanguage: [{ shortName: 'en', text: 'ENGLISH' }],
@@ -14,7 +14,7 @@ const initialLanguage = {
 
 export const language = createSlice({
   name: 'language',
-  initialState: initialLanguage,
+  initialState: initialData,
   reducers: {
     switchLanguage(state, action) {
       state.myLanguage = action.payload

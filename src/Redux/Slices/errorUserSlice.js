@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialIsErrorUser = false
+const initialData = false
 
 export const errorUser = createSlice({
   name: 'errorUser',
-  initialState: initialIsErrorUser,
+  initialState: initialData,
   reducers: {
     isErrorUser(_state, action) {
       return action.payload

@@ -10,7 +10,7 @@ import {
   newOpenCanvasModal,
   onHoverCanvasModal,
   ofHoverCanvasModal
-} from 'Redux/Slices/openCanvasModalSlise'
+} from 'Redux/Slices/openCanvasModalSlice'
 
 const Box = ({ position, planet }) => {
   const [hovered, setHover] = useState(false)

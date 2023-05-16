@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialUser = { user: { name: '', email: '' }, token: '' }
+const initialData = { user: { name: '', email: '' }, token: '' }
 
 export const auth = createSlice({
   name: 'auth',
-  initialState: initialUser,
+  initialState: initialData,
   reducers: {
     isAuth(state, action) {
       state.user = action.payload

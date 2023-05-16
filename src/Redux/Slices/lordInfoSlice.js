@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialLordInfo = null
+const initialData = null
 
 export const lordInfo = createSlice({
   name: 'person',
-  initialState: initialLordInfo,
+  initialState: initialData,
   reducers: {
     allLordInfoAction(_state, action) {
       return action.payload

@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialChat = { generalСhat: [], mySMS: [] }
+const initialData = { generalСhat: [], mySMS: [] }
 
 export const chatGame = createSlice({
   name: 'chatGame',
-  initialState: initialChat,
+  initialState: initialData,
   reducers: {
     generalСhatAction(state, { payload }) {
       state.generalСhat.push(payload)
