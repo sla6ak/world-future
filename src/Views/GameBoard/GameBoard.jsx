@@ -3,9 +3,9 @@ import { useSelector } from 'react-redux'
 import { Canvas } from '@react-three/fiber'
 import { Physics } from '@react-three/cannon'
 import LoaderSuspense from 'Components/LoaderSuspense/LoaderSuspense'
-import PlanetaBlueHome from 'Views/Planets/PlanetaBlueHome/PlanetaBlueHome'
-import PlanetaLostWorld from 'Views/Planets/PlanetaLostWorld/PlanetaLostWorld'
-import PlanetaYellowHome from 'Views/Planets/PlanetaYellowHome/PlanetaYellowHome'
+import PlanetBlueHome from 'Views/Planets/PlanetBlueHome/PlanetBlueHome'
+import PlanetLostWorld from 'Views/Planets/PlanetLostWorld/PlanetLostWorld'
+import PlanetYellowHome from 'Views/Planets/PlanetYellowHome/PlanetYellowHome'
 import MyLordModel from 'ComponentsThree/MyLordModel/MyLordModel'
 
 const GameBoard = () => {
@@ -16,9 +16,9 @@ const GameBoard = () => {
         <Suspense fallback={<LoaderSuspense />}>
           <Physics>
             <MyLordModel planet={lordInfo.planet} />
-            {lordInfo.planet === 'BlueHome' && <PlanetaBlueHome />}
-            {lordInfo.planet === 'YellowHome' && <PlanetaYellowHome />}
-            {lordInfo.planet === 'LostWorld' && <PlanetaLostWorld />}
+            {lordInfo.planet === 'BlueHome' && <PlanetBlueHome />}
+            {lordInfo.planet === 'YellowHome' && <PlanetYellowHome />}
+            {lordInfo.planet === 'LostWorld' && <PlanetLostWorld />}
           </Physics>
         </Suspense>
       </Canvas>

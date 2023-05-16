@@ -12,7 +12,7 @@ const Star = ({ position, reSize, starImg }) => {
   useFrame(() => {
     // refBox.current.rotation.x += 0.03;
     refBox.current.rotation.y += 0.01
-  }, [])
+  }, 1)
 
   return (
     <>

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import starGate from '../../Impegs/stargatecast.png'
+import starGate from '../../Images/stargatecast.png'
 
 export const GateFone = styled.div`
   width: 400px;

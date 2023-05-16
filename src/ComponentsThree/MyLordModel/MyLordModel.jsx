@@ -6,7 +6,7 @@ import { useSphere } from '@react-three/cannon'
 import { useLordKeyboardControls } from 'Hooks/useLordKeyboardControls'
 import { useOpenModalCanvasEl } from 'Hooks/useOpenModalCanvasEl'
 import { useDispatch } from 'react-redux'
-import { myPositionAction } from 'Redux/Slises/myPositionSlise'
+import { myPositionAction } from 'Redux/Slices/myPositionSlise'
 import { useMyPositionHook } from 'Hooks/useMyPositionHook'
 // чтоб было чесно нам нужно нашего лорда отрисовывать по ответным данным с сервера а не по локальным. для начала передадим на сервер нашу позицию
 const SPEED = 3

@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import { useSendMessageMutation } from 'Redux/WebSocketsAPI/WS_BASE_API'
 import { useSelector, useDispatch } from 'react-redux'
-import { closeCanvasModal } from 'Redux/Slises/openCanvasModalSlise'
+import { closeCanvasModal } from 'Redux/Slices/openCanvasModalSlise'
 
 export const useModalClickKeyboardControls = () => {
-  const { lordInfo } = useSelector(state => state)
+  const { lordInfo } = useSelector((state) => state)
   const [sendMessage] = useSendMessageMutation()
   const dispatch = useDispatch()
 
@@ -22,7 +22,7 @@ export const useModalClickKeyboardControls = () => {
       }
       return keys[key]
     }
-    const handleKeyDown = e => {
+    const handleKeyDown = (e) => {
       if (actionByKey(e.code)) {
         const toPlanet = actionByKey(e.code)
         sendMessage({

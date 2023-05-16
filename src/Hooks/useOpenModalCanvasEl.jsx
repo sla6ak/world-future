@@ -5,7 +5,7 @@
 
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { closeCanvasModal } from 'Redux/Slises/openCanvasModalSlise'
+import { closeCanvasModal } from 'Redux/Slices/openCanvasModalSlise'
 import { useThree } from '@react-three/fiber'
 
 export const useOpenModalCanvasEl = () => {

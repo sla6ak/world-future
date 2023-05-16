@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import cosmo from '../Impegs/cosmo.jpg'
+import cosmo from '../Images/cosmo.jpg'
 
 export const BoxHeader = styled.div`
   display: flex;
