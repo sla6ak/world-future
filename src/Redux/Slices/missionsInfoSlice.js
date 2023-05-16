@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialNik = ''
+const initialData = ''
 
 export const nikName = createSlice({
   name: 'person',
-  initialState: initialNik,
+  initialState: initialData,
   reducers: {
     myNik(_state, action) {
       return action.payload

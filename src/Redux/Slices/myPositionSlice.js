@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialmyPosition = {
+const initialData = {
   position: {
     x: 0,
     y: -1.0,
@@ -11,7 +11,7 @@ const initialmyPosition = {
 
 export const myPosition = createSlice({
   name: 'myPosition',
-  initialState: initialmyPosition,
+  initialState: initialData,
   reducers: {
     myPositionAction(_state, action) {
       return action.payload

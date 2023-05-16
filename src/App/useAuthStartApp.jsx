@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useGetIsActivUserQuery } from 'Redux/ServerAPI/API_BASE_SERVER'
-import { isAuth } from 'Redux/Slices/AuthSlise'
+import { isAuth } from 'Redux/Slices/AuthSlice'
 import { toast } from 'react-toastify'
 
 export const useAuthStartApp = () => {

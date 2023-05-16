@@ -13,17 +13,17 @@ import {
 // апи и слайсы
 import { WS_BASE_API } from './WebSocketsAPI/WS_BASE_API'
 import { API_BASE_SERVER } from './ServerAPI/API_BASE_SERVER'
-import { auth } from './Slices/AuthSlise'
-import { lordInfo } from './Slices/lordInfoSlise'
-import { language } from './Slices/LanguageSlise'
-import { chatGame } from './Slices/chatGameSlise'
-import { openCanvasModal } from './Slices/openCanvasModalSlise'
-import { BlueHomeInfo } from './Slices/planetaBlueHomeInfoSlise'
-import { YellowHomeInfo } from './Slices/planetaYellowHomeInfoSlise'
-import { LostWorldInfo } from './Slices/planetaLostWorldInfoSlise'
-import { errorUser } from './Slices/errorUserSlise'
+import { auth } from './Slices/AuthSlice'
+import { lordInfo } from './Slices/lordInfoSlice'
+import { language } from './Slices/LanguageSlice'
+import { chatGame } from './Slices/chatGameSlice'
+import { openCanvasModal } from './Slices/openCanvasModalSlice'
+import { BlueHomeInfo } from './Slices/planetBlueHomeInfoSlice'
+import { YellowHomeInfo } from './Slices/planetYellowHomeInfoSlice'
+import { LostWorldInfo } from './Slices/planetLostWorldInfoSlice'
+import { errorUser } from './Slices/errorUserSlice'
 import { statusWS } from './Slices/statusWS'
-import { myPosition } from './Slices/myPositionSlise'
+import { myPosition } from './Slices/myPositionSlice'
 
 // ***********************local*************************
 const tokenPersistConfig = {

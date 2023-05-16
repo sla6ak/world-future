@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useSendMessageMutation } from 'Redux/WebSocketsAPI/WS_BASE_API'
 import { useSelector, useDispatch } from 'react-redux'
-import { closeCanvasModal } from 'Redux/Slices/openCanvasModalSlise'
+import { closeCanvasModal } from 'Redux/Slices/openCanvasModalSlice'
 
 export const useModalClickKeyboardControls = () => {
   const { lordInfo } = useSelector((state) => state)

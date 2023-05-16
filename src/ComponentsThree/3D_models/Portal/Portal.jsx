@@ -4,7 +4,7 @@ import {
   newOpenCanvasModal,
   onHoverCanvasModal,
   ofHoverCanvasModal
-} from 'Redux/Slices/openCanvasModalSlise'
+} from 'Redux/Slices/openCanvasModalSlice'
 
 const Portal = ({ position, planet }) => {
   const positionHero = useSelector((state) => state.myPosition.position)

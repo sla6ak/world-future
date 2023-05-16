@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { transleter } from 'Redux/Slices/LanguageSlise'
+import { transleter } from 'Redux/Slices/LanguageSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import { useGetLanguageQuery } from 'Redux/ServerAPI/API_BASE_SERVER'
 
