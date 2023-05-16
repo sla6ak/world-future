@@ -15,7 +15,7 @@ import {
   newOpenCanvasModal,
   onHoverCanvasModal,
   ofHoverCanvasModal
-} from 'Redux/Slises/openCanvasModalSlise'
+} from 'Redux/Slices/openCanvasModalSlise'
 
 export function SoldierModel({ nikName, planet }) {
   const playerInfo = useSelector((state) => state[planet].players[nikName])

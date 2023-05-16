@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
-import { allLordInfoAction } from 'Redux/Slises/lordInfoSlise'
+import { allLordInfoAction } from 'Redux/Slices/lordInfoSlise'
 import { useDispatch, useSelector } from 'react-redux'
 import { useGetMyPersonQuery } from 'Redux/ServerAPI/API_BASE_SERVER'
-import { myPositionAction } from 'Redux/Slises/myPositionSlise'
+import { myPositionAction } from 'Redux/Slices/myPositionSlise'
 
 export const useMyLordInfoHook = () => {
   // изначально переполучал весь объект но должен быть переработан и перезаписывать только измененные данные

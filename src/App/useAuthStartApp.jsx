@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useGetIsActivUserQuery } from 'Redux/ServerAPI/API_BASE_SERVER'
-import { isAuth } from 'Redux/Slises/AuthSlise'
+import { isAuth } from 'Redux/Slices/AuthSlise'
 import { toast } from 'react-toastify'
 
 export const useAuthStartApp = () => {
-  const { token } = useSelector(state => state.auth)
+  const { token } = useSelector((state) => state.auth)
   const { data: auth, error: errorAuth } = useGetIsActivUserQuery('', {
     skip: !token
   })
